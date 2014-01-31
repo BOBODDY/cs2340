@@ -3,6 +3,8 @@ package com.so.sofinances;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import android.view.View;
+import android.content.Intent;
 
 public class WelcomeActivity extends Activity {
 
@@ -18,5 +20,9 @@ public class WelcomeActivity extends Activity {
 		getMenuInflater().inflate(R.menu.welcome, menu);
 		return true;
 	}
-
+	
+	public void exampleResponse(View view) {
+	    Intent exampleIntent = new Intent(this, LoginActivity.class);
+	    startActivity(exampleIntent);
+	}
 }

@@ -22,6 +22,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.so.sofinances.LoginActivity"
+            android:label="@string/title_activity_login" >
+            android:parentActivityName="com.so.sofinances.WelcomeActivity" >
+        	<meta-data
+            	android:name="android.support.PARENT_ACTIVITY"
+            	android:value="com.so.sofinances.WelcomeActivity" />
+        </activity>
     </application>
 
 </manifest>

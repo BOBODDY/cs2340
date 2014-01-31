@@ -4,5 +4,11 @@
     <string name="app_name">SO Finances</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="edit_message">hello</string>
+    <string name="button_example">Example</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="button_login">Login</string>
+    <string name="login_username">enter username here</string>
+    <string name="login_password">enter password here</string>
 
 </resources>
