@@ -5,7 +5,8 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="edit_message">hello</string>
-    <string name="button_example">Example</string>
+    <string name="button_goToLogin">Log In</string>
+    <string name="button_register">Register</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="button_login">Login</string>
     <string name="login_username">enter username here</string>
