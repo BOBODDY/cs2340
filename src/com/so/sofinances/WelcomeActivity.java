@@ -20,9 +20,9 @@ public class WelcomeActivity extends Activity {
 		getMenuInflater().inflate(R.menu.welcome, menu);
 		return true;
 	}
-	
-	public void exampleResponse(View view) {
-	    Intent exampleIntent = new Intent(this, LoginActivity.class);
-	    startActivity(exampleIntent);
+
+	public void loginResponse(View view) {
+	    Intent loginIntent = new Intent(this, LoginActivity.class);
+	    startActivity(loginIntent);
 	}
 }
