@@ -8,7 +8,11 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_example" 
-        android:onClick="exampleResponse"	/>
+        android:text="@string/button_goToLogin" 
+        android:onClick="loginResponse"	/>
+    
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_register" />
 </LinearLayout>
-
