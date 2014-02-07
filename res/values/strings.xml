@@ -11,5 +11,8 @@
     <string name="button_login">Login</string>
     <string name="login_username">enter username here</string>
     <string name="login_password">enter password here</string>
+    <string name="title_activity_success">SuccessActivity</string>
+    <string name="success">SUCCESS!</string>
+    <string name="invalid_login">Invalid Login</string>
 
 </resources>

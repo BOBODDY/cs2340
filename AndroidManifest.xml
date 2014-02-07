@@ -25,11 +25,24 @@
         <activity
             android:name="com.so.sofinances.LoginActivity"
             android:label="@string/title_activity_login" >
-            android:parentActivityName="com.so.sofinances.WelcomeActivity" >
-        	<meta-data
-            	android:name="android.support.PARENT_ACTIVITY"
-            	android:value="com.so.sofinances.WelcomeActivity" />
+            android:parentActivityName="com.so.sofinances.WelcomeActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.so.sofinances.WelcomeActivity" />
         </activity>
+        <activity
+            android:name="com.so.sofinances.SuccessActivity"
+            android:label="@string/title_activity_success"
+            android:parentActivityName="com.so.sofinances.LoginActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.so.sofinances.LoginActivity" />
+        </activity>
+
+        <service
+            android:name="com.so.sofinances.CheckLogin"
+            android:exported="false" >
+        </service>
     </application>
 
 </manifest>

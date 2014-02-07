@@ -1,25 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal" >
-    
-    <EditText android:id="@+id/login_username"
-        android:layout_weight="1"
-        android:layout_width="0dp"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp" >
+
+    <EditText
+        android:id="@+id/login_username"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="@string/login_username" />
-    
-    <EditText android:id="@+id/login_password"
-        android:layout_weight="1"
-        android:layout_width="0dp"
+
+    <EditText
+        android:id="@+id/login_password"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/login_password" />
-    
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="42dp"
+        android:ems="10"
+        android:hint="@string/login_password" >
+    </EditText>
+
     <Button
+        android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/login_password"
+        android:layout_centerHorizontal="true"
+        android:onClick="successResponse"
         android:text="@string/button_login" />
-</LinearLayout>
 
+    <TextView
+        android:id="@+id/invalidLoginTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+</RelativeLayout>
