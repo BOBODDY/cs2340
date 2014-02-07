@@ -19,7 +19,9 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="42dp"
         android:ems="10"
-        android:hint="@string/login_password" >
+        android:hint="@string/login_password"
+        android:inputType="textPassword" >
+
     </EditText>
 
     <Button
