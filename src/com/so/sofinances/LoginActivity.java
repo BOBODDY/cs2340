@@ -31,8 +31,10 @@ public class LoginActivity extends Activity {
 	    Intent successIntent = new Intent(this, SuccessActivity.class);
 	    String username = unText.getText().toString();
 	    String password = pwText.getText().toString();
-	    User theUser = new User(username, password);
-	    if (theUser.isDefault()) {
+	    
+	    UserHandler handler = new UserHandler(getApplicationContext());
+	    
+	    if (handler.checkLogin(username, password)) {
 	    	startActivity(successIntent);
 	    } else {
 	    	((TextView)findViewById (R.id.invalidLoginTV)).setText("Invalid Login");

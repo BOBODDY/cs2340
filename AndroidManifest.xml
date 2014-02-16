@@ -43,6 +43,15 @@
             android:name="com.so.sofinances.CheckLogin"
             android:exported="false" >
         </service>
+
+        <activity
+            android:name="com.so.sofinances.RegisterActivity"
+            android:label="@string/title_activity_register"
+            android:parentActivityName="com.so.sofinances.WelcomeActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.so.sofinances.WelcomeActivity" />
+        </activity>
     </application>
 
 </manifest>

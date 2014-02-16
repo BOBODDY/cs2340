@@ -25,4 +25,8 @@ public class WelcomeActivity extends Activity {
 	    Intent loginIntent = new Intent(this, LoginActivity.class);
 	    startActivity(loginIntent);
 	}
+	
+	public void registerResponse(View v) {
+		startActivity(new Intent(this, RegisterActivity.class));
+	}
 }

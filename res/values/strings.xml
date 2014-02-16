@@ -14,5 +14,9 @@
     <string name="title_activity_success">SuccessActivity</string>
     <string name="success">SUCCESS!</string>
     <string name="invalid_login">Invalid Login</string>
+    <string name="title_activity_register">Register</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="full_name">Full name</string>
 
 </resources>
