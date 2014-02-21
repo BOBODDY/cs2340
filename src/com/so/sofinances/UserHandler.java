@@ -97,6 +97,7 @@ public class UserHandler {
 	}
 	
 	public boolean registerUser(String username, String password) {
+		if ((username.length() < 1) || (password.length() < 1)) return false;
 		if(findUser(username)== null) { // TODO: return some sort of code to indicate user already exists
 			if(users == null) {
 				Log.i(Constants.TAG, "users was null, creating a new one");
@@ -110,7 +111,6 @@ public class UserHandler {
 		}
 		
 		writeUsers();
-		
 		return true;
 	}
 	
