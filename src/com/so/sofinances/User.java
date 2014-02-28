@@ -70,7 +70,6 @@ public class User {
 	public String accToString(){
 		String ret = "";
 		for (Account a : accounts){
-			System.out.println(a.getFullName());
 			ret += a.getFullName() + " ";
 		}
 		return ret;
