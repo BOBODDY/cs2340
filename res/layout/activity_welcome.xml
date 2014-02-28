@@ -9,15 +9,6 @@
     android:paddingTop="@dimen/activity_vertical_margin" >
 
     <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_toLeftOf="@+id/button2"
-        android:onClick="loginResponse"
-        android:text="@string/button_goToLogin" />
-
-    <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,5 +17,23 @@
         android:layout_marginRight="81dp"
         android:onClick="registerResponse"
         android:text="@string/button_register" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/so_logo" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/button2"
+        android:layout_alignBottom="@+id/button2"
+        android:layout_alignLeft="@+id/imageView1"
+        android:onClick="loginResponse"
+        android:text="@string/button_goToLogin" />
 
 </RelativeLayout>
