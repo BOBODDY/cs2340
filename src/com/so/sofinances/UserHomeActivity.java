@@ -5,13 +5,17 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
+import android.widget.TextView;
 
 public class UserHomeActivity extends Activity {
+	TextView accountList;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_user_home);
+		accountList = (TextView) findViewById(R.id.accountList);
+		accountList.setText("accounts: " + UserHandler.getCU().accToString());	
 	}
 
 	@Override
