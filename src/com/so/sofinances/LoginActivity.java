@@ -11,6 +11,7 @@ import android.widget.TextView;
 public class LoginActivity extends Activity {
 
 	EditText unText, pwText;
+	TextView display;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +19,7 @@ public class LoginActivity extends Activity {
 		setContentView(R.layout.activity_login);
 	    unText = (EditText)findViewById(R.id.login_username);
 	    pwText = (EditText)findViewById(R.id.login_password);
+	    display = (TextView) findViewById(R.id.invalidLoginTV);
 	}
 
 	@Override
@@ -27,18 +29,16 @@ public class LoginActivity extends Activity {
 		return true;
 	}
 	
-	public void successResponse(View view) {
-	    Intent successIntent = new Intent(this, SuccessActivity.class);
+	public void onClickLogin(View view) {
 	    String username = unText.getText().toString();
 	    String password = pwText.getText().toString();
 	    
-	    UserHandler handler = new UserHandler(getApplicationContext());
-	    
-	    if (handler.checkLogin(username, password)) {
-	    	startActivity(successIntent);
+	    User test = LoginHandler.checkLogin(username, password);
+	    if (test != null) {
+	    	UserHandler.setCurrentUsername(test.getUserName().toString());
+	    	startActivity(new Intent(getApplicationContext(), UserHomeActivity.class));
 	    } else {
-	    	((TextView)findViewById (R.id.invalidLoginTV)).setText("Invalid Login");
+	    	display.setText("Invalid login");
 	    }
 	}
-
 }

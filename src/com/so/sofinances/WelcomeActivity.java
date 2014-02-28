@@ -1,5 +1,8 @@
 package com.so.sofinances;
 
+import com.db4o.ObjectSet;
+import com.db4o.query.Query;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
@@ -12,6 +15,14 @@ public class WelcomeActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_welcome);
+		DBHandler.setPath(this.getDir("data", 0) + "");
+		ObjectSet result = DBHandler.db().query(User.class);
+		for (Object u : result){
+			User temp = (User)u;
+			System.out.println(temp.getFullName());
+			
+			System.out.println("acct: " + temp.accToString());
+		}
 	}
 
 	@Override
@@ -22,8 +33,7 @@ public class WelcomeActivity extends Activity {
 	}
 
 	public void loginResponse(View view) {
-	    Intent loginIntent = new Intent(this, LoginActivity.class);
-	    startActivity(loginIntent);
+	    startActivity(new Intent(this, LoginActivity.class));
 	}
 	
 	public void registerResponse(View v) {

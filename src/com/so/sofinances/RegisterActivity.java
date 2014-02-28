@@ -1,5 +1,7 @@
 package com.so.sofinances;
 
+import com.db4o.ObjectSet;
+
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
@@ -23,7 +25,7 @@ public class RegisterActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_register);
 		// Show the Up button in the action bar.
-		setupActionBar();
+	//	setupActionBar();
 		
 		fullName = (EditText) findViewById(R.id.full_name);
 		
@@ -69,16 +71,14 @@ public class RegisterActivity extends Activity {
 	}
 	
 	public void onRegisterClick(View v) {
-		String uname = username.getText().toString();
+		String fName = fullName.getText().toString();
+		String uName = username.getText().toString();
 		String pass = password.getText().toString();
 		
-		UserHandler handler = new UserHandler(getApplicationContext());
-		
-		if(handler.registerUser(uname, pass)) {
-			startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+		if (RegistrationHandler.createUser(fName, uName, pass)) {
+			startActivity(new Intent(this, WelcomeActivity.class));
 		} else {
-			display.setText("There was a problem creating the user");
+			display.setText("User already exists with that username");
 		}
 	}
-
 }

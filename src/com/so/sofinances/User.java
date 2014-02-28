@@ -1,20 +1,56 @@
 package com.so.sofinances;
 
+import java.util.ArrayList;
+
 public class User {
-	private String username, password;
+	private String fullName, userName, password;
+	private ArrayList<Account> accounts;
 	
-	/**
-	 * @return the username
-	 */
-	public String getUsername() {
-		return username;
+	public User(String fN, String uN, String pW){
+		this.fullName = fN;
+		this.userName = uN;
+		this.password = pW;
+		this.accounts = new ArrayList<Account>();
+	}
+
+	public User() {
+	}
+	
+	public User(String uName){
+		this.userName = uName;
+	}
+	
+	public User addAccount(String fName, String dName, double bal, double intRate){
+		this.accounts.add(new Account(fName, dName, bal, intRate));
+		return this;
 	}
 
 	/**
-	 * @param username the username to set
+	 * @return the fullName
 	 */
-	public void setUsername(String username) {
-		this.username = username;
+	public String getFullName() {
+		return fullName;
+	}
+
+	/**
+	 * @param fullName the fullName to set
+	 */
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+
+	/**
+	 * @return the userName
+	 */
+	public String getUserName() {
+		return userName;
+	}
+
+	/**
+	 * @param userName the userName to set
+	 */
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	/**
@@ -30,14 +66,14 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	public User(String username, String password) {
-		this.username = username;
-		this.password = password;
+	
+	public String accToString(){
+		String ret = "";
+		for (Account a : accounts){
+			System.out.println(a.getFullName());
+			ret += a.getFullName() + " ";
+		}
+		return ret;
 	}
 	
-	public boolean isDefault() {
-		return username.equalsIgnoreCase("admin")
-				&& password.equals("pass123");
-	}
 }

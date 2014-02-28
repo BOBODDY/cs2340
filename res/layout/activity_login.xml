@@ -20,9 +20,7 @@
         android:layout_marginTop="42dp"
         android:ems="10"
         android:hint="@string/login_password"
-        android:inputType="textPassword" >
-
-    </EditText>
+        android:inputType="textPassword" />
 
     <Button
         android:id="@+id/button1"
@@ -30,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/login_password"
         android:layout_centerHorizontal="true"
-        android:onClick="successResponse"
+        android:onClick="onClickLogin"
         android:text="@string/button_login" />
 
     <TextView
