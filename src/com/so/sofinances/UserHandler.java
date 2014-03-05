@@ -4,12 +4,10 @@ import com.db4o.ObjectSet;
 
 public class UserHandler {
 	private static String username;
+	public static User currentUser;
 	
 	public static User getCU(){
-		User temp = new User();
-		temp.setUserName(username);
-		ObjectSet result = DBHandler.db().queryByExample(temp);
-		return (User) result.next();
+		return currentUser;
 	}
 	
 	public static String getCurrentUsername(){
@@ -18,5 +16,13 @@ public class UserHandler {
 	
 	public static void setCurrentUsername(String uN){
 		username = uN;
+		User temp = new User();
+		temp.setUserName(uN);
+		ObjectSet res = DBHandler.db().queryByExample(temp);
+		if (res.hasNext()){
+			currentUser = (User) res.next();
+		} else {
+			System.out.println("no result found when searching for user");
+		}
 	}
 }

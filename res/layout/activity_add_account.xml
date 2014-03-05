@@ -69,4 +69,13 @@
         android:onClick="onCancelClick"
         android:text="Cancel" />
 
+    <TextView
+        android:id="@+id/add_acc_warning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/acc_submit"
+        android:layout_alignRight="@+id/acc_cancel"
+        android:layout_below="@+id/acc_cancel"
+        android:layout_marginTop="40dp" />
+
 </RelativeLayout>

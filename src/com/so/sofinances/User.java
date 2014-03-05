@@ -20,9 +20,17 @@ public class User {
 		this.userName = uName;
 	}
 	
-	public User addAccount(String fName, String dName, double bal, double intRate){
-		this.accounts.add(new Account(fName, dName, bal, intRate));
-		return this;
+	public boolean addAccount(String fName, String dName, double bal, double intRate){
+		if (isValid(fName) && isValid(dName)){
+			this.accounts.add(new Account(fName, dName, bal, intRate));
+			return true;
+		}
+		return false;
+		
+	}
+	
+	public boolean isValid(String ex){
+		return ex.matches("([A-Za-z0-9]).*");
 	}
 
 	/**

@@ -17,8 +17,6 @@ import android.widget.Toast;
 public class UserHomeActivity extends Activity {
 	TextView accountList;
 	ListView lv;
-	
-	User currentUser;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +32,7 @@ public class UserHomeActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position,
 					long id) {
-				String name = currentUser.getAccounts().get(position).getDisplayName();
+				String name = UserHandler.currentUser.getAccounts().get(position).getDisplayName();
 				Toast.makeText(getApplicationContext(), "Found: " + name, Toast.LENGTH_SHORT).show();
 			}
 			
@@ -45,9 +43,7 @@ public class UserHomeActivity extends Activity {
 	protected void onStart() {
 		super.onStart();
 		
-		currentUser = UserHandler.getCU();
-		
-		ArrayList<Account> accounts = currentUser.getAccounts();
+		ArrayList<Account> accounts = UserHandler.currentUser.getAccounts();
 		
 		ArrayList<String> names = new ArrayList<String>();
 		

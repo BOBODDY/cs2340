@@ -37,6 +37,7 @@ public class LoginActivity extends Activity {
 	    if (test != null) {
 	    	UserHandler.setCurrentUsername(test.getUserName().toString());
 	    	startActivity(new Intent(getApplicationContext(), UserHomeActivity.class));
+	    	finish();
 	    } else {
 	    	display.setText("Invalid login");
 	    }

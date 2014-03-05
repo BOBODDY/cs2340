@@ -77,6 +77,9 @@ public class RegisterActivity extends Activity {
 		
 		if (RegistrationHandler.createUser(fName, uName, pass)) {
 			startActivity(new Intent(this, WelcomeActivity.class));
+			finish();
+			DBHandler.db().store(UserHandler.currentUser);
+			DBHandler.db().commit();
 		} else {
 			display.setText("User already exists with that username");
 		}

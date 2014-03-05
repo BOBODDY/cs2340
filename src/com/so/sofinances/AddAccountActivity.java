@@ -6,9 +6,11 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class AddAccountActivity extends Activity {
 	EditText fullName, displayName, balance, interestRate;
+	TextView warning;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +20,7 @@ public class AddAccountActivity extends Activity {
 		displayName = (EditText)findViewById(R.id.acc_displayname);
 		balance = (EditText) findViewById(R.id.acc_balance);
 		interestRate = (EditText) findViewById(R.id.acc_interestrate);
+		warning = (TextView) findViewById(R.id.add_acc_warning);
 	}
 
 	@Override
@@ -42,12 +45,18 @@ public class AddAccountActivity extends Activity {
 			interest = "0";
 		}
 		double intRate = Double.parseDouble(interest);	
-		DBHandler.db().store(UserHandler.getCU().addAccount(fName, dName, bal, intRate));
-		DBHandler.db().commit();
-		startActivity(new Intent(this, UserHomeActivity.class));
+		if (UserHandler.currentUser.addAccount(fName, dName, bal, intRate)){
+			startActivity(new Intent(this, UserHomeActivity.class));
+			DBHandler.db().store(UserHandler.currentUser);
+			DBHandler.db().commit();
+			finish();
+		} else {
+			warning.setText("Username and display name must start with a letter or number");
+		}
 	}
 	
 	public void onCancelClick(View v){
 		startActivity(new Intent(this, UserHomeActivity.class));
+		finish();
 	}
 }
