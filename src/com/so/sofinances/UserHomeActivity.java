@@ -1,21 +1,65 @@
 package com.so.sofinances;
 
-import android.os.Bundle;
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class UserHomeActivity extends Activity {
 	TextView accountList;
+	ListView lv;
+	
+	User currentUser;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_user_home);
-		accountList = (TextView) findViewById(R.id.accountList);
-		accountList.setText("accounts: " + UserHandler.getCU().accToString());	
+		
+		//accountList = (TextView) findViewById(R.id.accountList);
+		//accountList.setText("accounts: " + UserHandler.getCU().accToString());
+		
+		lv = (ListView) findViewById(R.id.accountsList);
+		lv.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position,
+					long id) {
+				String name = currentUser.getAccounts().get(position).getDisplayName();
+				Toast.makeText(getApplicationContext(), "Found: " + name, Toast.LENGTH_SHORT).show();
+			}
+			
+		});
+	}
+	
+	@Override
+	protected void onStart() {
+		super.onStart();
+		
+		currentUser = UserHandler.getCU();
+		
+		ArrayList<Account> accounts = currentUser.getAccounts();
+		
+		ArrayList<String> names = new ArrayList<String>();
+		
+		for(int i=0; i<accounts.size(); i++) {
+			names.add(accounts.get(i).getDisplayName());
+		}
+		
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, 
+				android.R.layout.simple_list_item_1, 
+				names);
+		
+		lv.setAdapter(adapter);
 	}
 
 	@Override

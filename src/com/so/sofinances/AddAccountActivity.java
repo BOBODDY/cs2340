@@ -30,8 +30,18 @@ public class AddAccountActivity extends Activity {
 	public void onSubmitClick(View v){
 		String fName = fullName.getText().toString();
 		String dName = displayName.getText().toString();
-		double bal = Double.parseDouble(balance.getText().toString());
-		double intRate = Double.parseDouble(interestRate.getText().toString());	
+		
+		String balanceStr = balance.getText().toString();
+		if(balanceStr.isEmpty()) {
+			balanceStr = "0";
+		}
+		double bal = Double.parseDouble(balanceStr);
+		
+		String interest = interestRate.getText().toString();
+		if(interest.isEmpty()) {
+			interest = "0";
+		}
+		double intRate = Double.parseDouble(interest);	
 		DBHandler.db().store(UserHandler.getCU().addAccount(fName, dName, bal, intRate));
 		DBHandler.db().commit();
 		startActivity(new Intent(this, UserHomeActivity.class));

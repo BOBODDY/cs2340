@@ -67,6 +67,10 @@ public class User {
 		this.password = password;
 	}
 	
+	public ArrayList<Account> getAccounts() {
+		return accounts;
+	}
+	
 	public String accToString(){
 		String ret = "";
 		for (Account a : accounts){
