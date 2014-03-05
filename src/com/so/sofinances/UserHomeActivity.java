@@ -23,9 +23,6 @@ public class UserHomeActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_user_home);
 		
-		//accountList = (TextView) findViewById(R.id.accountList);
-		//accountList.setText("accounts: " + UserHandler.getCU().accToString());
-		
 		lv = (ListView) findViewById(R.id.accountsList);
 		lv.setOnItemClickListener(new OnItemClickListener() {
 
@@ -33,7 +30,12 @@ public class UserHomeActivity extends Activity {
 			public void onItemClick(AdapterView<?> parent, View view, int position,
 					long id) {
 				String name = UserHandler.currentUser.getAccounts().get(position).getDisplayName();
-				Toast.makeText(getApplicationContext(), "Found: " + name, Toast.LENGTH_SHORT).show();
+				//Toast.makeText(getApplicationContext(), "Found: " + name, Toast.LENGTH_SHORT).show();
+				
+				Intent i = new Intent(getApplicationContext(), TransactionHomeActivity.class);
+				i.putExtra("accountName", name);
+				
+				startActivity(i);
 			}
 			
 		});

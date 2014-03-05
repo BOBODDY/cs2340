@@ -19,14 +19,14 @@ public class Account {
 	public Account(String fullName, String displayName){
 		this.fullName = fullName;
 		this.displayName = displayName;
-		this.transactions = new ArrayList<Transaction>();
+		this.setTransactions(new ArrayList<Transaction>());
 	}
 	
 	public Account(String fullName, String displayName, double interestRate){
 		this.fullName = fullName;
 		this.displayName = displayName;
 		this.monthlyInterestRate = interestRate;
-		this.transactions = new ArrayList<Transaction>();
+		this.setTransactions(new ArrayList<Transaction>());
 	}
 
 	/**
@@ -83,6 +83,20 @@ public class Account {
 	 */
 	public void setMonthlyInterestRate(double monthlyInterestRate) {
 		this.monthlyInterestRate = monthlyInterestRate;
+	}
+
+	/**
+	 * @return the transactions
+	 */
+	public ArrayList<Transaction> getTransactions() {
+		return transactions;
+	}
+
+	/**
+	 * @param transactions the transactions to set
+	 */
+	public void setTransactions(ArrayList<Transaction> transactions) {
+		this.transactions = transactions;
 	}
 	
 	

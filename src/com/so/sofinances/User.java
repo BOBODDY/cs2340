@@ -79,6 +79,20 @@ public class User {
 		return accounts;
 	}
 	
+	public Account getAccount(String accountName) {
+		Account acc = null;
+		
+		for(int i=0; i<accounts.size(); i++) {
+			Account tmp = accounts.get(i);
+			if(tmp.getDisplayName().equals(accountName)) {
+				acc = tmp;
+				break;
+			}
+		}
+		
+		return acc;
+	}
+	
 	public String accToString(){
 		String ret = "";
 		for (Account a : accounts){

@@ -1,5 +1,7 @@
 package com.so.sofinances;
 
+import android.util.Log;
+
 import com.db4o.ObjectSet;
 
 public class UserHandler {
@@ -22,7 +24,7 @@ public class UserHandler {
 		if (res.hasNext()){
 			currentUser = (User) res.next();
 		} else {
-			System.out.println("no result found when searching for user");
+			Log.d("com.so.sofinances", "no result found when searching for user");
 		}
 	}
 }

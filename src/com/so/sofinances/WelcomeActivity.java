@@ -1,13 +1,13 @@
 package com.so.sofinances;
 
-import com.db4o.ObjectSet;
-import com.db4o.query.Query;
-
-import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
-import android.content.Intent;
+
+import com.db4o.ObjectSet;
 
 public class WelcomeActivity extends Activity {
 
@@ -31,9 +31,12 @@ public class WelcomeActivity extends Activity {
 	}
 	
 	@Override
-	public void onDestroy(){
+	public void onStop(){
+		super.onStop();
+		
 		DBHandler.db().store(UserHandler.currentUser);
 		System.out.println("destroying yo");
+		Log.d("com.so.sofinances", "saving!!!!");
 		DBHandler.db().commit();
 		DBHandler.db().close();
 	}

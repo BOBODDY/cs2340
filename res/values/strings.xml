@@ -24,5 +24,7 @@
     <string name="account_displayname">enter account display name</string>
     <string name="account_balance">enter initial balance</string>
     <string name="account_interestrate">enter interest rate</string>
+    <string name="title_activity_add_transaction">Add Transaction</string>
+    <string name="title_activity_transaction_home">Transaction Home</string>
 
 </resources>
