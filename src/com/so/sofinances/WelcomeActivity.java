@@ -31,14 +31,9 @@ public class WelcomeActivity extends Activity {
 	}
 	
 	@Override
-	public void onStop(){
-		super.onStop();
-		
-		DBHandler.db().store(UserHandler.currentUser);
-		System.out.println("destroying yo");
-		Log.d("com.so.sofinances", "saving!!!!");
-		DBHandler.db().commit();
-		DBHandler.db().close();
+	public void onPause(){
+		super.onPause();
+		DBHandler.update();
 	}
 
 	public void loginResponse(View view) {
