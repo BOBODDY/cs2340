@@ -81,7 +81,7 @@ public class RegisterActivity extends Activity {
 			DBHandler.db().store(UserHandler.currentUser);
 			DBHandler.db().commit();
 		} else {
-			display.setText("User already exists with that username");
+			display.setText("Username already exists or names and password don't start with letter/number");
 		}
 	}
 }
