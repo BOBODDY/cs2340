@@ -12,21 +12,7 @@
         android:id="@+id/reg_display"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-         />
-
-    <EditText
-        android:id="@+id/full_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/accountList"
-        android:layout_below="@+id/accountList"
-        android:layout_marginTop="18dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="@string/full_name" >
-
-        <requestFocus />
-    </EditText>
+        android:minHeight="60dp" />
 
     <EditText
         android:id="@+id/username"
@@ -58,5 +44,18 @@
         android:layout_marginTop="35dp"
         android:text="@string/button_register"
         android:onClick="onRegisterClick" />
+
+    <EditText
+        android:id="@+id/full_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/reg_display"
+        android:layout_below="@+id/reg_display"
+        android:ems="10"
+        android:hint="@string/full_name"
+        android:inputType="textPersonName" >
+
+        <requestFocus />
+    </EditText>
 
 </RelativeLayout>
