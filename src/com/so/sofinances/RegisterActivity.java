@@ -17,7 +17,6 @@ import android.widget.TextView;
 public class RegisterActivity extends Activity {
 	
 	EditText fullName, username, password;
-	
 	TextView display;
 
 	@Override

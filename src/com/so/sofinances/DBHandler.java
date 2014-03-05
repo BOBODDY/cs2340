@@ -8,6 +8,7 @@ import android.util.Log;
 
 import com.db4o.Db4oEmbedded;
 import com.db4o.ObjectContainer;
+import com.db4o.ObjectSet;
 import com.db4o.config.EmbeddedConfiguration;
 
 public class DBHandler {
@@ -44,5 +45,13 @@ public class DBHandler {
 		if (oc != null){
 			oc.close();
 		}
+	}
+	
+	public static void clear(){
+		ObjectSet result = DBHandler.db().queryByExample(null);
+		for (Object u : result){
+			DBHandler.db().delete(u);
+		}
+		DBHandler.db().commit();
 	}
 }

@@ -11,15 +11,14 @@
     <TextView
         android:id="@+id/reg_display"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-         />
+        android:layout_height="wrap_content"/>
 
     <EditText
         android:id="@+id/full_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/textView1"
+        android:layout_alignLeft="@+id/accList"
+        android:layout_below="@+id/accList"
         android:layout_marginTop="18dp"
         android:ems="10"
         android:inputType="textPersonName"
@@ -50,7 +49,7 @@
         android:inputType="textPassword" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/createAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/password"

@@ -23,7 +23,7 @@
         android:inputType="textPassword" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/createAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/login_password"
@@ -35,7 +35,7 @@
         android:id="@+id/invalidLoginTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button1"
+        android:layout_below="@+id/createAccount"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:textAppearance="?android:attr/textAppearanceMedium" />

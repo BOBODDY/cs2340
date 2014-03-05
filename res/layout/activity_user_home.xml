@@ -9,12 +9,20 @@
     tools:context=".UserHomeActivity" >
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/createAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_marginTop="44dp"
         android:onClick="onCreateClick"
         android:text="Create Account" />
+
+    <TextView
+        android:id="@+id/accList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:text="" />
 
 </RelativeLayout>
