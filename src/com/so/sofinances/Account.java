@@ -1,11 +1,14 @@
 package com.so.sofinances;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Account {
 	private String fullName, displayName;
 	private double balance, monthlyInterestRate;
-	private ArrayList<Transaction> transactions;
+	private List<Transaction> transactions = new ArrayList<Transaction>();
+	private NumberFormat US = NumberFormat.getCurrencyInstance();
 	
 	
 	public Account(String fullName, String displayName, double balance,
@@ -19,14 +22,12 @@ public class Account {
 	public Account(String fullName, String displayName){
 		this.fullName = fullName;
 		this.displayName = displayName;
-		this.setTransactions(new ArrayList<Transaction>());
 	}
 	
 	public Account(String fullName, String displayName, double interestRate){
 		this.fullName = fullName;
 		this.displayName = displayName;
 		this.monthlyInterestRate = interestRate;
-		this.setTransactions(new ArrayList<Transaction>());
 	}
 
 	/**
@@ -63,6 +64,10 @@ public class Account {
 	public double getBalance() {
 		return balance;
 	}
+	
+	public String getBalanceString() {
+		return US.format(balance);
+	}
 
 	/**
 	 * @param balance the balance to set
@@ -88,7 +93,7 @@ public class Account {
 	/**
 	 * @return the transactions
 	 */
-	public ArrayList<Transaction> getTransactions() {
+	public List<Transaction> getTransactions() {
 		return transactions;
 	}
 
@@ -97,6 +102,17 @@ public class Account {
 	 */
 	public void setTransactions(ArrayList<Transaction> transactions) {
 		this.transactions = transactions;
+	}
+	
+	/**
+	 * 
+	 * @param t	a new transaction to add
+	 * @return	true if added successfully
+	 */
+	public boolean addTransaction(Transaction t) {
+		balance += t.getAmount();
+		System.out.println("Added");
+		return transactions.add(t);
 	}
 	
 	

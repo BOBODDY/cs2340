@@ -8,32 +8,33 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".AddTransactionActivity" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
-
     <EditText
         android:id="@+id/add_trans_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/textView1"
         android:layout_marginTop="21dp"
         android:ems="10"
-        android:hint="Name" >
+        android:hint="@string/transactionName" >
 
         <requestFocus />
     </EditText>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/add_trans_amount"
+        android:layout_alignBottom="@+id/add_trans_amount"
+        android:layout_alignParentLeft="true"
+        android:text="@string/dollarSign" />
 
     <EditText
         android:id="@+id/add_trans_amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/add_trans_name"
+        android:layout_alignRight="@+id/add_trans_name"
         android:layout_below="@+id/add_trans_name"
-        android:layout_marginTop="30dp"
+        android:layout_toRightOf="@+id/textView2"
         android:ems="10"
         android:inputType="numberDecimal" />
 
@@ -42,31 +43,48 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/add_trans_amount"
-        android:layout_centerVertical="true" >
+        android:layout_below="@+id/add_trans_amount" >
 
         <RadioButton
             android:id="@+id/radio_withdraw"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
-            android:text="Withdrawal" />
+            android:text="@string/withdrawal" />
 
         <RadioButton
             android:id="@+id/radio_deposit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Deposit" />
+            android:text="@string/deposit" />
     </RadioGroup>
+
+    <TimePicker
+        android:id="@+id/timePicker1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/radioGroup1"
+        android:layout_marginTop="30dp"
+        android:layout_toRightOf="@+id/textView2" />
 
     <Button
         android:id="@+id/finish_transact"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/radioGroup1"
-        android:layout_marginRight="33dp"
-        android:layout_marginTop="19dp"
-        android:text="Done"
-        android:onClick="finishTransaction" />
+        android:layout_alignLeft="@+id/timePicker1"
+        android:layout_below="@+id/timePicker1"
+        android:layout_marginTop="37dp"
+        android:onClick="finishTransaction"
+        android:text="@string/submit" />
+
+    <Button
+        android:id="@+id/cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/finish_transact"
+        android:layout_alignBottom="@+id/finish_transact"
+        android:layout_toRightOf="@+id/radioGroup1"
+        android:onClick="cancelAdd"
+        android:text="@string/cancel" />
 
 </RelativeLayout>

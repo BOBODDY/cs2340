@@ -22,7 +22,7 @@ public class Withdrawal extends Transaction {
 
 	public Withdrawal(Time timeEntered, Time timeOfTransaction, double amount,
 			String name, String category) {
-		super(timeEntered, timeOfTransaction, amount, name, category);
+		super(timeEntered, timeOfTransaction, amount * -1, name, category);
 		// TODO Auto-generated constructor stub
 	}
 

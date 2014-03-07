@@ -1,22 +1,40 @@
 package com.so.sofinances;
 import java.sql.Time;
+import java.text.NumberFormat;
 
 public abstract class Transaction {
 	private Time timeEntered, timeOfTransaction;
 	private double amount;
+	private String name, category;
+	private NumberFormat US = NumberFormat.getCurrencyInstance();
 	
 	public Transaction(Time timeEntered, Time timeOfTransaction, double amount,
 			String name, String category) {
 		this.timeEntered = timeEntered;
 		this.timeOfTransaction = timeOfTransaction;
 		this.amount = amount;
+		this.name = name;
+		this.category = category;
 	}
-
+	
+	@Override
+	public String toString() {
+		return category + ", " + name + ": " + US.format(amount);
+	}
+	
 	/**
 	 * @return the timeEntered
 	 */
 	public Time getTimeEntered() {
 		return timeEntered;
+	}
+	
+	/**
+	 * 
+	 * @return	the name of the transaction
+	 */
+	public String getName() {
+		return name;
 	}
 
 	/**

@@ -26,5 +26,12 @@
     <string name="account_interestrate">enter interest rate</string>
     <string name="title_activity_add_transaction">Add Transaction</string>
     <string name="title_activity_transaction_home">Transaction Home</string>
+    <string name="withdrawal">Withdrawal</string>
+    <string name="deposit">Deposit</string>
+    <string name="submit">Submit</string>
+    <string name="transactionName">transaction name</string>
+    <string name="dollarSign">$</string>
+    <string name="dateString">MM/DD/YYYY</string>
+    <string name="cancel">Cancel</string>
 
 </resources>
