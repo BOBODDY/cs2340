@@ -6,7 +6,7 @@ import com.db4o.ObjectSet;
 
 public class UserHandler {
 	private static String username;
-	public static User currentUser;
+	private static User currentUser;
 	
 	public static User getCU(){
 		return currentUser;

@@ -26,5 +26,6 @@
     <string name="account_interestrate">enter interest rate</string>
     <string name="title_activity_add_transaction">Add Transaction</string>
     <string name="title_activity_transaction_home">Transaction Home</string>
+    <string name="title_activity_report_view">Report</string>
 
 </resources>

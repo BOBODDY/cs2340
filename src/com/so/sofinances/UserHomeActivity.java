@@ -30,7 +30,7 @@ public class UserHomeActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position,
 					long id) {
-				String name = UserHandler.currentUser.getAccounts().get(position).getDisplayName();
+				String name = UserHandler.getCU().getAccounts().get(position).getDisplayName();
 				//Toast.makeText(getApplicationContext(), "Found: " + name, Toast.LENGTH_SHORT).show();
 				
 				Intent i = new Intent(getApplicationContext(), TransactionHomeActivity.class);
@@ -46,7 +46,7 @@ public class UserHomeActivity extends Activity {
 	protected void onStart() {
 		super.onStart();
 		
-		ArrayList<Account> accounts = UserHandler.currentUser.getAccounts();
+		ArrayList<Account> accounts = UserHandler.getCU().getAccounts();
 		
 		ArrayList<String> names = new ArrayList<String>();
 		
@@ -72,7 +72,10 @@ public class UserHomeActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    // Handle presses on the action bar items
 	    switch (item.getItemId()) {
-	        case R.id.action_report:
+	        case R.id.action_report: // Just going to do the spending category report by default
+	        	Intent i = new Intent(getApplicationContext(), ReportViewActivity.class);
+	        	
+	        	startActivity(i);
 	        	return true;
 	        default:
 	            return super.onOptionsItemSelected(item);

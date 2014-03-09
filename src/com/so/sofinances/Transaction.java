@@ -1,15 +1,23 @@
 package com.so.sofinances;
 import java.sql.Time;
 
-public abstract class Transaction {
+public class Transaction {
 	private Time timeEntered, timeOfTransaction;
 	private double amount;
 	
+	private String name, category;
+	
+	private boolean isWithdrawal;
+	
 	public Transaction(Time timeEntered, Time timeOfTransaction, double amount,
-			String name, String category) {
+			String name, String category, boolean isWithdrawal) {
 		this.timeEntered = timeEntered;
 		this.timeOfTransaction = timeOfTransaction;
 		this.amount = amount;
+		this.setWithdrawal(isWithdrawal);
+		
+		this.name = name;
+		this.category = category;
 	}
 
 	/**
@@ -52,5 +60,47 @@ public abstract class Transaction {
 	 */
 	public void setAmount(double amount) {
 		this.amount = amount;
+	}
+
+	/**
+	 * @return the isWithdrawal
+	 */
+	public boolean isWithdrawal() {
+		return isWithdrawal;
+	}
+
+	/**
+	 * @param isWithdrawal the isWithdrawal to set
+	 */
+	public void setWithdrawal(boolean isWithdrawal) {
+		this.isWithdrawal = isWithdrawal;
+	}
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
+	 * @return the category
+	 */
+	public String getCategory() {
+		return category;
+	}
+
+	/**
+	 * @param category the category to set
+	 */
+	public void setCategory(String category) {
+		this.category = category;
 	}
 }

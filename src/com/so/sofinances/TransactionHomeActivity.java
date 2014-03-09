@@ -37,10 +37,10 @@ public class TransactionHomeActivity extends Activity {
 		
 		if(transacts != null) {
 			for(Transaction t : transacts) {
-				if(t instanceof Deposit) {
-					names.add( ((Deposit)t).getName() );
-				} else if( t instanceof Withdrawal) {
-					names.add( ((Withdrawal)t).getCategory() );
+				if(t.isWithdrawal()) { //Withdrawal
+					names.add(t.getCategory());
+				} else { //Deposit
+					names.add(t.getName());
 				}
 			}
 		}

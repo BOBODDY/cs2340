@@ -25,7 +25,7 @@
         </activity>
         <activity
             android:name="com.so.sofinances.LoginActivity"
-            android:label="@string/title_activity_login" 
+            android:label="@string/title_activity_login"
             android:parentActivityName="com.so.sofinances.WelcomeActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -47,7 +47,7 @@
         </activity>
         <activity
             android:name="com.so.sofinances.UserHomeActivity"
-            android:label="@string/title_activity_user_home" 
+            android:label="@string/title_activity_user_home"
             android:parentActivityName="com.so.sofinances.WelcomeActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -55,7 +55,7 @@
         </activity>
         <activity
             android:name="com.so.sofinances.AddAccountActivity"
-            android:label="@string/title_activity_add_account" 
+            android:label="@string/title_activity_add_account"
             android:parentActivityName="com.so.sofinances.UserHomeActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -63,7 +63,7 @@
         </activity>
         <activity
             android:name="com.so.sofinances.AddTransactionActivity"
-            android:label="@string/title_activity_add_transaction" 
+            android:label="@string/title_activity_add_transaction"
             android:parentActivityName="com.so.sofinances.UserHomeActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -71,11 +71,15 @@
         </activity>
         <activity
             android:name="com.so.sofinances.TransactionHomeActivity"
-            android:label="@string/title_activity_transaction_home" 
+            android:label="@string/title_activity_transaction_home"
             android:parentActivityName="com.so.sofinances.UserHomeActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.so.sofinances.UserHomeActivity" />
+        </activity>
+        <activity
+            android:name="com.so.sofinances.ReportViewActivity"
+            android:label="@string/title_activity_report_view" >
         </activity>
     </application>
 

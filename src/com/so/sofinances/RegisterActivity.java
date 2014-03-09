@@ -78,7 +78,7 @@ public class RegisterActivity extends Activity {
 		if (RegistrationHandler.createUser(fName, uName, pass)) {
 			startActivity(new Intent(this, WelcomeActivity.class));
 			finish();
-			DBHandler.db().store(UserHandler.currentUser);
+			DBHandler.db().store(UserHandler.getCU());
 			DBHandler.db().commit();
 		} else {
 			display.setText("Username already exists or names and password don't start with letter/number");

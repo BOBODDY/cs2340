@@ -55,7 +55,7 @@ public class DBHandler {
 	}
 	
 	public static void update(){
-		db().store(UserHandler.currentUser);
+		db().store(UserHandler.getCU());
 		db().commit();
 	}
 }
