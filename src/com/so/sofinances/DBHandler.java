@@ -37,7 +37,7 @@ public class DBHandler {
 	
 	private static EmbeddedConfiguration dbConfig() throws IOException{
 		EmbeddedConfiguration config = Db4oEmbedded.newConfiguration();
-		config.common().objectClass(User.class).updateDepth(3);
+		config.common().objectClass(User.class).updateDepth(4);
 		return config;
 	}
 	

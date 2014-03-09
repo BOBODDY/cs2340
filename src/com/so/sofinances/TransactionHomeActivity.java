@@ -1,6 +1,8 @@
 package com.so.sofinances;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,13 +10,17 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class TransactionHomeActivity extends Activity {
 	
 	ListView transactionHistory;
+	TextView noTrans;
 	
 	String accountName;
+	NumberFormat us = NumberFormat.getCurrencyInstance();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,21 +35,28 @@ public class TransactionHomeActivity extends Activity {
 			accountName = "";
 		}
 		
+		noTrans = (TextView) findViewById(R.id.transactionBalanceBar);
+		noTrans.setText("Current Balance: "
+				+ UserHandler.getCU().getAccount(accountName).getBalanceString()
+				+ ", click ''+'' to add transaction");
+		
 		transactionHistory = (ListView) findViewById(R.id.transactionHistory);
 		
-		ArrayList<String> names = new ArrayList<String>();
+		List<Transaction> transacts = UserHandler.getCU().getAccount(accountName).getTransactions();
+		List<String> transList = new ArrayList<String>();
 		
-		ArrayList<Transaction> transacts = UserHandler.getCU().getAccount(accountName).getTransactions();
-		
-		if(transacts != null) {
+		if(!transacts.isEmpty()) {
 			for(Transaction t : transacts) {
 				if(t.isWithdrawal()) { //Withdrawal
 					names.add(t.getCategory());
 				} else { //Deposit
 					names.add(t.getName());
-				}
 			}
 		}
+		ArrayAdapter<String> transAdapter = new ArrayAdapter<String>(this, 
+				android.R.layout.simple_list_item_1, 
+				transList);
+		transactionHistory.setAdapter(transAdapter);
 	}
 
 	@Override
