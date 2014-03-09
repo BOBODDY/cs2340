@@ -20,6 +20,7 @@ public class WelcomeActivity extends Activity {
 		for (Object u : res){
 			System.out.println(((User)u).getFullName());
 			System.out.println("Acc: " + ((User)u).accToString());
+			//DBHandler.db().delete(u); //for clearing db on start
 		}
 	}
 
@@ -33,6 +34,7 @@ public class WelcomeActivity extends Activity {
 	@Override
 	public void onPause(){
 		super.onPause();
+		System.out.println("DB Updated");
 		DBHandler.update();
 	}
 

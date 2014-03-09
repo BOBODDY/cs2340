@@ -66,7 +66,7 @@ public class Account {
 	}
 	
 	public String getBalanceString() {
-		return US.format(balance);
+		return String.format("$%.2f", balance);
 	}
 
 	/**

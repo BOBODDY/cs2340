@@ -20,7 +20,7 @@ public class Withdrawal extends Transaction {
 		this.category = category;
 	}
 
-	public Withdrawal(Time timeEntered, Time timeOfTransaction, double amount,
+	public Withdrawal(TimeData timeEntered, TimeData timeOfTransaction, double amount,
 			String name, String category) {
 		super(timeEntered, timeOfTransaction, amount * -1, name, category);
 		// TODO Auto-generated constructor stub

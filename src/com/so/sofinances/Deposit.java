@@ -20,7 +20,7 @@ public class Deposit extends Transaction {
 		this.name = name;
 	}
 
-	public Deposit(Time timeEntered, Time timeOfTransaction, double amount,
+	public Deposit(TimeData timeEntered, TimeData timeOfTransaction, double amount,
 			String name, String category) {
 		super(timeEntered, timeOfTransaction, amount, name, category);
 		// TODO Auto-generated constructor stub
