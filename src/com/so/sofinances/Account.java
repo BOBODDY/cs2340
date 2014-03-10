@@ -108,7 +108,11 @@ public class Account {
 	 * @return	true if added successfully
 	 */
 	public boolean addTransaction(Transaction t) {
-		balance += t.getAmount();
+		if(t.isWithdrawal()) {
+			balance -= t.getAmount();
+		} else {
+			balance += t.getAmount();
+		}
 		System.out.println("Added");
 		return transactions.add(t);
 	}

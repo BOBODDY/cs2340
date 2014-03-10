@@ -50,8 +50,11 @@ public class TransactionHomeActivity extends Activity {
 			List<Map<String, String>> transTimeList = new ArrayList<Map<String, String>>(transacts.size());
 			
 			if(!transacts.isEmpty()) {
-				balance.setText("Balance: "
-						+ UserHandler.getCU().getAccount(accountName).getBalanceString());
+				String balanceStr = UserHandler.getCU().getAccount(accountName).getBalanceString();
+				Log.d("com.so.sofinances", "Balance " + (balanceStr==null? "":"not") + " null");
+				Log.d("com.so.sofinances", "Balance is " + balanceStr);
+				balance.setText("Balance: " + balanceStr);
+				Log.d("com.so.sofinances", "set balance string");
 				for(int i = 0; i < transacts.size(); i++) {
 					Transaction t = transacts.get(i);
 					if (t != null) {
@@ -59,7 +62,11 @@ public class TransactionHomeActivity extends Activity {
 						Map<String, String> transAndTime = new HashMap<String, String>();
 						transAndTime.put(TEXT1, transList.get(i));
 						TimeData td = t.getTimeOfTransaction();
-						transAndTime.put(TEXT2, td.toString());
+						if(td != null) {
+							transAndTime.put(TEXT2, td.toString());
+						} else {
+							transAndTime.put(TEXT2, "");
+						}
 						transTimeList.add(transAndTime);
 					}
 				}
