@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -17,6 +18,7 @@ public class AddTransactionActivity extends Activity {
 	String accountName;
 	
 	TimePicker clock;
+	DatePicker cal;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +26,7 @@ public class AddTransactionActivity extends Activity {
 		setContentView(R.layout.activity_add_transaction);
 		
 		clock = (TimePicker) findViewById(R.id.timePicker);
+		cal = (DatePicker) findViewById(R.id.datePicker1);
 		
 		name = (EditText) findViewById(R.id.add_trans_name);
 		
@@ -53,39 +56,52 @@ public class AddTransactionActivity extends Activity {
 
 		String transName = name.getText().toString();
 		
+		if (transName == null || transName.equals("")) {
+			Intent i = new Intent(getApplicationContext(), TransactionHomeActivity.class);
+			i.putExtra("accountName", accountName);		
+			startActivity(i);
+			finish();
+		}
+		
 		String amountStr = amount.getText().toString();
-		if(amountStr.isEmpty()) {
-			amountStr = "0";
-		}
-		double amount = Double.parseDouble(amountStr);
-		
-		String transType = "";
-		
-		RadioGroup rg = (RadioGroup) findViewById(R.id.radioGroup1);
-		if(rg.getCheckedRadioButtonId()!=-1){
-		    int id= rg.getCheckedRadioButtonId();
-		    View radioButton = rg.findViewById(id);
-		    int radioId = rg.indexOfChild(radioButton);
-		    RadioButton btn = (RadioButton) rg.getChildAt(radioId);
-		    transType = btn.getText().toString();
-		}
-		Transaction toAdd = null;
-		
-		int hour = clock.getCurrentHour();
-		int minute = clock.getCurrentMinute();
-		
-		if (transType.equals("Withdrawal")) {
+		if (transName != null && !(transName.equals("")) && amountStr != null && !(amountStr.equals(""))) {
+			double amount = Double.parseDouble(amountStr);
+			
+			String transType = "";
+			
+			RadioGroup rg = (RadioGroup) findViewById(R.id.radioGroup1);
+			if(rg.getCheckedRadioButtonId()!=-1){
+			    int id= rg.getCheckedRadioButtonId();
+			    View radioButton = rg.findViewById(id);
+			    int radioId = rg.indexOfChild(radioButton);
+			    RadioButton btn = (RadioButton) rg.getChildAt(radioId);
+			    transType = btn.getText().toString();
+			}
+			Transaction toAdd = null;
+			
+			int hour = clock.getCurrentHour();
+			int minute = clock.getCurrentMinute();
+			
+			int day = cal.getDayOfMonth();
+			int month = cal.getMonth() + 1;
+			int year = cal.getYear();
+			
+			TimeData timeOfTrans = new TimeData(hour, minute, month, day, year);
+			System.out.println(timeOfTrans);
+			
+			if (transType.equals("Withdrawal")) {
 			toAdd = new Transaction(null, null, amount, transName, "", true);
-		} else if (transType.equals("Deposit")){
+			} else if (transType.equals("Deposit")){
 			toAdd = new Transaction(null, null, amount, transName, "", false);
-		}
-		
+			}
+			
 		UserHandler.getCU().getAccount(accountName).addTransaction(toAdd);
+		}
 		Intent i = new Intent(getApplicationContext(), TransactionHomeActivity.class);
 		i.putExtra("accountName", accountName);		
-		startActivity(i);
 		DBHandler.db().store(UserHandler.getCU());
 		DBHandler.db().commit();
+		startActivity(i);
 		finish();
 	}
 

@@ -3,14 +3,13 @@ import java.sql.Time;
 import java.text.NumberFormat;
 
 public class Transaction {
-	private Time timeEntered, timeOfTransaction;
+	private TimeData timeEntered, timeOfTransaction;
 	private double amount;
 	private String name, category;
 	private NumberFormat US = NumberFormat.getCurrencyInstance();
 	
 	private boolean isWithdrawal;
-	
-	public Transaction(Time timeEntered, Time timeOfTransaction, double amount,
+	public Transaction(TimeData timeEntered, TimeData timeOfTransaction, double amount,
 			String name, String category, boolean isWithdrawal) {
 		this.timeEntered = timeEntered;
 		this.timeOfTransaction = timeOfTransaction;
@@ -29,28 +28,28 @@ public class Transaction {
 	/**
 	 * @return the timeEntered
 	 */
-	public Time getTimeEntered() {
+	public TimeData getTimeEntered() {
 		return timeEntered;
 	}
 
 	/**
 	 * @param timeEntered the timeEntered to set
 	 */
-	public void setTimeEntered(Time timeEntered) {
+	public void setTimeEntered(TimeData timeEntered) {
 		this.timeEntered = timeEntered;
 	}
 
 	/**
 	 * @return the timeOfTransaction
 	 */
-	public Time getTimeOfTransaction() {
+	public TimeData getTimeOfTransaction() {
 		return timeOfTransaction;
 	}
 
 	/**
 	 * @param timeOfTransaction the timeOfTransaction to set
 	 */
-	public void setTimeOfTransaction(Time timeOfTransaction) {
+	public void setTimeOfTransaction(TimeData timeOfTransaction) {
 		this.timeOfTransaction = timeOfTransaction;
 	}
 
