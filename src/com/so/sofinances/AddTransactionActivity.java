@@ -25,7 +25,7 @@ public class AddTransactionActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_transaction);
 		
-		clock = (TimePicker) findViewById(R.id.timePicker);
+		clock = (TimePicker) findViewById(R.id.timePicker1);
 		cal = (DatePicker) findViewById(R.id.datePicker1);
 		
 		name = (EditText) findViewById(R.id.add_trans_name);
