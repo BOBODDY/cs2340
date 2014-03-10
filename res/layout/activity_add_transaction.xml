@@ -60,7 +60,7 @@
     </RadioGroup>
 
     <TimePicker
-        android:id="@+id/timePicker1"
+        android:id="@+id/timePicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/radioGroup1"
@@ -71,8 +71,8 @@
         android:id="@+id/finish_transact"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/timePicker1"
-        android:layout_below="@+id/timePicker1"
+        android:layout_alignLeft="@+id/timePicker"
+        android:layout_below="@+id/timePicker"
         android:layout_marginTop="37dp"
         android:onClick="finishTransaction"
         android:text="@string/submit" />

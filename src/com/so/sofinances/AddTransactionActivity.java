@@ -23,7 +23,7 @@ public class AddTransactionActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_transaction);
 		
-		clock = (TimePicker) findViewById(R.id.timePicker1);
+		clock = (TimePicker) findViewById(R.id.timePicker);
 		
 		name = (EditText) findViewById(R.id.add_trans_name);
 		
@@ -75,16 +75,16 @@ public class AddTransactionActivity extends Activity {
 		int minute = clock.getCurrentMinute();
 		
 		if (transType.equals("Withdrawal")) {
-			toAdd = new Withdrawal(null, null, amount, transName, transType);
+			toAdd = new Transaction(null, null, amount, transName, "", true);
 		} else if (transType.equals("Deposit")){
-			toAdd = new Deposit(null, null, amount, transName, transType);
+			toAdd = new Transaction(null, null, amount, transName, "", false);
 		}
 		
-		UserHandler.currentUser.getAccount(accountName).addTransaction(toAdd);
+		UserHandler.getCU().getAccount(accountName).addTransaction(toAdd);
 		Intent i = new Intent(getApplicationContext(), TransactionHomeActivity.class);
 		i.putExtra("accountName", accountName);		
 		startActivity(i);
-		DBHandler.db().store(UserHandler.currentUser);
+		DBHandler.db().store(UserHandler.getCU());
 		DBHandler.db().commit();
 		finish();
 	}

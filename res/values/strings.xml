@@ -33,5 +33,6 @@
     <string name="dollarSign">$</string>
     <string name="dateString">MM/DD/YYYY</string>
     <string name="cancel">Cancel</string>
+    <string name="title_activity_report_view">Report</string>
 
 </resources>

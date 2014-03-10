@@ -8,8 +8,6 @@ public class Transaction {
 	private String name, category;
 	private NumberFormat US = NumberFormat.getCurrencyInstance();
 	
-	private String name, category;
-	
 	private boolean isWithdrawal;
 	
 	public Transaction(Time timeEntered, Time timeOfTransaction, double amount,
@@ -21,6 +19,8 @@ public class Transaction {
 		
 		this.name = name;
 		this.category = category;
+	}
+	
 	@Override
 	public String toString() {
 		return category + ", " + name + ": " + US.format(amount);
@@ -31,14 +31,6 @@ public class Transaction {
 	 */
 	public Time getTimeEntered() {
 		return timeEntered;
-	}
-	
-	/**
-	 * 
-	 * @return	the name of the transaction
-	 */
-	public String getName() {
-		return name;
 	}
 
 	/**

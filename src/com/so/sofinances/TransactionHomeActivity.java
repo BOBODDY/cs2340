@@ -48,15 +48,16 @@ public class TransactionHomeActivity extends Activity {
 		if(!transacts.isEmpty()) {
 			for(Transaction t : transacts) {
 				if(t.isWithdrawal()) { //Withdrawal
-					names.add(t.getCategory());
+					transList.add(t.getCategory());
 				} else { //Deposit
-					names.add(t.getName());
+					transList.add(t.getName());
 			}
 		}
 		ArrayAdapter<String> transAdapter = new ArrayAdapter<String>(this, 
 				android.R.layout.simple_list_item_1, 
 				transList);
 		transactionHistory.setAdapter(transAdapter);
+		}
 	}
 
 	@Override
