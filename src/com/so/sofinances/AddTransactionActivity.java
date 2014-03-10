@@ -9,6 +9,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TimePicker;
 
 public class AddTransactionActivity extends Activity {
@@ -89,20 +90,25 @@ public class AddTransactionActivity extends Activity {
 			TimeData timeOfTrans = new TimeData(hour, minute, month, day, year);
 			System.out.println(timeOfTrans);
 			
+			Spinner categories = (Spinner) findViewById(R.id.category_spinner);
+			String category = (String) categories.getSelectedItem();
+			
 			if (transType.equals("Withdrawal")) {
-			toAdd = new Transaction(null, null, amount, transName, "", true);
+			toAdd = new Transaction(timeOfTrans, timeOfTrans, amount, transName, category, true);
 			} else if (transType.equals("Deposit")){
-			toAdd = new Transaction(null, null, amount, transName, "", false);
+			toAdd = new Transaction(timeOfTrans, timeOfTrans, amount, transName, category, false);
 			}
 			
-		UserHandler.getCU().getAccount(accountName).addTransaction(toAdd);
+			UserHandler.getCU().getAccount(accountName).addTransaction(toAdd);
+			
+			Intent i = new Intent(getApplicationContext(), TransactionHomeActivity.class);
+			i.putExtra("accountName", accountName);		
+			DBHandler.db().store(UserHandler.getCU());
+			DBHandler.db().commit();
+			startActivity(i);
+			finish();
 		}
-		Intent i = new Intent(getApplicationContext(), TransactionHomeActivity.class);
-		i.putExtra("accountName", accountName);		
-		DBHandler.db().store(UserHandler.getCU());
-		DBHandler.db().commit();
-		startActivity(i);
-		finish();
+		
 	}
 
 }
