@@ -68,7 +68,7 @@ public class TransactionHomeActivity extends Activity {
 				android.R.layout.simple_list_item_2, 
 				fromMapKey, toLayoutId);
 		transactionHistory.setAdapter(transAdapter);
-		}
+		
 	}
 
 	@Override
