@@ -1,6 +1,5 @@
 package com.so.sofinances;
 
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +7,6 @@ public class Account {
 	private String fullName, displayName;
 	private double balance, monthlyInterestRate;
 	private List<Transaction> transactions = new ArrayList<Transaction>();
-	private NumberFormat US = NumberFormat.getCurrencyInstance();
 	
 	
 	public Account(String fullName, String displayName, double balance,

@@ -9,10 +9,9 @@ import java.util.Map;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -45,29 +44,34 @@ public class TransactionHomeActivity extends Activity {
 		transactionHistory = (ListView) findViewById(R.id.transactionHistory);
 		
 		List<Transaction> transacts = UserHandler.getCU().getAccount(accountName).getTransactions();
-		List<String> transList = new ArrayList<String>(transacts.size());
-		List<Map<String, String>> transTimeList = new ArrayList<Map<String, String>>(transacts.size());
-		
-		if(!transacts.isEmpty()) {
-			balance.setText("Balance: "
-					+ UserHandler.getCU().getAccount(accountName).getBalanceString());
-			for(int i = 0; i < transacts.size(); i++) {
-				Transaction t = transacts.get(i);
-				if (t != null) {
-					transList.add(t.toString());
-					Map<String, String> transAndTime = new HashMap<String, String>();
-					transAndTime.put(TEXT1, transList.get(i));
-					TimeData td = t.getTimeOfTransaction();
-					transAndTime.put(TEXT2, td.toString());
-					transTimeList.add(transAndTime);
+		if(transacts != null) {
+			Log.d("com.so.sofinances", "transacts not null");
+			List<String> transList = new ArrayList<String>(transacts.size());
+			List<Map<String, String>> transTimeList = new ArrayList<Map<String, String>>(transacts.size());
+			
+			if(!transacts.isEmpty()) {
+				balance.setText("Balance: "
+						+ UserHandler.getCU().getAccount(accountName).getBalanceString());
+				for(int i = 0; i < transacts.size(); i++) {
+					Transaction t = transacts.get(i);
+					if (t != null) {
+						transList.add(t.toString());
+						Map<String, String> transAndTime = new HashMap<String, String>();
+						transAndTime.put(TEXT1, transList.get(i));
+						TimeData td = t.getTimeOfTransaction();
+						transAndTime.put(TEXT2, td.toString());
+						transTimeList.add(transAndTime);
+					}
 				}
 			}
+			SimpleAdapter transAdapter = new SimpleAdapter(this,
+					transTimeList,
+					android.R.layout.simple_list_item_2, 
+					fromMapKey, toLayoutId);
+			transactionHistory.setAdapter(transAdapter);
+		} else {
+			Log.d("com.so.sofinances", "transacts is null");
 		}
-		SimpleAdapter transAdapter = new SimpleAdapter(this,
-				transTimeList,
-				android.R.layout.simple_list_item_2, 
-				fromMapKey, toLayoutId);
-		transactionHistory.setAdapter(transAdapter);
 		
 	}
 

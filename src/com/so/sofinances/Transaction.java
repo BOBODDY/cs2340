@@ -1,5 +1,4 @@
 package com.so.sofinances;
-import java.sql.Time;
 import java.text.NumberFormat;
 
 public class Transaction {

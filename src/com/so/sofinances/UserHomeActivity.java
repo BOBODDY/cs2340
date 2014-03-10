@@ -14,11 +14,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class UserHomeActivity extends Activity {
 	private static final String TEXT1 = "text1";
@@ -73,9 +71,6 @@ public class UserHomeActivity extends Activity {
 			namesAndBalances.add(nameAndBalance);
 		}
 		
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, 
-				android.R.layout.simple_list_item_1, 
-				names);
 		SimpleAdapter balAdapter = new SimpleAdapter(this, namesAndBalances,
 				android.R.layout.simple_list_item_2, fromMapKey, toLayoutId);
 		
