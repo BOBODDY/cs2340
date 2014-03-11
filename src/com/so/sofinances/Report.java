@@ -9,14 +9,14 @@ public class Report {
 	
 	Time date;
 	
-	ArrayList data;
+	ArrayList<Object> data;
 
 	public Report() {
 		title = "";
 		
 		date = null;
 		
-		data = new ArrayList();
+		data = new ArrayList<Object>();
 	}
 	
 	public void addData(Object data) {

@@ -3,9 +3,6 @@ package com.so.sofinances;
 
 import java.io.IOException;
 
-import android.content.Context;
-import android.util.Log;
-
 import com.db4o.Db4oEmbedded;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;

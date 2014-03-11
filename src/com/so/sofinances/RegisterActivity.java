@@ -1,7 +1,5 @@
 package com.so.sofinances;
 
-import com.db4o.ObjectSet;
-
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
