@@ -2,6 +2,9 @@ package com.so.sofinances;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,6 +53,8 @@ public class TransactionHomeActivity extends Activity {
 			List<Map<String, String>> transTimeList = new ArrayList<Map<String, String>>(transacts.size());
 			
 			if(!transacts.isEmpty()) {
+				Collections.sort(transacts);
+				
 				String balanceStr = UserHandler.getCU().getAccount(accountName).getBalanceString();
 				Log.d("com.so.sofinances", "Balance " + (balanceStr==null? "":"not") + " null");
 				Log.d("com.so.sofinances", "Balance is " + balanceStr);

@@ -1,7 +1,7 @@
 package com.so.sofinances;
 import java.text.NumberFormat;
 
-public class Transaction {
+public class Transaction implements Comparable<Transaction>{
 	private TimeData timeEntered, timeOfTransaction;
 	private double amount;
 	private String name, category;
@@ -17,6 +17,11 @@ public class Transaction {
 		
 		this.name = name;
 		this.category = category;
+	}
+	
+	@Override
+	public int compareTo(Transaction t) {
+		return t.getTimeEntered().compareTo(this.getTimeEntered()); // Flip the t and this to sort in descending order
 	}
 	
 	@Override
