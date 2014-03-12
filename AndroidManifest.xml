@@ -70,7 +70,7 @@
                 android:value="com.so.sofinances.UserHomeActivity" />
         </activity>
         <activity
-            android:name="com.so.sofinances.TransactionHomeActivity"
+            android:name="com.so.sofinances.AccountHomeActivity"
             android:label="@string/title_activity_transaction_home"
             android:parentActivityName="com.so.sofinances.UserHomeActivity" >
             <meta-data
