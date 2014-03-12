@@ -17,7 +17,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
-public class TransactionHomeActivity extends Activity {
+public class AccountHomeActivity extends Activity {
 	private static final String TEXT1 = "text1";
 	private static final String TEXT2 = "text2";
 	final String[] fromMapKey = new String[] {TEXT1, TEXT2};
@@ -105,5 +105,11 @@ public class TransactionHomeActivity extends Activity {
 	            return super.onOptionsItemSelected(item);
 	    }
 	}
-
+	
+	@Override
+	public void onPause(){
+		super.onPause();
+		System.out.println("DB Updated");
+		DBHandler.update();
+	}
 }

@@ -47,8 +47,8 @@ public class AddAccountActivity extends Activity {
 		double intRate = Double.parseDouble(interest);	
 		if (UserHandler.getCU().addAccount(fName, dName, bal, intRate)){
 			startActivity(new Intent(this, UserHomeActivity.class));
-			DBHandler.db().store(UserHandler.getCU());
-			DBHandler.db().commit();
+			//DBHandler.db().store(UserHandler.getCU());
+			//DBHandler.db().commit();
 			finish();
 		} else {
 			warning.setText("Username and display name must start with a letter or number");

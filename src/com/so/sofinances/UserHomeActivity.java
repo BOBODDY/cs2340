@@ -41,7 +41,7 @@ public class UserHomeActivity extends Activity {
 				String name = UserHandler.getCU().getAccounts().get(position).getDisplayName();
 				//Toast.makeText(getApplicationContext(), "Found: " + name, Toast.LENGTH_SHORT).show();
 				
-				Intent i = new Intent(getApplicationContext(), TransactionHomeActivity.class);
+				Intent i = new Intent(getApplicationContext(), AccountHomeActivity.class);
 				i.putExtra("accountName", name);
 				
 				startActivity(i);
@@ -100,5 +100,12 @@ public class UserHomeActivity extends Activity {
 	
 	public void onCreateClick(View v){
 		startActivity(new Intent(this, AddAccountActivity.class));
+	}
+	
+	@Override
+	public void onPause(){
+		super.onPause();
+		System.out.println("DB Updated");
+		DBHandler.update();
 	}
 }

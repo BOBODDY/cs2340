@@ -74,12 +74,19 @@ public class RegisterActivity extends Activity {
 		String pass = password.getText().toString();
 		
 		if (RegistrationHandler.createUser(fName, uName, pass)) {
-			startActivity(new Intent(this, WelcomeActivity.class));
+			startActivity(new Intent(this, LoginActivity.class));
 			finish();
-			DBHandler.db().store(UserHandler.getCU());
-			DBHandler.db().commit();
+			//DBHandler.db().store(UserHandler.getCU());
+			//DBHandler.db().commit();
 		} else {
 			display.setText("Username already exists or names and password don't start with letter/number");
 		}
+	}
+	
+	@Override
+	public void onPause(){
+		super.onPause();
+		System.out.println("DB Updated");
+		DBHandler.update();
 	}
 }

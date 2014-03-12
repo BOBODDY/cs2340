@@ -48,7 +48,7 @@ public class AddTransactionActivity extends Activity {
 	}
 	
 	public void cancelAdd(View v) {
-		Intent i = new Intent(getApplicationContext(), TransactionHomeActivity.class);
+		Intent i = new Intent(getApplicationContext(), AccountHomeActivity.class);
 		i.putExtra("accountName", accountName);		
 		startActivity(i);
 	}
@@ -58,7 +58,7 @@ public class AddTransactionActivity extends Activity {
 		String transName = name.getText().toString();
 		
 		if (transName == null || transName.equals("")) {
-			Intent i = new Intent(getApplicationContext(), TransactionHomeActivity.class);
+			Intent i = new Intent(getApplicationContext(), AccountHomeActivity.class);
 			i.putExtra("accountName", accountName);		
 			startActivity(i);
 			finish();
@@ -101,10 +101,10 @@ public class AddTransactionActivity extends Activity {
 			
 			UserHandler.getCU().getAccount(accountName).addTransaction(toAdd);
 			
-			Intent i = new Intent(getApplicationContext(), TransactionHomeActivity.class);
+			Intent i = new Intent(getApplicationContext(), AccountHomeActivity.class);
 			i.putExtra("accountName", accountName);		
-			DBHandler.db().store(UserHandler.getCU());
-			DBHandler.db().commit();
+			//DBHandler.db().store(UserHandler.getCU());
+			//DBHandler.db().commit();
 			startActivity(i);
 			finish();
 		}
