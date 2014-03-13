@@ -1,6 +1,7 @@
 package com.so.sofinances;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 public class ReportViewActivity extends Activity {
 	
 	TextView reporter;
+	
+	TimeData start, end;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +22,13 @@ public class ReportViewActivity extends Activity {
 		
 		reporter = (TextView) findViewById(R.id.reporter);
 		reporter.setText("");
+		
+		Intent incomingData = this.getIntent();
+		
+		if(incomingData != null) {
+			start = (TimeData) incomingData.getSerializableExtra("startDate");
+			end = (TimeData) incomingData.getSerializableExtra("endDate");
+		}
 		
 		new ReportGeneratorTask().execute("");
 	}
@@ -34,7 +44,7 @@ public class ReportViewActivity extends Activity {
 
 		@Override
 		protected Report doInBackground(String... params) {
-			return ReportGenerator.spendingCategoryReport();
+			return ReportGenerator.spendingCategoryReport(start, end);
 		}
 		
 		protected void onPostExecute(Report result) {

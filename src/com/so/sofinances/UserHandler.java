@@ -20,7 +20,7 @@ public class UserHandler {
 		username = uN;
 		User temp = new User();
 		temp.setUserName(uN);
-		ObjectSet res = DBHandler.db().queryByExample(temp);
+		ObjectSet<Object> res = DBHandler.db().queryByExample(temp);
 		if (res.hasNext()){
 			currentUser = (User) res.next();
 		} else {

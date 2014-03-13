@@ -15,7 +15,7 @@ public class WelcomeActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_welcome);
 		DBHandler.setPath(this.getDir("data", 0) + "");
-		ObjectSet res = DBHandler.db().query(User.class);
+		ObjectSet<User> res = DBHandler.db().query(User.class);
 		for (Object u : res){
 			System.out.println(((User)u).getFullName());
 			System.out.println("Acc: " + ((User)u).accToString());

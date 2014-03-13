@@ -26,6 +26,7 @@ public class UserHomeActivity extends Activity {
 	TextView accountList;
 	ListView lv;
 	private NumberFormat us = NumberFormat.getCurrencyInstance();
+	static final int PICK_DATE = 314156;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -89,13 +90,28 @@ public class UserHomeActivity extends Activity {
 	    // Handle presses on the action bar items
 	    switch (item.getItemId()) {
 	        case R.id.action_report: // Just going to do the spending category report by default
-	        	Intent i = new Intent(getApplicationContext(), ReportViewActivity.class);
-	        	
-	        	startActivity(i);
+	        	Intent i = new Intent(getApplicationContext(), DatePickingActivity.class);
+	        	startActivityForResult(i, PICK_DATE);
 	        	return true;
 	        default:
 	            return super.onOptionsItemSelected(item);
 	    }
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if(requestCode == PICK_DATE) {
+			if(resultCode == RESULT_OK) {
+				//get data from result intent and send to report generator
+				TimeData start = (TimeData) data.getSerializableExtra("startDate");
+				TimeData end = (TimeData) data.getSerializableExtra("endDate");
+				
+				Intent i = new Intent(getApplicationContext(), ReportViewActivity.class);
+				i.putExtra("startDate", start);
+				i.putExtra("endDate", end);
+				startActivity(i);
+			}
+		}
 	}
 	
 	public void onCreateClick(View v){

@@ -8,7 +8,7 @@ public class LoginHandler {
 		User ex = new User();
 		ex.setUserName(uName);
 		ex.setPassword(password);
-		ObjectSet result = DBHandler.db().queryByExample(ex);
+		ObjectSet<Object> result = DBHandler.db().queryByExample(ex);
 		if (result.hasNext()){
 			return ex;
 		} else {

@@ -68,43 +68,35 @@
             android:layout_height="wrap_content"
             android:text="@string/deposit" />
     </RadioGroup>
-    
-    <TimePicker
-        android:id="@+id/timePicker1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/timeOfTrans"
-        android:layout_marginTop="30dp"
-        android:layout_toRightOf="@+id/textView2" />
-
-    <Button
-        android:id="@+id/finish_transact"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/timePicker1"
-        android:layout_below="@+id/category_spinner"
-        android:layout_marginTop="30dp"
-        android:onClick="finishTransaction"
-        android:text="@string/submit" />
-
-    <TextView
-        android:id="@+id/timeOfTrans"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/radioGroup1"
-        android:layout_below="@+id/radioGroup1"
-        android:layout_marginTop="15dp"
-        android:text="Time of Transaction:"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <DatePicker
         android:id="@+id/datePicker1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:calendarViewShown="false"
-        android:layout_below="@+id/timePicker1"
-        android:layout_toRightOf="@+id/textView2" />
+        android:layout_below="@+id/radioGroup1"
+        android:layout_toRightOf="@+id/textView2"
+        android:calendarViewShown="false" />
 
+
+    <Spinner
+        android:id="@+id/category_spinner1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/datePicker1"
+        android:layout_below="@+id/datePicker1"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="16dp"
+        android:entries="@array/categories" />
+    
+    <Button
+        android:id="@+id/finish_transact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/category_spinner"
+        android:layout_marginTop="30dp"
+        android:onClick="finishTransaction"
+        android:text="@string/submit" />
+    
     <Button
         android:id="@+id/cancel"
         android:layout_width="wrap_content"
@@ -114,16 +106,7 @@
         android:layout_toRightOf="@+id/radioGroup1"
         android:onClick="cancelAdd"
         android:text="@string/cancel" />
-
-    <Spinner
-        android:id="@+id/category_spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/datePicker1"
-        android:layout_below="@+id/datePicker1"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="16dp"
-        android:entries="@array/categories" />
-
+    
 </RelativeLayout>
+
 </ScrollView>

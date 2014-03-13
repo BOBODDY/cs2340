@@ -40,7 +40,7 @@ public class AccountHomeActivity extends Activity {
 		} else {
 			accountName = "";
 		}
-		balance = (TextView) findViewById(R.id.transactionBalance);
+		balance = (TextView) findViewById(R.id.transactionBalance); // TODO; shows 0 balance when no transactions are present 
 		
 		transactionHistory = (ListView) findViewById(R.id.transactionHistory);
 		

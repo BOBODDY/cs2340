@@ -46,7 +46,7 @@ public class DBHandler {
 	}
 	
 	public static void clear(){
-		ObjectSet res = db().queryByExample(null);
+		ObjectSet<Object> res = db().queryByExample(null);
 		for (Object a : res){
 			db().delete(a);
 		}

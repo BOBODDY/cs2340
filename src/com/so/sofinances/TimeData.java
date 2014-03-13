@@ -1,18 +1,21 @@
 package com.so.sofinances;
 
-public class TimeData {
-	private int hours, minutes, month, day, year;
+import java.io.Serializable;
+
+public class TimeData implements Serializable {
 	
-	public TimeData(int hours, int minutes, int month, int day, int year) {
-		this.hours = hours;
-		this.minutes = minutes;
+	private static final long serialVersionUID = 5024086716108214641L;
+	
+	private int month, day, year;
+	
+	public TimeData(int month, int day, int year) {
 		this.month = month;
 		this.day = day;
 		this.year = year;
 	}
 	
 	public String toString() {
-		return String.format("%2d/%2d/%4d %2d:%2d", month, day, year, hours, minutes);
+		return String.format("%2d/%2d/%4d", month, day, year);
 	}
 	
 	/**
@@ -30,23 +33,7 @@ public class TimeData {
 				if(time.getDay() < this.getDay()) {
 					return -1;
 				} else if(time.getDay() == this.getDay()) {
-					// !!!!!!!!!!!!!!!!!!!1
-					// I hope the hours are in 24-hour mode
-					// Otherwise we need another way to determine AM vs PM
-					// I'll assume 24-hour
-					if(time.getHours() < this.getHours()) {
-						return -1;
-					} else if(time.getHours() == this.getHours()) {
-						if(time.getMinutes() < this.getMinutes()) {
-							return -1;
-						} else if(time.getMinutes() == this.getMinutes()) {
-							return 0;
-						} else {
-							return 1;
-						}
-					} else {
-						return 1;
-					}
+					return 0;
 				} else {
 					return 1;
 				}
@@ -56,20 +43,6 @@ public class TimeData {
 		} else {
 			return 1;
 		}
-	}
-
-	/**
-	 * @return the hours
-	 */
-	public int getHours() {
-		return hours;
-	}
-
-	/**
-	 * @return the minutes
-	 */
-	public int getMinutes() {
-		return minutes;
 	}
 
 	/**

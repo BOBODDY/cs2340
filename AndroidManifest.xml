@@ -81,6 +81,10 @@
             android:name="com.so.sofinances.ReportViewActivity"
             android:label="@string/title_activity_report_view" >
         </activity>
+        <activity
+            android:name="com.so.sofinances.DatePickingActivity"
+            android:label="@string/title_activity_date_picking" >
+        </activity>
     </application>
 
 </manifest>

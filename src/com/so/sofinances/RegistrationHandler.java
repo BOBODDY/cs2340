@@ -8,7 +8,7 @@ public class RegistrationHandler {
 		if (isValid(fN) && isValid(uN) && isValid(pW)){
 			User temp = new User();
 			temp.setUserName(uN);
-			ObjectSet results = DBHandler.db().queryByExample(temp);
+			ObjectSet<Object> results = DBHandler.db().queryByExample(temp);
 			if (results.hasNext()){
 				return false;
 			} else {

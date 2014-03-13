@@ -10,7 +10,6 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-import android.widget.TimePicker;
 
 public class AddTransactionActivity extends Activity {
 	
@@ -18,7 +17,6 @@ public class AddTransactionActivity extends Activity {
 	
 	String accountName;
 	
-	TimePicker clock;
 	DatePicker cal;
 
 	@Override
@@ -26,7 +24,6 @@ public class AddTransactionActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_transaction);
 		
-		clock = (TimePicker) findViewById(R.id.timePicker1);
 		cal = (DatePicker) findViewById(R.id.datePicker1);
 		
 		name = (EditText) findViewById(R.id.add_trans_name);
@@ -80,23 +77,21 @@ public class AddTransactionActivity extends Activity {
 			}
 			Transaction toAdd = null;
 			
-			int hour = clock.getCurrentHour();
-			int minute = clock.getCurrentMinute();
-			
 			int day = cal.getDayOfMonth();
 			int month = cal.getMonth() + 1;
 			int year = cal.getYear();
 			
-			TimeData timeOfTrans = new TimeData(hour, minute, month, day, year);
-			System.out.println(timeOfTrans);
+			TimeData dateOfTrans = new TimeData(month, day, year);
+			System.out.println(dateOfTrans);
 			
-			Spinner categories = (Spinner) findViewById(R.id.category_spinner);
+			Spinner categories = (Spinner) findViewById(R.id.category_spinner1);
+			
 			String category = (String) categories.getSelectedItem();
 			
 			if (transType.equals("Withdrawal")) {
-			toAdd = new Transaction(timeOfTrans, timeOfTrans, amount, transName, category, true);
+				toAdd = new Transaction(null, dateOfTrans, amount, transName, category, true);
 			} else if (transType.equals("Deposit")){
-			toAdd = new Transaction(timeOfTrans, timeOfTrans, amount, transName, category, false);
+				toAdd = new Transaction(null, dateOfTrans, amount, transName, category, false);
 			}
 			
 			UserHandler.getCU().getAccount(accountName).addTransaction(toAdd);
