@@ -94,7 +94,7 @@ public class AddTransactionActivity extends Activity {
 				toAdd = new Transaction(null, dateOfTrans, amount, transName, category, false);
 			}
 			
-			UserHandler.getCU().getAccount(accountName).addTransaction(toAdd);
+			UserHandler.getAccount(accountName).addTransaction(toAdd);
 			
 			Intent i = new Intent(getApplicationContext(), AccountHomeActivity.class);
 			i.putExtra("accountName", accountName);		

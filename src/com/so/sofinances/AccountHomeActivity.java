@@ -44,7 +44,7 @@ public class AccountHomeActivity extends Activity {
 		
 		transactionHistory = (ListView) findViewById(R.id.transactionHistory);
 		
-		List<Transaction> transacts = UserHandler.getCU().getAccount(accountName).getTransactions();
+		List<Transaction> transacts = UserHandler.getAccount(accountName).getTransactions();
 		if(transacts != null) {
 			Log.d("com.so.sofinances", "transacts not null");
 			List<String> transList = new ArrayList<String>(transacts.size());
@@ -53,7 +53,7 @@ public class AccountHomeActivity extends Activity {
 			if(!transacts.isEmpty()) {
 				Collections.sort(transacts);
 				
-				String balanceStr = UserHandler.getCU().getAccount(accountName).getBalanceString();
+				String balanceStr = UserHandler.getAccount(accountName).getBalanceString();
 				Log.d("com.so.sofinances", "Balance " + (balanceStr==null? "":"not") + " null");
 				Log.d("com.so.sofinances", "Balance is " + balanceStr);
 				balance.setText("Balance: " + balanceStr);

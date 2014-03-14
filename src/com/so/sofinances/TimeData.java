@@ -1,6 +1,7 @@
 package com.so.sofinances;
 
 import java.io.Serializable;
+import java.util.Locale;
 
 public class TimeData implements Serializable {
 	
@@ -15,7 +16,7 @@ public class TimeData implements Serializable {
 	}
 	
 	public String toString() {
-		return String.format("%2d/%2d/%4d", month, day, year);
+		return String.format(Locale.getDefault(), "%2d/%2d/%4d", month, day, year);
 	}
 	
 	/**

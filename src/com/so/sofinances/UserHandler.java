@@ -1,5 +1,7 @@
 package com.so.sofinances;
 
+import java.util.ArrayList;
+
 import android.util.Log;
 
 import com.db4o.ObjectSet;
@@ -26,5 +28,25 @@ public class UserHandler {
 		} else {
 			Log.d("com.so.sofinances", "no result found when searching for user");
 		}
+	}
+	
+	public static boolean addAccount(String fName, String dName, double bal, double intRate) {
+		return getCU().addAccount(fName, dName, bal, intRate);
+	}
+	
+	public static ArrayList<Account> getAccounts() {
+		return getCU().getAccounts();
+	}
+	
+	public static Account getAccount(String accountName) {
+		return getCU().getAccount(accountName);
+	}
+	
+	public static String accToString(){
+		return getCU().accToString();
+	}
+	
+	public static String getUserName() {
+		return getCU().getUserName();
 	}
 }

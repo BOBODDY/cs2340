@@ -45,7 +45,7 @@ public class AddAccountActivity extends Activity {
 			interest = "0";
 		}
 		double intRate = Double.parseDouble(interest);	
-		if (UserHandler.getCU().addAccount(fName, dName, bal, intRate)){
+		if (UserHandler.addAccount(fName, dName, bal, intRate)){
 			startActivity(new Intent(this, UserHomeActivity.class));
 			//DBHandler.db().store(UserHandler.getCU());
 			//DBHandler.db().commit();

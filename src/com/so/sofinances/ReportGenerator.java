@@ -14,12 +14,10 @@ public class ReportGenerator {
 	public static Report spendingCategoryReport(TimeData startDate, TimeData endDate) {
 		Report rep = new Report();
 		
-		User user = UserHandler.getCU();
-		
-		String result = "Spending Category Report for " + user.getUserName() + "\n";
+		String result = "Spending Category Report for " + UserHandler.getUserName() + "\n";
 		result += startDate.toString() + " - " + endDate.toString() + "\n";
 		
-		ArrayList<Account> userAccounts = user.getAccounts();
+		ArrayList<Account> userAccounts = UserHandler.getAccounts();
 		
 		//Log.d("com.so.sofinances", "User has " + userAccounts.size() + " accounts");
 		

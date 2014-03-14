@@ -39,7 +39,7 @@ public class UserHomeActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position,
 					long id) {
-				String name = UserHandler.getCU().getAccounts().get(position).getDisplayName();
+				String name = UserHandler.getAccounts().get(position).getDisplayName();
 				//Toast.makeText(getApplicationContext(), "Found: " + name, Toast.LENGTH_SHORT).show();
 				
 				Intent i = new Intent(getApplicationContext(), AccountHomeActivity.class);
@@ -55,7 +55,7 @@ public class UserHomeActivity extends Activity {
 	protected void onStart() {
 		super.onStart();
 		
-		ArrayList<Account> accounts = UserHandler.getCU().getAccounts();
+		ArrayList<Account> accounts = UserHandler.getAccounts();
 		
 		ArrayList<String> names = new ArrayList<String>();
 		
