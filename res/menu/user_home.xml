@@ -6,5 +6,6 @@
         android:title="@string/action_settings"/>
     <item android:id="@+id/action_report" android:title="Create Report" android:icon="@drawable/ic_action_report" android:showAsAction="ifRoom"></item>
     <item android:id="@+id/action_add_account" android:title="Add Account" android:icon="@drawable/ic_action_new" android:showAsAction="ifRoom"></item>
+    <item android:id="@+id/logout" android:title="Logout" android:showAsAction="never" android:orderInCategory="99"></item>
 
 </menu>
