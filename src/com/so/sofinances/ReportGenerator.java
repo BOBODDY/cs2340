@@ -26,9 +26,12 @@ public class ReportGenerator {
 		for(Account acc:userAccounts) {
 			for(Transaction t:acc.getTransactions()) {
 				if(t.isWithdrawal()) {
-					if(t.getTimeOfTransaction().compareTo(startDate) <= 0 && 
-							t.getTimeOfTransaction().compareTo(endDate) > 0)
-						withdrawals.add(t);
+					if( !(startDate.compareTo(t.getTimeOfTransaction()) < 0) ) {
+						// t.getTimeOfTransaction() is either the same as or after startDate
+						if( endDate.compareTo(t.getTimeOfTransaction()) <= 0 ) {
+							withdrawals.add(t);
+						}
+					}
 				}
 			}
 		}
