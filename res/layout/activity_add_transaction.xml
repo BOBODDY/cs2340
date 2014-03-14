@@ -92,7 +92,7 @@
         android:id="@+id/finish_transact"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/category_spinner1"
+        android:layout_below="@id/category_spinner1"
         android:layout_marginTop="30dp"
         android:onClick="finishTransaction"
         android:text="@string/submit" />

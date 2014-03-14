@@ -22,7 +22,7 @@
 	        android:id="@+id/textView1"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:text="Start Date:" />
+	        android:text="@string/start_date" />
 	
 	    <DatePicker
 	        android:id="@+id/datePickerStart"
@@ -40,7 +40,7 @@
 	        android:layout_alignLeft="@+id/datePickerStart"
 	        android:layout_below="@+id/datePickerStart"
 	        android:layout_marginTop="22dp"
-	        android:text="End Date:" />
+	        android:text="@string/end_date" />
 	
 	    <DatePicker
 	        android:id="@+id/datePickerEnd"
@@ -59,7 +59,7 @@
 	        android:layout_below="@+id/datePickerEnd"
 	        android:layout_marginRight="22dp"
 	        android:layout_marginTop="21dp"
-	        android:text="Button"
+	        android:text="@string/button_continue"
 	        android:onClick="finishDate" />
 	
 	</RelativeLayout>
