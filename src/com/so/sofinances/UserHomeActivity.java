@@ -93,6 +93,9 @@ public class UserHomeActivity extends Activity {
 	        	Intent i = new Intent(getApplicationContext(), DatePickingActivity.class);
 	        	startActivityForResult(i, PICK_DATE);
 	        	return true;
+	        case R.id.action_add_account:
+	        	startActivity(new Intent(this, AddAccountActivity.class));
+	        	return true;
 	        default:
 	            return super.onOptionsItemSelected(item);
 	    }
