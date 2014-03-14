@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -97,6 +99,33 @@ public class UserHomeActivity extends Activity {
 	        	startActivity(new Intent(this, AddAccountActivity.class));
 	        	return true;
 	        case R.id.logout:
+	        	AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setCancelable(true);
+                builder.setTitle("Are you sure you want to log out?");
+                builder.setInverseBackgroundForced(true);
+                builder.setPositiveButton("Yes",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                    int which) {
+                                dialog.dismiss();
+                                UserHandler.clear();
+                                
+                                startActivity(new Intent(getApplicationContext(), 
+                                		WelcomeActivity.class));
+                                finish();
+                            }
+                        });
+                builder.setNegativeButton("No",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                    int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                AlertDialog alert = builder.create();
+                alert.show();
 	        	return true;
 	        default:
 	            return super.onOptionsItemSelected(item);
