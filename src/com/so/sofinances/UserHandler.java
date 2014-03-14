@@ -49,4 +49,8 @@ public class UserHandler {
 	public static String getUserName() {
 		return getCU().getUserName();
 	}
+	
+	public static void clear() {
+		currentUser = null;
+	}
 }
