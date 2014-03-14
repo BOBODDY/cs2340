@@ -26,7 +26,8 @@ public class ReportGenerator {
 		for(Account acc:userAccounts) {
 			for(Transaction t:acc.getTransactions()) {
 				if(t.isWithdrawal()) {
-					if(t.getTimeEntered().compareTo(startDate) <= 0 && t.getTimeEntered().compareTo(endDate) > 0)
+					if(t.getTimeOfTransaction().compareTo(startDate) <= 0 && 
+							t.getTimeOfTransaction().compareTo(endDate) > 0)
 						withdrawals.add(t);
 				}
 			}

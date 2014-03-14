@@ -89,9 +89,9 @@ public class AddTransactionActivity extends Activity {
 			String category = (String) categories.getSelectedItem();
 			
 			if (transType.equals("Withdrawal")) {
-				toAdd = new Transaction(null, dateOfTrans, amount, transName, category, true);
+				toAdd = new Transaction(dateOfTrans, amount, transName, category, true);
 			} else if (transType.equals("Deposit")){
-				toAdd = new Transaction(null, dateOfTrans, amount, transName, category, false);
+				toAdd = new Transaction(dateOfTrans, amount, transName, category, false);
 			}
 			
 			UserHandler.getAccount(accountName).addTransaction(toAdd);

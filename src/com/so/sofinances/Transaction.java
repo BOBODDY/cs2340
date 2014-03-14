@@ -2,15 +2,14 @@ package com.so.sofinances;
 import java.text.NumberFormat;
 
 public class Transaction implements Comparable<Transaction>{
-	private TimeData timeEntered, timeOfTransaction;
+	private TimeData timeOfTransaction;
 	private double amount;
 	private String name, category;
 	private NumberFormat US = NumberFormat.getCurrencyInstance();
 	
 	private boolean isWithdrawal;
-	public Transaction(TimeData timeEntered, TimeData timeOfTransaction, double amount,
+	public Transaction(TimeData timeOfTransaction, double amount,
 			String name, String category, boolean isWithdrawal) {
-		this.timeEntered = timeEntered;
 		this.timeOfTransaction = timeOfTransaction;
 		this.amount = amount;
 		this.setWithdrawal(isWithdrawal);
@@ -21,26 +20,12 @@ public class Transaction implements Comparable<Transaction>{
 	
 	@Override
 	public int compareTo(Transaction t) {
-		return t.getTimeEntered().compareTo(this.getTimeEntered()); // Flip the t and this to sort in descending order
+		return t.getTimeOfTransaction().compareTo(this.getTimeOfTransaction());
 	}
 	
 	@Override
 	public String toString() {
 		return category + ", " + name + ": " + US.format(amount);
-	}
-	
-	/**
-	 * @return the timeEntered
-	 */
-	public TimeData getTimeEntered() {
-		return timeEntered;
-	}
-
-	/**
-	 * @param timeEntered the timeEntered to set
-	 */
-	public void setTimeEntered(TimeData timeEntered) {
-		this.timeEntered = timeEntered;
 	}
 
 	/**
