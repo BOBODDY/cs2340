@@ -9,19 +9,18 @@
     tools:context=".AccountHomeActivity" >
 
     <TextView
-        android:id="@+id/clickToAdd"
+        android:id="@+id/account_home_instruct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="Click &quot;+&quot; to add"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/clickToAdd"
+        android:layout_below="@+id/account_home_instruct"
         android:orientation="vertical" >
 
         <ListView

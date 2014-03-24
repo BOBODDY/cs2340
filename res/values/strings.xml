@@ -7,7 +7,7 @@
     <string name="edit_message">hello</string>
     <string name="button_goToLogin">Log In</string>
     <string name="button_register">Register</string>
-    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_login">Login</string>
     <string name="button_login">Login</string>
     <string name="login_username">enter username here</string>
     <string name="login_password">enter password here</string>
@@ -19,7 +19,7 @@
     <string name="password">Password</string>
     <string name="full_name">Full name</string>
     <string name="title_activity_user_home">User Home</string>
-    <string name="title_activity_add_account">AddAccountActivity</string>
+    <string name="title_activity_add_account">Add Account</string>
     <string name="account_fullname">enter account name</string>
     <string name="account_displayname">enter account display name</string>
     <string name="account_balance">enter initial balance</string>
@@ -44,7 +44,7 @@
         <item>Income</item>
     </string-array>
 
-    <string name="title_activity_date_picking">DatePickingActivity</string>
+    <string name="title_activity_date_picking">Date Picking</string>
     <string name="button_continue">Continue</string>
     <string name="end_date">End Date:</string>
     <string name="start_date">Start Date:</string>

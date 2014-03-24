@@ -25,8 +25,9 @@ public class UserHomeActivity extends Activity {
 	private static final String TEXT2 = "text2";
 	final String[] fromMapKey = new String[] {TEXT1, TEXT2};
     final int[] toLayoutId = new int[] {android.R.id.text1, android.R.id.text2};
-	TextView accountList;
+//	TextView accountList;
 	ListView lv;
+	TextView instruct;
 	private NumberFormat us = NumberFormat.getCurrencyInstance();
 	static final int PICK_DATE = 314156;
 
@@ -36,6 +37,7 @@ public class UserHomeActivity extends Activity {
 		setContentView(R.layout.activity_user_home);
 		
 		lv = (ListView) findViewById(R.id.accountsList);
+		instruct = (TextView) findViewById(R.id.user_home_instruct);
 		lv.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -64,6 +66,13 @@ public class UserHomeActivity extends Activity {
 		ArrayList<String> balances = new ArrayList<String>();
 		
 		List<Map<String, String>> namesAndBalances = new ArrayList<Map<String, String>>();
+		
+		if (accounts.size() < 1){
+			instruct.setText("Click \"+\" to add account");
+		} else {
+			instruct.setText("");
+		}
+		
 		
 		for(int i=0; i<accounts.size(); i++) {
 			names.add(accounts.get(i).getDisplayName());

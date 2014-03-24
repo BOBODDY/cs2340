@@ -24,6 +24,7 @@ public class AccountHomeActivity extends Activity {
     final int[] toLayoutId = new int[] {android.R.id.text1, android.R.id.text2};
 	ListView transactionHistory;
 	TextView balance;
+	TextView instruct;
 	
 	String accountName;
 	NumberFormat us = NumberFormat.getCurrencyInstance();
@@ -43,6 +44,7 @@ public class AccountHomeActivity extends Activity {
 		balance = (TextView) findViewById(R.id.transactionBalance); 
 		balance.setText("Balance: " + UserHandler.getAccount(accountName).getBalanceString());
 		transactionHistory = (ListView) findViewById(R.id.transactionHistory);
+		instruct = (TextView) findViewById(R.id.account_home_instruct);
 		
 		List<Transaction> transacts = UserHandler.getAccount(accountName).getTransactions();
 		if(transacts != null) {
@@ -51,6 +53,7 @@ public class AccountHomeActivity extends Activity {
 			List<Map<String, String>> transTimeList = new ArrayList<Map<String, String>>(transacts.size());
 			
 			if(!transacts.isEmpty()) {
+				instruct.setText("");
 				Collections.sort(transacts);
 				
 				String balanceStr = UserHandler.getAccount(accountName).getBalanceString();
@@ -73,6 +76,8 @@ public class AccountHomeActivity extends Activity {
 						transTimeList.add(transAndTime);
 					}
 				}
+			} else {
+				instruct.setText("Click \"+\" to add transaction");
 			}
 			SimpleAdapter transAdapter = new SimpleAdapter(this,
 					transTimeList,
