@@ -1,11 +1,9 @@
 package com.so.sofinances;
-import java.text.NumberFormat;
 
 public class Transaction implements Comparable<Transaction>{
 	private TimeData timeOfTransaction;
 	private double amount;
 	private String name, category;
-	private NumberFormat US = NumberFormat.getCurrencyInstance();
 	
 	private boolean isWithdrawal;
 	public Transaction(TimeData timeOfTransaction, double amount,
@@ -25,7 +23,7 @@ public class Transaction implements Comparable<Transaction>{
 	
 	@Override
 	public String toString() {
-		return category + ", " + name + ": " + US.format(amount);
+		return name + ", " + category + ": " + Currency.format(amount);
 	}
 
 	/**

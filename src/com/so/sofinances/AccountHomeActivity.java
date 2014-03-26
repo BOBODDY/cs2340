@@ -1,6 +1,5 @@
 package com.so.sofinances;
 
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -25,28 +24,18 @@ public class AccountHomeActivity extends Activity {
 	ListView transactionHistory;
 	TextView balance;
 	TextView instruct;
-	
-	String accountName;
-	NumberFormat us = NumberFormat.getCurrencyInstance();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_transaction_home);
 		
-		Bundle bundle = getIntent().getExtras();
-		
-		if(bundle != null) {
-			accountName = bundle.getString("accountName");
-		} else {
-			accountName = "";
-		}
 		balance = (TextView) findViewById(R.id.transactionBalance); 
-		balance.setText("Balance: " + UserHandler.getAccount(accountName).getBalanceString());
+		balance.setText("Balance: " + AccountHandler.getBalanceString());
 		transactionHistory = (ListView) findViewById(R.id.transactionHistory);
 		instruct = (TextView) findViewById(R.id.account_home_instruct);
 		
-		List<Transaction> transacts = UserHandler.getAccount(accountName).getTransactions();
+		List<Transaction> transacts = AccountHandler.getTransactions();
 		if(transacts != null) {
 			Log.d("com.so.sofinances", "transacts not null");
 			List<String> transList = new ArrayList<String>(transacts.size());
@@ -56,7 +45,7 @@ public class AccountHomeActivity extends Activity {
 				instruct.setText("");
 				Collections.sort(transacts);
 				
-				String balanceStr = UserHandler.getAccount(accountName).getBalanceString();
+				String balanceStr = AccountHandler.getBalanceString();
 				Log.d("com.so.sofinances", "Balance " + (balanceStr==null? "":"not") + " null");
 				Log.d("com.so.sofinances", "Balance is " + balanceStr);
 				balance.setText("Balance: " + balanceStr);
@@ -103,7 +92,6 @@ public class AccountHomeActivity extends Activity {
 	    switch (item.getItemId()) {
 	        case R.id.addTransact:
 	        	Intent i = new Intent(getApplicationContext(), AddTransactionActivity.class);
-	        	i.putExtra("accountName", accountName);
 	        	startActivity(i);
 	        	return true;
 	        default:

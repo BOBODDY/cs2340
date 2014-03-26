@@ -1,6 +1,5 @@
 package com.so.sofinances;
 
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,7 +27,6 @@ public class UserHomeActivity extends Activity {
 //	TextView accountList;
 	ListView lv;
 	TextView instruct;
-	private NumberFormat us = NumberFormat.getCurrencyInstance();
 	static final int PICK_DATE = 314156;
 
 	@Override
@@ -44,10 +42,10 @@ public class UserHomeActivity extends Activity {
 			public void onItemClick(AdapterView<?> parent, View view, int position,
 					long id) {
 				String name = UserHandler.getAccounts().get(position).getDisplayName();
+				AccountHandler.setCurrentAccount(name);
 				//Toast.makeText(getApplicationContext(), "Found: " + name, Toast.LENGTH_SHORT).show();
 				
 				Intent i = new Intent(getApplicationContext(), AccountHomeActivity.class);
-				i.putExtra("accountName", name);
 				
 				startActivity(i);
 			}
@@ -76,7 +74,7 @@ public class UserHomeActivity extends Activity {
 		
 		for(int i=0; i<accounts.size(); i++) {
 			names.add(accounts.get(i).getDisplayName());
-			balances.add(us.format(accounts.get(i).getBalance()));
+			balances.add(Currency.format(accounts.get(i).getBalance()));
 			Map<String, String> nameAndBalance = new HashMap<String, String>();
 			nameAndBalance.put(TEXT1, names.get(i));
 			nameAndBalance.put(TEXT2, balances.get(i));

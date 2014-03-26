@@ -64,7 +64,7 @@ public class Account {
 	}
 	
 	public String getBalanceString() {
-		return String.format("$%.2f", balance);
+		return Currency.format(balance);
 	}
 
 	/**
@@ -108,11 +108,7 @@ public class Account {
 	 * @return	true if added successfully
 	 */
 	public boolean addTransaction(Transaction t) {
-		if(t.isWithdrawal()) {
-			balance -= t.getAmount();
-		} else {
-			balance += t.getAmount();
-		}
+		balance += t.getAmount();
 		System.out.println("Added");
 		return transactions.add(t);
 	}

@@ -15,8 +15,6 @@ public class AddTransactionActivity extends Activity {
 	
 	EditText name, amount;
 	
-	String accountName;
-	
 	DatePicker cal;
 
 	@Override
@@ -29,12 +27,6 @@ public class AddTransactionActivity extends Activity {
 		name = (EditText) findViewById(R.id.add_trans_name);
 		
 		amount = (EditText) findViewById(R.id.add_trans_amount);
-		
-		Bundle bundle = getIntent().getExtras();
-		
-		if(bundle != null) {
-			accountName = bundle.getString("accountName");
-		}
 	}
 
 	@Override
@@ -46,7 +38,6 @@ public class AddTransactionActivity extends Activity {
 	
 	public void cancelAdd(View v) {
 		Intent i = new Intent(getApplicationContext(), AccountHomeActivity.class);
-		i.putExtra("accountName", accountName);		
 		startActivity(i);
 	}
 	
@@ -55,8 +46,7 @@ public class AddTransactionActivity extends Activity {
 		String transName = name.getText().toString();
 		
 		if (transName == null || transName.equals("")) {
-			Intent i = new Intent(getApplicationContext(), AccountHomeActivity.class);
-			i.putExtra("accountName", accountName);		
+			Intent i = new Intent(getApplicationContext(), AccountHomeActivity.class);		
 			startActivity(i);
 			finish();
 		}
@@ -88,16 +78,17 @@ public class AddTransactionActivity extends Activity {
 			
 			String category = (String) categories.getSelectedItem();
 			
-			if (transType.equals("Withdrawal")) {
-				toAdd = new Transaction(dateOfTrans, amount, transName, category, true);
-			} else if (transType.equals("Deposit")){
-				toAdd = new Transaction(dateOfTrans, amount, transName, category, false);
+			boolean isWithdrawal = transType.equals("Withdrawal");
+			
+			if (isWithdrawal) {
+				amount *= -1;
 			}
 			
-			UserHandler.getAccount(accountName).addTransaction(toAdd);
+			toAdd = new Transaction(dateOfTrans, amount, transName, category, isWithdrawal);
 			
-			Intent i = new Intent(getApplicationContext(), AccountHomeActivity.class);
-			i.putExtra("accountName", accountName);		
+			AccountHandler.addTransaction(toAdd);
+			
+			Intent i = new Intent(getApplicationContext(), AccountHomeActivity.class);	
 			//DBHandler.db().store(UserHandler.getCU());
 			//DBHandler.db().commit();
 			startActivity(i);
