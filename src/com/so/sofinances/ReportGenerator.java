@@ -1,6 +1,5 @@
 package com.so.sofinances;
 
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
@@ -60,7 +59,7 @@ public class ReportGenerator {
 				amountSpent += t.getAmount();
 			}
 			data.put(cat, Double.valueOf(amountSpent));
-			result += s + "\t\t" + Currency.format(amountSpent) + "\n";
+			result += cat + "\t\t" + Currency.format(amountSpent) + "\n";
 		}
 		
 		
