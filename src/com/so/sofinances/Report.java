@@ -2,6 +2,7 @@ package com.so.sofinances;
 
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Report {
 	
@@ -23,11 +24,16 @@ public class Report {
 		this.data.add(data);
 	}
 	
+	public ArrayList<Object> getData() {
+		return data;
+	}
+	
 	public String toString() {
 		String res = "";
+		HashMap<String, Double> dat = (HashMap<String, Double>) data.get(0);
 		
-		for(Object o:data) {
-			res += (String) o;
+		for(String cat:dat.keySet()) {
+			res += cat + " $" + dat.get(cat) + "\n";
 		}
 		
 		return res;

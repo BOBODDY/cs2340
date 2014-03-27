@@ -50,18 +50,21 @@ public class ReportGenerator {
 			sortedTransacts.put(cat, tmp);
 		}
 		
-		Set<String> strings = sortedTransacts.keySet();
-		for(String s:strings) {
-			ArrayList<Transaction> transacts = sortedTransacts.get(s);
+		Set<String> categories = sortedTransacts.keySet();
+		HashMap<String, Double> data = new HashMap<String, Double>();
+		
+		for(String cat:categories) {
+			ArrayList<Transaction> transacts = sortedTransacts.get(cat);
 			double amountSpent = 0;
 			for(Transaction t:transacts) {
 				amountSpent += t.getAmount();
 			}
-			NumberFormat US = NumberFormat.getCurrencyInstance();
-			result += s + "\t\t" + US.format(amountSpent) + "\n";
+			data.put(cat, Double.valueOf(amountSpent));
+			result += s + "\t\t" + Currency.format(amountSpent) + "\n";
 		}
 		
-		rep.addData(result);
+		
+		rep.addData(data);
 		
 		return rep;
 	}

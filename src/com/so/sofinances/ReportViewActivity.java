@@ -1,7 +1,15 @@
 package com.so.sofinances;
 
+import java.util.HashMap;
+
+import org.achartengine.ChartFactory;
+import org.achartengine.model.CategorySeries;
+import org.achartengine.renderer.DefaultRenderer;
+import org.achartengine.renderer.SimpleSeriesRenderer;
+
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
@@ -51,7 +59,62 @@ public class ReportViewActivity extends Activity {
 			ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar1);
 			pb.setVisibility(View.INVISIBLE);
 			
+			HashMap<String, Double> data = (HashMap<String, Double>) result.getData().get(0);
+			
+			createPieChart(data);
+			
 			reporter.setText(result.toString());
+		}
+		
+		private void createPieChart(HashMap<String, Double> data) {
+			
+		  // Pie Chart Section Names
+		  String[] code = data.keySet().toArray(new String[0]);
+		
+		  // Pie Chart Section Value
+		  Double[] temp = new Double[code.length];
+		  for(int i=0;i<code.length;i++) {
+			  temp[i] = data.get(code[i]);
+		  }
+		  double[] distribution = new double[temp.length];
+		  
+		  for(int i=0;i<temp.length; i++) {
+			  distribution[i] = temp[i];
+		  }
+		
+		  // Color of each Pie Chart Sections
+		  int[] colors = { Color.GRAY, Color.GREEN, Color.RED, Color.YELLOW, Color.BLUE };
+		
+		  // Instantiating CategorySeries to plot Pie Chart
+		  CategorySeries distributionSeries = new CategorySeries(
+		    "Withdrawals");
+		  for (int i = 0; i < distribution.length; i++) {
+		   // Adding a slice with its values and name to the Pie Chart
+		   distributionSeries.add(code[i], distribution[i]);
+		  }
+		  // Instantiating a renderer for the Pie Chart
+		  DefaultRenderer defaultRenderer = new DefaultRenderer();
+		  for (int i = 0; i < distribution.length; i++) {
+		   SimpleSeriesRenderer seriesRenderer = new SimpleSeriesRenderer();
+		   seriesRenderer.setColor(colors[i]);
+		   seriesRenderer.setDisplayChartValues(true);
+		   // Adding a renderer for a slice
+		   defaultRenderer.addSeriesRenderer(seriesRenderer);
+		  }
+		  defaultRenderer.setLegendTextSize(30);
+		  defaultRenderer.setChartTitle("Withdrawals");
+		  defaultRenderer.setChartTitleTextSize(20);
+		  defaultRenderer.setZoomButtonsVisible(true);
+		  defaultRenderer.setBackgroundColor(45454545);
+		
+		  // Creating an intent to plot bar chart using dataset and
+		  // multipleRenderer
+		  Intent intent = ChartFactory.getPieChartIntent(getBaseContext(),
+		    distributionSeries, defaultRenderer,
+		    "PieChart");
+		
+		  // Start Activity
+		  startActivity(intent);
 		}
 	}
 }
