@@ -35,7 +35,7 @@ public class LoginActivity extends Activity {
 	    
 	    User test = LoginHandler.checkLogin(username, password);
 	    if (test != null) {
-	    	UserHandler.setCurrentUsername(test.getUserName().toString());
+	    	UserHandler.setCurrentUser(test.getUserName().toString());
 	    	startActivity(new Intent(getApplicationContext(), UserHomeActivity.class));
 	    	finish();
 	    } else {

@@ -18,7 +18,7 @@ public class UserHandler {
 		return username;
 	}
 	
-	public static void setCurrentUsername(String uN){
+	public static void setCurrentUser(String uN){
 		username = uN;
 		User temp = new User();
 		temp.setUserName(uN);
@@ -31,23 +31,23 @@ public class UserHandler {
 	}
 	
 	public static boolean addAccount(String fName, String dName, double bal, double intRate) {
-		return getCU().addAccount(fName, dName, bal, intRate);
+		return currentUser.addAccount(fName, dName, bal, intRate);
 	}
 	
 	public static ArrayList<Account> getAccounts() {
-		return getCU().getAccounts();
+		return currentUser.getAccounts();
 	}
 	
 	public static Account getAccount(String accountName) {
-		return getCU().getAccount(accountName);
+		return currentUser.getAccount(accountName);
 	}
 	
 	public static String accToString(){
-		return getCU().accToString();
+		return currentUser.accToString();
 	}
 	
 	public static String getUserName() {
-		return getCU().getUserName();
+		return currentUser.getUserName();
 	}
 	
 	public static void clear() {
