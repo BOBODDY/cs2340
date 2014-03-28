@@ -12,9 +12,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.so.sofinances.SwipeDetector.Action;
 
 public class AccountHomeActivity extends Activity {
 	private static final String TEXT1 = "text1";
@@ -34,6 +40,27 @@ public class AccountHomeActivity extends Activity {
 		balance.setText("Balance: " + AccountHandler.getBalanceString());
 		transactionHistory = (ListView) findViewById(R.id.transactionHistory);
 		instruct = (TextView) findViewById(R.id.account_home_instruct);
+		
+		final SwipeDetector swipeDetector = new SwipeDetector();
+		
+		transactionHistory.setOnTouchListener(swipeDetector);
+		
+		OnItemClickListener listener = new OnItemClickListener() {
+		    @Override
+		    public void onItemClick(AdapterView<?> arg0, View arg1, int position,
+		                            long arg3) {
+		        if(swipeDetector.swipeDetected()) {
+		            if(swipeDetector.getAction() == Action.RL) {
+		            	Toast.makeText(getApplicationContext(), "swiped", Toast.LENGTH_SHORT).show();
+		            } else {
+
+		            }
+		        } else {
+		        	
+		        }
+		    }
+		};
+		transactionHistory.setOnItemClickListener(listener);
 		
 		List<Transaction> transacts = AccountHandler.getTransactions();
 		if(transacts != null) {
