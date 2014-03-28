@@ -6,22 +6,30 @@ import java.util.Set;
 
 public class ReportGenerator {
 
-	public ReportGenerator() {
-		
-	}
+	public ReportGenerator() {}
 	
+	/**
+	 * Creates a Spending Category Report of all withdrawals for all accounts of the
+	 * current user
+	 * 
+	 * @param startDate Start date of the report
+	 * @param endDate End date of the report
+	 * @return A Report containing all of the withdrawals for all accounts between the startDate
+	 * and endDate
+	 */
 	public static Report spendingCategoryReport(TimeData startDate, TimeData endDate) {
 		Report rep = new Report();
 		
-		String result = "Spending Category Report for " + UserHandler.getUserName() + "\n";
-		result += startDate.toString() + " - " + endDate.toString() + "\n";
+		String title = "Spending Category Report for " + UserHandler.getUserName() + "\n";
+		title += startDate.toString() + " - " + endDate.toString() + "\n";
+		
+		rep.setTitle(title);
 		
 		ArrayList<Account> userAccounts = UserHandler.getAccounts();
 		
-		//Log.d("com.so.sofinances", "User has " + userAccounts.size() + " accounts");
-		
 		ArrayList<Transaction> withdrawals = new ArrayList<Transaction>();
 		
+		// Gather all withdrawals within the time range for all accounts
 		for(Account acc:userAccounts) {
 			for(Transaction t:acc.getTransactions()) {
 				if(t.isWithdrawal()) {
@@ -35,12 +43,11 @@ public class ReportGenerator {
 			}
 		}
 		
-		//Log.d("com.so.sofinances", "Found " + withdrawals.size() + " withdrawals");
-		
-		HashMap<String, ArrayList<Transaction>> sortedTransacts = new HashMap<String, ArrayList<Transaction>>();
+		// Sort gathered transactions into categories 
+		HashMap<String, ArrayList<Transaction>> sortedTransacts = 
+				new HashMap<String, ArrayList<Transaction>>();
 		for(Transaction t:withdrawals) {
 			String cat = t.getCategory();
-			//Log.d("com.so.sofinances", "Have a category: " + cat);
 			ArrayList<Transaction> tmp = sortedTransacts.get(cat);
 			if(tmp == null) {
 				tmp = new ArrayList<Transaction>();
@@ -52,6 +59,7 @@ public class ReportGenerator {
 		Set<String> categories = sortedTransacts.keySet();
 		HashMap<String, Double> data = new HashMap<String, Double>();
 		
+		// Sum up the transactions in each category 
 		for(String cat:categories) {
 			ArrayList<Transaction> transacts = sortedTransacts.get(cat);
 			double amountSpent = 0;
@@ -59,9 +67,7 @@ public class ReportGenerator {
 				amountSpent += t.getAmount();
 			}
 			data.put(cat, Double.valueOf(amountSpent));
-			result += cat + "\t\t" + Currency.format(amountSpent) + "\n";
 		}
-		
 		
 		rep.addData(data);
 		

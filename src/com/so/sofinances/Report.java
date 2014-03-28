@@ -1,6 +1,5 @@
 package com.so.sofinances;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -8,16 +7,20 @@ public class Report {
 	
 	String title;
 	
-	Time date;
-	
 	ArrayList<Object> data;
 
 	public Report() {
 		title = "";
 		
-		date = null;
-		
 		data = new ArrayList<Object>();
+	}
+	
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	
+	public String getTitle() {
+		return title;
 	}
 	
 	public void addData(Object data) {

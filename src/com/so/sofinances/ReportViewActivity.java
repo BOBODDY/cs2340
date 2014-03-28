@@ -22,6 +22,8 @@ public class ReportViewActivity extends Activity {
 	TextView reporter;
 	
 	TimeData start, end;
+	
+	Report currentReport;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,64 @@ public class ReportViewActivity extends Activity {
 		getMenuInflater().inflate(R.menu.report_view, menu);
 		return true;
 	}
+	
+	public void viewChart(View v) {
+		createPieChart((HashMap<String, Double>) currentReport.getData().get(0));
+	}
+	
+	/*
+	 * I copied this from the internet. no idea how it works
+	 */
+	private void createPieChart(HashMap<String, Double> data) {
+		
+	  // Pie Chart Section Names
+	  String[] code = data.keySet().toArray(new String[0]);
+	
+	  // Pie Chart Section Value
+	  Double[] temp = new Double[code.length];
+	  for(int i=0;i<code.length;i++) {
+		  temp[i] = data.get(code[i]);
+	  }
+	  double[] distribution = new double[temp.length];
+	  
+	  for(int i=0;i<temp.length; i++) {
+		  distribution[i] = temp[i];
+	  }
+	
+	  // Color of each Pie Chart Sections
+	  int[] colors = { Color.GRAY, Color.GREEN, Color.RED, Color.YELLOW, Color.BLUE };
+	
+	  // Instantiating CategorySeries to plot Pie Chart
+	  CategorySeries distributionSeries = new CategorySeries(
+	    "Withdrawals");
+	  for (int i = 0; i < distribution.length; i++) {
+	   // Adding a slice with its values and name to the Pie Chart
+	   distributionSeries.add(code[i], distribution[i]);
+	  }
+	  // Instantiating a renderer for the Pie Chart
+	  DefaultRenderer defaultRenderer = new DefaultRenderer();
+	  for (int i = 0; i < distribution.length; i++) {
+	   SimpleSeriesRenderer seriesRenderer = new SimpleSeriesRenderer();
+	   seriesRenderer.setColor(colors[i]);
+	   seriesRenderer.setDisplayChartValues(true);
+	   // Adding a renderer for a slice
+	   defaultRenderer.addSeriesRenderer(seriesRenderer);
+	  }
+	  defaultRenderer.setLegendTextSize(30);
+	  defaultRenderer.setChartTitle("Withdrawals");
+	  defaultRenderer.setChartTitleTextSize(20);
+	  defaultRenderer.setZoomButtonsVisible(true);
+	  defaultRenderer.setBackgroundColor(45454545);
+	
+	  // Creating an intent to plot bar chart using dataset and
+	  // multipleRenderer
+	  Intent intent = ChartFactory.getPieChartIntent(getBaseContext(),
+	    distributionSeries, defaultRenderer,
+	    "PieChart");
+	
+	  // Start Activity
+	  startActivity(intent);
+	}
 
 	private class ReportGeneratorTask extends AsyncTask<String, Void, Report> {
 
@@ -56,65 +116,16 @@ public class ReportViewActivity extends Activity {
 		}
 		
 		protected void onPostExecute(Report result) {
-			ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar1);
+			ProgressBar pb = (ProgressBar) findViewById(R.id.report_loading);
 			pb.setVisibility(View.INVISIBLE);
 			
 			HashMap<String, Double> data = (HashMap<String, Double>) result.getData().get(0);
 			
-			createPieChart(data);
+			//createPieChart(data);
 			
-			reporter.setText(result.toString());
-		}
-		
-		private void createPieChart(HashMap<String, Double> data) {
+			reporter.setText(result.getTitle() + "\n" + result.toString());
 			
-		  // Pie Chart Section Names
-		  String[] code = data.keySet().toArray(new String[0]);
-		
-		  // Pie Chart Section Value
-		  Double[] temp = new Double[code.length];
-		  for(int i=0;i<code.length;i++) {
-			  temp[i] = data.get(code[i]);
-		  }
-		  double[] distribution = new double[temp.length];
-		  
-		  for(int i=0;i<temp.length; i++) {
-			  distribution[i] = temp[i];
-		  }
-		
-		  // Color of each Pie Chart Sections
-		  int[] colors = { Color.GRAY, Color.GREEN, Color.RED, Color.YELLOW, Color.BLUE };
-		
-		  // Instantiating CategorySeries to plot Pie Chart
-		  CategorySeries distributionSeries = new CategorySeries(
-		    "Withdrawals");
-		  for (int i = 0; i < distribution.length; i++) {
-		   // Adding a slice with its values and name to the Pie Chart
-		   distributionSeries.add(code[i], distribution[i]);
-		  }
-		  // Instantiating a renderer for the Pie Chart
-		  DefaultRenderer defaultRenderer = new DefaultRenderer();
-		  for (int i = 0; i < distribution.length; i++) {
-		   SimpleSeriesRenderer seriesRenderer = new SimpleSeriesRenderer();
-		   seriesRenderer.setColor(colors[i]);
-		   seriesRenderer.setDisplayChartValues(true);
-		   // Adding a renderer for a slice
-		   defaultRenderer.addSeriesRenderer(seriesRenderer);
-		  }
-		  defaultRenderer.setLegendTextSize(30);
-		  defaultRenderer.setChartTitle("Withdrawals");
-		  defaultRenderer.setChartTitleTextSize(20);
-		  defaultRenderer.setZoomButtonsVisible(true);
-		  defaultRenderer.setBackgroundColor(45454545);
-		
-		  // Creating an intent to plot bar chart using dataset and
-		  // multipleRenderer
-		  Intent intent = ChartFactory.getPieChartIntent(getBaseContext(),
-		    distributionSeries, defaultRenderer,
-		    "PieChart");
-		
-		  // Start Activity
-		  startActivity(intent);
+			currentReport = result;
 		}
 	}
 }
