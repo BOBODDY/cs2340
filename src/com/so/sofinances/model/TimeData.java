@@ -1,4 +1,4 @@
-package com.so.sofinances;
+package com.so.sofinances.model;
 
 import java.io.Serializable;
 import java.util.Locale;

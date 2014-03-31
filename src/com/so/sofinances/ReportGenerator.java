@@ -4,6 +4,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
+import com.so.sofinances.handler.UserHandler;
+import com.so.sofinances.model.Account;
+import com.so.sofinances.model.Report;
+import com.so.sofinances.model.TimeData;
+import com.so.sofinances.model.Transaction;
+
 public class ReportGenerator {
 
 	public ReportGenerator() {}

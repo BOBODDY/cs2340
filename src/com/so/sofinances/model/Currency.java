@@ -1,4 +1,4 @@
-package com.so.sofinances;
+package com.so.sofinances.model;
 
 import java.text.NumberFormat;
 import java.util.Locale;

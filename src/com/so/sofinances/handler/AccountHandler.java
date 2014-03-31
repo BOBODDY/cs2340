@@ -1,7 +1,10 @@
-package com.so.sofinances;
+package com.so.sofinances.handler;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.so.sofinances.model.Account;
+import com.so.sofinances.model.Transaction;
 
 public class AccountHandler {
 	private static String accountName;

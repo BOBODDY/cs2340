@@ -1,4 +1,4 @@
-package com.so.sofinances;
+package com.so.sofinances.model;
 
 public class Transaction implements Comparable<Transaction>{
 	private TimeData timeOfTransaction;

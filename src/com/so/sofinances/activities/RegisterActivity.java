@@ -1,4 +1,11 @@
-package com.so.sofinances;
+package com.so.sofinances.activities;
+
+import com.so.sofinances.R;
+import com.so.sofinances.R.id;
+import com.so.sofinances.R.layout;
+import com.so.sofinances.R.menu;
+import com.so.sofinances.handler.DBHandler;
+import com.so.sofinances.handler.RegistrationHandler;
 
 import android.annotation.TargetApi;
 import android.app.Activity;

@@ -1,4 +1,4 @@
-package com.so.sofinances;
+package com.so.sofinances.activities;
 
 import java.util.HashMap;
 
@@ -6,6 +6,14 @@ import org.achartengine.ChartFactory;
 import org.achartengine.model.CategorySeries;
 import org.achartengine.renderer.DefaultRenderer;
 import org.achartengine.renderer.SimpleSeriesRenderer;
+
+import com.so.sofinances.R;
+import com.so.sofinances.ReportGenerator;
+import com.so.sofinances.R.id;
+import com.so.sofinances.R.layout;
+import com.so.sofinances.R.menu;
+import com.so.sofinances.model.Report;
+import com.so.sofinances.model.TimeData;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -119,7 +127,7 @@ public class ReportViewActivity extends Activity {
 			ProgressBar pb = (ProgressBar) findViewById(R.id.report_loading);
 			pb.setVisibility(View.INVISIBLE);
 			
-			HashMap<String, Double> data = (HashMap<String, Double>) result.getData().get(0);
+			//HashMap<String, Double> data = (HashMap<String, Double>) result.getData().get(0);
 			
 			//createPieChart(data);
 			

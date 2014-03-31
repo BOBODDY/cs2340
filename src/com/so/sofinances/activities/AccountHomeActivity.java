@@ -1,4 +1,4 @@
-package com.so.sofinances;
+package com.so.sofinances.activities;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,7 +20,16 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.so.sofinances.R;
+import com.so.sofinances.SwipeDetector;
+import com.so.sofinances.R.id;
+import com.so.sofinances.R.layout;
+import com.so.sofinances.R.menu;
 import com.so.sofinances.SwipeDetector.Action;
+import com.so.sofinances.handler.AccountHandler;
+import com.so.sofinances.handler.DBHandler;
+import com.so.sofinances.model.TimeData;
+import com.so.sofinances.model.Transaction;
 
 public class AccountHomeActivity extends Activity {
 	private static final String TEXT1 = "text1";

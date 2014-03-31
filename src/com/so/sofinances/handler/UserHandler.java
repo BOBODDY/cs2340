@@ -1,10 +1,12 @@
-package com.so.sofinances;
+package com.so.sofinances.handler;
 
 import java.util.ArrayList;
 
 import android.util.Log;
 
 import com.db4o.ObjectSet;
+import com.so.sofinances.model.Account;
+import com.so.sofinances.model.User;
 
 public class UserHandler {
 	private static String username;

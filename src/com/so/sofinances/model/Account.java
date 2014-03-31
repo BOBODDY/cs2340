@@ -1,4 +1,4 @@
-package com.so.sofinances;
+package com.so.sofinances.model;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,7 @@
-package com.so.sofinances;
+package com.so.sofinances.handler;
 
 import com.db4o.ObjectSet;
+import com.so.sofinances.model.User;
 
 public class RegistrationHandler {
 	

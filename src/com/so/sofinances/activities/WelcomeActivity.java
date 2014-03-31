@@ -1,4 +1,4 @@
-package com.so.sofinances;
+package com.so.sofinances.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,6 +7,11 @@ import android.view.Menu;
 import android.view.View;
 
 import com.db4o.ObjectSet;
+import com.so.sofinances.R;
+import com.so.sofinances.R.layout;
+import com.so.sofinances.R.menu;
+import com.so.sofinances.handler.DBHandler;
+import com.so.sofinances.model.User;
 
 public class WelcomeActivity extends Activity {
 

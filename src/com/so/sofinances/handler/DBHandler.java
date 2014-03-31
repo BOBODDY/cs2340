@@ -1,4 +1,4 @@
-package com.so.sofinances;
+package com.so.sofinances.handler;
 
 
 import java.io.IOException;
@@ -7,6 +7,7 @@ import com.db4o.Db4oEmbedded;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
 import com.db4o.config.EmbeddedConfiguration;
+import com.so.sofinances.model.User;
 
 public class DBHandler {
 	private static ObjectContainer oc = null;

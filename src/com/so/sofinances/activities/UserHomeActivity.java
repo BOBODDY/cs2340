@@ -1,9 +1,20 @@
-package com.so.sofinances;
+package com.so.sofinances.activities;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.so.sofinances.R;
+import com.so.sofinances.R.id;
+import com.so.sofinances.R.layout;
+import com.so.sofinances.R.menu;
+import com.so.sofinances.handler.AccountHandler;
+import com.so.sofinances.handler.DBHandler;
+import com.so.sofinances.handler.UserHandler;
+import com.so.sofinances.model.Account;
+import com.so.sofinances.model.Currency;
+import com.so.sofinances.model.TimeData;
 
 import android.app.Activity;
 import android.app.AlertDialog;
