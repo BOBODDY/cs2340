@@ -15,18 +15,30 @@ public class Report {
 		data = new ArrayList<Object>();
 	}
 	
+	/**
+	 * @param title New title of report
+	 */
 	public void setTitle(String title) {
 		this.title = title;
 	}
 	
+	/**
+	 * @return Title of report
+	 */
 	public String getTitle() {
 		return title;
 	}
 	
+	/**
+	 * @param data Any object to add to the report
+	 */
 	public void addData(Object data) {
 		this.data.add(data);
 	}
 	
+	/**
+	 * @return Report's data
+	 */
 	public ArrayList<Object> getData() {
 		return data;
 	}

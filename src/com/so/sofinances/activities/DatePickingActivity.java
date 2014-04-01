@@ -33,6 +33,11 @@ public class DatePickingActivity extends Activity {
 		return true;
 	}
 	
+	/**
+	 * The onClick method for the button to finish picking the date.
+	 * 
+	 * @param v The View that started this method
+	 */
 	public void finishDate(View v) {
 		int startDay = start.getDayOfMonth();
 		int startMonth = start.getMonth() + 1;

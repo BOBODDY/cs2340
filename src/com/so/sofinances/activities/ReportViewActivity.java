@@ -62,8 +62,10 @@ public class ReportViewActivity extends Activity {
 		createPieChart((HashMap<String, Double>) currentReport.getData().get(0));
 	}
 	
-	/*
-	 * I copied this from the internet. no idea how it works
+	/**
+	 * 
+	 * @param data A map of the category/title of each line in the data connected to the 
+	 * amount of that category
 	 */
 	private void createPieChart(HashMap<String, Double> data) {
 		
