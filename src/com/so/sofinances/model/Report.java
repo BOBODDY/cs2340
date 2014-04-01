@@ -6,7 +6,6 @@ import java.util.HashMap;
 public class Report {
 	
 	String title;
-	
 	ArrayList<Object> data;
 
 	public Report() {
