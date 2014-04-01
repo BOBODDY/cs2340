@@ -37,6 +37,13 @@ public class LoginActivity extends Activity {
         return true;
     }
     
+	/**
+	 * Checks to see if the correct credentials for a User is verified or not.
+	 * If it the User and Password used to login are checked and verified in the database, then the UserHandler
+	 * sets the currentUser to the User used to login, and a new Intent is made to move to the UserHomeActivity screen.
+	 * If the User and Password given don't match, then an "Invalid login" message is displayed.
+	 * @param view The View of the current window
+	 */
     public void onClickLogin(View view) {
         String username = unText.getText().toString();
         String password = pwText.getText().toString();

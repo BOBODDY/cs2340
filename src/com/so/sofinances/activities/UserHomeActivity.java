@@ -167,6 +167,11 @@ public class UserHomeActivity extends Activity {
         }
     }
     
+	/**
+	 * Moves to the Add Account Screen
+	 * Creates a new Intent for the AddAccount Activity and starts up the Activity to move to the Add Account Screen
+	 * @param v The view of the screen
+	 */
     public void onCreateClick(View v){
         startActivity(new Intent(this, AddAccountActivity.class));
     }
