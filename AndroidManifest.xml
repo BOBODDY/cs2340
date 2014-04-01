@@ -38,7 +38,7 @@
         </service>
 
         <activity
-            andcom.so.sofinances.activities.RegisterActivityterActivity"
+            android:name="com.so.sofinances.activities.RegisterActivity"
             android:label="@string/title_activity_register"
             android:parentActivityName="com.so.sofinances.activities.WelcomeActivity" >
             <meta-data
@@ -46,24 +46,25 @@
                 android:value="com.so.sofinances.activities.WelcomeActivity" />
         </activity>
         <activity
-            andcom.so.sofinances.activities.UserHomeActivityomeActivity"
+            android:name="com.so.sofinances.activities.UserHomeActivity"
             android:label="@string/title_activity_user_home"
             android:parentActivityName="com.so.sofinances.activities.WelcomeActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.so.sofinances.activities.WelcomeActivity" />
         </activity>
-        <accom.so.sofinances.activities.AddAccountActivity.so.sofinances.AddAccountActivity"
+        <activity
+            android:name="com.so.sofinances.activities.AddAccountActivity"
             android:label="@string/title_activity_add_account"
-            android:parentActcom.so.sofinances.activities.UserHomeActivityomeActivity" >
+            android:parentActivityName="com.so.sofinances.activities.UserHomeActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.so.sofinances.UserHomeActivity" />
         </activity>
         <activity
-            andcom.so.sofinances.activities.AddTransactionActivityionActivity"
+            android:name="com.so.sofinances.activities.AddTransactionActivityionActivity"
             android:label="@string/title_activity_add_transaction"
-            androicom.so.sofinances.activities.UserHomeActivityances.UserHomeActivity" >
+            android:parentActivityName="com.so.sofinances.activities.UserHomeActivityances.UserHomeActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.so.sofinances.UserHomeActivity" />
@@ -71,13 +72,13 @@
         <activity
             android:name="com.so.sofinances.activities.AccountHomeActivity"
             android:label="@string/title_activity_transaction_home"
-       com.so.sofinances.activities.UserHomeActivityom.so.sofinances.UserHomeActivity" >
+       		android:parentActivityName="com.so.sofinances.activities.UserHomeActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.so.sofinances.UserHomeActivity" />
         </activity>
         <activity
-            andcom.so.sofinances.activities.ReportViewActivityiewActivity"
+            android:name="com.so.sofinances.activities.ReportViewActivityiewActivity"
             android:label="@string/title_activity_report_view" >
         </activity>
      com.so.sofinances.activities.DatePickingActivityengine.GraphicalActivity" />
