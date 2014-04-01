@@ -18,36 +18,36 @@ import android.widget.TextView;
 
 public class LoginActivity extends Activity {
 
-	EditText unText, pwText;
-	TextView display;
-	
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_login);
-	    unText = (EditText)findViewById(R.id.login_username);
-	    pwText = (EditText)findViewById(R.id.login_password);
-	    display = (TextView) findViewById(R.id.invalidLoginTV);
-	}
+    EditText unText, pwText;
+    TextView display;
+    
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+        unText = (EditText)findViewById(R.id.login_username);
+        pwText = (EditText)findViewById(R.id.login_password);
+        display = (TextView) findViewById(R.id.invalidLoginTV);
+    }
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.login, menu);
-		return true;
-	}
-	
-	public void onClickLogin(View view) {
-	    String username = unText.getText().toString();
-	    String password = pwText.getText().toString();
-	    
-	    User test = LoginHandler.checkLogin(username, password);
-	    if (test != null) {
-	    	UserHandler.setCurrentUser(test.getUserName().toString());
-	    	startActivity(new Intent(getApplicationContext(), UserHomeActivity.class));
-	    	finish();
-	    } else {
-	    	display.setText("Invalid login");
-	    }
-	}
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.login, menu);
+        return true;
+    }
+    
+    public void onClickLogin(View view) {
+        String username = unText.getText().toString();
+        String password = pwText.getText().toString();
+        
+        User test = LoginHandler.checkLogin(username, password);
+        if (test != null) {
+            UserHandler.setCurrentUser(test.getUserName().toString());
+            startActivity(new Intent(getApplicationContext(), UserHomeActivity.class));
+            finish();
+        } else {
+            display.setText("Invalid login");
+        }
+    }
 }

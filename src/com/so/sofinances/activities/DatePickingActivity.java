@@ -1,17 +1,14 @@
 package com.so.sofinances.activities;
 
-import com.so.sofinances.R;
-import com.so.sofinances.R.id;
-import com.so.sofinances.R.layout;
-import com.so.sofinances.R.menu;
-import com.so.sofinances.model.TimeData;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.DatePicker;
+
+import com.so.sofinances.R;
+import com.so.sofinances.model.TimeData;
 
 public class DatePickingActivity extends Activity {
 	
