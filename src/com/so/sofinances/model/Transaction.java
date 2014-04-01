@@ -6,6 +6,7 @@ public class Transaction implements Comparable<Transaction>{
     private String name, category;
     
     private boolean isWithdrawal;
+	
     public Transaction(TimeData timeOfTransaction, double amount,
             String name, String category, boolean isWithdrawal) {
         this.timeOfTransaction = timeOfTransaction;
