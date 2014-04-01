@@ -77,9 +77,10 @@ public class UserHomeActivity extends Activity {
         List<Map<String, String>> namesAndBalances = new ArrayList<Map<String, String>>();
         
         if (accounts.size() < 1){
+        	instruct.setVisibility(0);
             instruct.setText("Click \"+\" to add account");
         } else {
-            instruct.setText("");
+            instruct.setVisibility(8);
         }
         
         

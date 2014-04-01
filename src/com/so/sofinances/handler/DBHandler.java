@@ -11,9 +11,10 @@ import com.so.sofinances.model.User;
 public class DBHandler {
     private static ObjectContainer oc = null;
     private static String path;
+    private static final String FILENAME = "/androidDB.db4o";
     
     public static void setPath(String dir){
-        path = dir + "/" + "androidDB.db4o";
+        path = dir + FILENAME;
     }
     
     public static ObjectContainer db(){

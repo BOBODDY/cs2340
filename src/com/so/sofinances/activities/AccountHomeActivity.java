@@ -78,7 +78,7 @@ public class AccountHomeActivity extends Activity {
             List<Map<String, String>> transTimeList = new ArrayList<Map<String, String>>(transacts.size());
             
             if(!transacts.isEmpty()) {
-                instruct.setText("");
+                instruct.setVisibility(8);
                 Collections.sort(transacts);
                 
                 String balanceStr = AccountHandler.getBalanceString();
@@ -102,6 +102,7 @@ public class AccountHomeActivity extends Activity {
                     }
                 }
             } else {
+            	instruct.setVisibility(0);
                 instruct.setText("Click \"+\" to add transaction");
             }
             SimpleAdapter transAdapter = new SimpleAdapter(this,
