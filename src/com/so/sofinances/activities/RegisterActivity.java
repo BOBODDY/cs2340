@@ -19,12 +19,20 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+/**Activity used for registering a new user
+ * 
+ * @author kodyPC
+ *
+ */
 public class RegisterActivity extends Activity {
     
     EditText fullName, username, password;
     
     TextView display;
 
+    /* (non-Javadoc) creates variable representations of the textfields
+     * @see android.app.Activity#onCreate(android.os.Bundle)
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +59,9 @@ public class RegisterActivity extends Activity {
         }
     }
 
+    /* (non-Javadoc) adds the associated buttons to the menu bar
+     * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -58,6 +69,9 @@ public class RegisterActivity extends Activity {
         return true;
     }
 
+    /* (non-Javadoc) returns to the parent activity when pressed
+     * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -75,6 +89,10 @@ public class RegisterActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
     
+    /**passes in field information to the registration handler to attempt to register the user
+     * 
+     * @param v
+     */
     public void onRegisterClick(View v) {
         String fName = fullName.getText().toString();
         String uName = username.getText().toString();
@@ -90,6 +108,9 @@ public class RegisterActivity extends Activity {
         }
     }
     
+    /* (non-Javadoc) updates the database with the activity is paused
+     * @see android.app.Activity#onPause()
+     */
     @Override
     public void onPause(){
         super.onPause();

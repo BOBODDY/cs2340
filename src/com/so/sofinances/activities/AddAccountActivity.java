@@ -14,10 +14,19 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+/**Activity for displaying the fields associated with adding a new account. 
+ * Then passes off info to UserHandler to try and add the account
+ * 
+ * @author kodyPC
+ *
+ */
 public class AddAccountActivity extends Activity {
     EditText fullName, displayName, balance, interestRate;
     TextView warning;
 
+    /* (non-Javadoc)creates variables for all of the fields in the activity
+     * @see android.app.Activity#onCreate(android.os.Bundle)
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +38,9 @@ public class AddAccountActivity extends Activity {
         warning = (TextView) findViewById(R.id.add_acc_warning);
     }
 
+    /* (non-Javadoc)adds the associated buttons to the menu bar
+     * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -36,6 +48,9 @@ public class AddAccountActivity extends Activity {
         return true;
     }
     
+    /** creates strings from all of the info on the activity and attempts to add the account
+     * @param v
+     */
     public void onSubmitClick(View v){
         String fName = fullName.getText().toString();
         String dName = displayName.getText().toString();
@@ -61,6 +76,9 @@ public class AddAccountActivity extends Activity {
         }
     }
     
+    /** Simply returns to the User Home page. Does not add an account
+     * @param v
+     */
     public void onCancelClick(View v){
         startActivity(new Intent(this, UserHomeActivity.class));
         finish();

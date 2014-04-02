@@ -3,11 +3,25 @@ package com.so.sofinances.model;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * @author kodyPC
+ * Represents a financial account within the user. 
+ * 
+ * Contains full name, display name, balance, monthly interest rate, and list of transactions.
+ */
 public class Account {
     private String fullName, displayName;
     private double balance, monthlyInterestRate;
     private List<Transaction> transactions = new ArrayList<Transaction>();
     
+    
+    /**
+     * @param fullName the full name of the account
+     * @param displayName the name displayed that represents the account
+     * @param balance the current balance of the account
+     * @param monthlyInterestRate monthly interest rate of the account. not used currently.
+     */
     public Account(String fullName, String displayName, double balance,
             double monthlyInterestRate) {
         this.fullName = fullName;
@@ -16,11 +30,24 @@ public class Account {
         this.monthlyInterestRate = monthlyInterestRate;
     }
 
+    /**
+     * Used to create an account with no interest rate or balance
+     * 
+     * @param fullName
+     * @param displayName
+     */
     public Account(String fullName, String displayName){
         this.fullName = fullName;
         this.displayName = displayName;
     }
     
+    /**
+     * Used to create an account without an interest rate
+     * 
+     * @param fullName 
+     * @param displayName 
+     * @param interestRate
+     */
     public Account(String fullName, String displayName, double interestRate){
         this.fullName = fullName;
         this.displayName = displayName;
@@ -102,6 +129,7 @@ public class Account {
     }
     
     /**
+     * adds a transaction to the list and updates the balance
      * 
      * @param t    a new transaction to add
      * @return    true if added successfully
