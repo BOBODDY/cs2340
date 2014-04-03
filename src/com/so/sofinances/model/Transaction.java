@@ -1,9 +1,10 @@
 package com.so.sofinances.model;
 
-public class Transaction implements Comparable<Transaction>{
+public class Transaction implements Comparable<Transaction> {
     private TimeData timeOfTransaction;
     private double amount;
-    private String name, category;
+    private String name;
+    private String category;
     
     private boolean isWithdrawal;
 	

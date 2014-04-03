@@ -1,6 +1,7 @@
 package com.so.sofinances;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -10,13 +11,17 @@ import com.so.sofinances.model.Report;
 import com.so.sofinances.model.TimeData;
 import com.so.sofinances.model.Transaction;
 
-public class ReportGenerator {
 
-    public ReportGenerator() {}
+/**Generates reports.
+ * 
+ * @author kodyPC
+ *
+ */
+public class ReportGenerator { 
     
     /**
      * Creates a Spending Category Report of all withdrawals for all accounts of the
-     * current user
+     * current user.
      * 
      * @param startDate Start date of the report
      * @param endDate End date of the report
@@ -31,17 +36,17 @@ public class ReportGenerator {
         
         rep.setTitle(title);
         
-        ArrayList<Account> userAccounts = UserHandler.getAccounts();
+        List<Account> userAccounts = UserHandler.getAccounts();
         
         ArrayList<Transaction> withdrawals = new ArrayList<Transaction>();
         
         // Gather all withdrawals within the time range for all accounts
-        for(Account acc:userAccounts) {
-            for(Transaction t:acc.getTransactions()) {
-                if(t.isWithdrawal()) {
-                    if( !(startDate.compareTo(t.getTimeOfTransaction()) < 0) ) {
+        for (Account acc:userAccounts) {
+            for (Transaction t:acc.getTransactions()) { 
+                if (t.isWithdrawal()) {
+                    if ( !(startDate.compareTo(t.getTimeOfTransaction()) < 0) ) {
                         // t.getTimeOfTransaction() is either the same as or after startDate
-                        if( endDate.compareTo(t.getTimeOfTransaction()) <= 0 ) {
+                        if ( endDate.compareTo(t.getTimeOfTransaction()) <= 0 ) {
                             withdrawals.add(t);
                         }
                     }
@@ -52,10 +57,10 @@ public class ReportGenerator {
         // Sort gathered transactions into categories 
         HashMap<String, ArrayList<Transaction>> sortedTransacts = 
                 new HashMap<String, ArrayList<Transaction>>();
-        for(Transaction t:withdrawals) {
+        for (Transaction t:withdrawals) { 
             String cat = t.getCategory();
             ArrayList<Transaction> tmp = sortedTransacts.get(cat);
-            if(tmp == null) {
+            if (tmp == null) {
                 tmp = new ArrayList<Transaction>();
             }
             tmp.add(t);
@@ -66,10 +71,10 @@ public class ReportGenerator {
         HashMap<String, Double> data = new HashMap<String, Double>();
         
         // Sum up the transactions in each category 
-        for(String cat:categories) {
+        for (String cat:categories) {
             ArrayList<Transaction> transacts = sortedTransacts.get(cat);
             double amountSpent = 0;
-            for(Transaction t:transacts) {
+            for (Transaction t:transacts) {
                 amountSpent += t.getAmount();
             }
             data.put(cat, Double.valueOf(amountSpent));

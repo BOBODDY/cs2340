@@ -1,9 +1,6 @@
 package com.so.sofinances.activities;
 
 import com.so.sofinances.R;
-import com.so.sofinances.R.id;
-import com.so.sofinances.R.layout;
-import com.so.sofinances.R.menu;
 import com.so.sofinances.handler.LoginHandler;
 import com.so.sofinances.handler.UserHandler;
 import com.so.sofinances.model.User;
@@ -18,15 +15,16 @@ import android.widget.TextView;
 
 public class LoginActivity extends Activity {
 
-    EditText unText, pwText;
+    EditText unText;
+    EditText pwText;
     TextView display;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        unText = (EditText)findViewById(R.id.login_username);
-        pwText = (EditText)findViewById(R.id.login_password);
+        unText = (EditText) findViewById(R.id.login_username);
+        pwText = (EditText) findViewById(R.id.login_password);
         display = (TextView) findViewById(R.id.invalidLoginTV);
     }
 

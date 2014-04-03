@@ -1,9 +1,6 @@
 package com.so.sofinances.activities;
 
 import com.so.sofinances.R;
-import com.so.sofinances.R.id;
-import com.so.sofinances.R.layout;
-import com.so.sofinances.R.menu;
 import com.so.sofinances.handler.DBHandler;
 import com.so.sofinances.handler.RegistrationHandler;
 
@@ -19,15 +16,28 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-/**Activity used for registering a new user
+/**Activity used for registering a new user.
  * 
  * @author kodyPC
  *
  */
 public class RegisterActivity extends Activity {
     
-    EditText fullName, username, password;
-    
+    /**
+     * full name of the new account.
+     */
+    EditText fullName;
+    /**
+     * username of the new account.
+     */
+    EditText username;
+    /**
+     * password of the new account.
+     */
+    EditText password;
+    /**
+     * display for showing user messages.
+     */
     TextView display;
 
     /* (non-Javadoc) creates variable representations of the textfields
@@ -75,7 +85,7 @@ public class RegisterActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-        case android.R.id.home:
+            case android.R.id.home:
             // This ID represents the Home or Up button. In the case of this
             // activity, the Up button is shown. Use NavUtils to allow users
             // to navigate up one level in the application structure. For
@@ -83,15 +93,15 @@ public class RegisterActivity extends Activity {
             //
             // http://developer.android.com/design/patterns/navigation.html#up-vs-back
             //
-            NavUtils.navigateUpFromSameTask(this);
-            return true;
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
     
-    /**passes in field information to the registration handler to attempt to register the user
+    /**passes in field information to the registration handler to attempt to register the user.
      * 
-     * @param v
+     * @param v the view
      */
     public void onRegisterClick(View v) {
         String fName = fullName.getText().toString();
@@ -112,7 +122,7 @@ public class RegisterActivity extends Activity {
      * @see android.app.Activity#onPause()
      */
     @Override
-    public void onPause(){
+    public void onPause() {
         super.onPause();
         System.out.println("DB Updated");
         DBHandler.update();

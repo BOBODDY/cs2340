@@ -11,8 +11,25 @@ import java.util.List;
  * Contains full name, display name, balance, monthly interest rate, and list of transactions.
  */
 public class Account {
-    private String fullName, displayName;
-    private double balance, monthlyInterestRate;
+    /**
+     * full name of the account.
+     */
+    private String fullName;
+    /**
+     * account's displayname.
+     */
+    private String displayName;
+    /**
+     * account's balance.
+     */
+    private double balance;
+    /**
+     * account's monthly interest rate.
+     */
+    private double monthlyInterestRate;
+    /**
+     * account's list of transactions.
+     */
     private List<Transaction> transactions = new ArrayList<Transaction>();
     
     
@@ -31,24 +48,24 @@ public class Account {
     }
 
     /**
-     * Used to create an account with no interest rate or balance
+     * Used to create an account with no interest rate or balance.
      * 
-     * @param fullName
-     * @param displayName
+     * @param fullName the full name
+     * @param displayName  the displayname
      */
-    public Account(String fullName, String displayName){
+    public Account(String fullName, String displayName) {
         this.fullName = fullName;
         this.displayName = displayName;
     }
     
     /**
-     * Used to create an account without an interest rate
+     * Used to create an account without an interest rate.
      * 
-     * @param fullName 
-     * @param displayName 
-     * @param interestRate
+     * @param fullName the full name
+     * @param displayName the display name
+     * @param interestRate the interest rate
      */
-    public Account(String fullName, String displayName, double interestRate){
+    public Account(String fullName, String displayName, double interestRate) {
         this.fullName = fullName;
         this.displayName = displayName;
         this.monthlyInterestRate = interestRate;
@@ -89,6 +106,9 @@ public class Account {
         return balance;
     }
     
+    /** returns string of the balance.
+     * @return the balance as a string
+     */
     public String getBalanceString() {
         return Currency.format(balance);
     }
@@ -128,8 +148,8 @@ public class Account {
         this.transactions = transactions;
     }
     
-    /**
-     * adds a transaction to the list and updates the balance
+    /** 
+     * adds a transaction to the list and updates the balance.
      * 
      * @param t    a new transaction to add
      * @return    true if added successfully

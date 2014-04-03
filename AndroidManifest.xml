@@ -62,9 +62,9 @@
                 android:value="com.so.sofinances.UserHomeActivity" />
         </activity>
         <activity
-            android:name="com.so.sofinances.activities.AddTransactionActivityionActivity"
+            android:name="com.so.sofinances.activities.AddTransactionActivity"
             android:label="@string/title_activity_add_transaction"
-            android:parentActivityName="com.so.sofinances.activities.UserHomeActivityances.UserHomeActivity" >
+            android:parentActivityName="com.so.sofinances.activities.UserHomeActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.so.sofinances.UserHomeActivity" />
@@ -78,12 +78,12 @@
                 android:value="com.so.sofinances.UserHomeActivity" />
         </activity>
         <activity
-            android:name="com.so.sofinances.activities.ReportViewActivityiewActivity"
+            android:name="com.so.sofinances.activities.ReportViewActivity"
             android:label="@string/title_activity_report_view" >
         </activity>
-     com.so.sofinances.activities.DatePickingActivityengine.GraphicalActivity" />
+        <activity android:name="org.achartengine.GraphicalActivity" />
         <activity
-            android:name="com.so.sofinances.DatePickingActivity"
+            android:name="com.so.sofinances.activities.DatePickingActivity"
             android:label="@string/title_activity_date_picking" >
         </activity>
     </application>

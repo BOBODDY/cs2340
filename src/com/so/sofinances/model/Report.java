@@ -2,12 +2,27 @@ package com.so.sofinances.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
+/** Contains info for report.
+ * @author kodyPC
+ *
+ */
 public class Report {
     
-    String title;
-    ArrayList<Object> data;
+    /**
+     * title of the report.
+     */
+    private String title;
+    /**
+     * list of data.
+     */
+    private final List<Object> data;
 
+    
+    /**
+     * Constructor that sets empty title and data list.
+     */
     public Report() {
         title = "";
         
@@ -17,7 +32,7 @@ public class Report {
     /**
      * @param title New title of report
      */
-    public void setTitle(String title) {
+    public void setTitle(final String title) {
         this.title = title;
     }
     
@@ -38,15 +53,19 @@ public class Report {
     /**
      * @return Report's data
      */
-    public ArrayList<Object> getData() {
+    public List<Object> getData() {
         return data;
     }
     
+    /**
+     * creates a string representation.
+     * @return the string representation
+     */
     public String toString() {
         String res = "";
         HashMap<String, Double> dat = (HashMap<String, Double>) data.get(0);
         
-        for(String cat:dat.keySet()) {
+        for (String cat:dat.keySet()) {
             res += cat + " $" + dat.get(cat) + "\n";
         }
         

@@ -3,6 +3,10 @@ package com.so.sofinances.handler;
 import com.db4o.ObjectSet;
 import com.so.sofinances.model.User;
 
+/** handles registration of new users.
+ * @author kodyPC
+ *
+ */
 public class RegistrationHandler {
     
 	/**
@@ -14,12 +18,12 @@ public class RegistrationHandler {
 	 * @param pW The Password of the User
 	 * @return True if the User is created and stored in the database; otherwise, it returns False
 	 */
-    public static boolean createUser(String fN, String uN, String pW){
-        if (isValid(fN) && isValid(uN) && isValid(pW)){
+    public static boolean createUser(String fN, String uN, String pW) {
+        if (isValid(fN) && isValid(uN) && isValid(pW)) {
             User temp = new User();
             temp.setUserName(uN);
             ObjectSet<Object> results = DBHandler.db().queryByExample(temp);
-            if (results.hasNext()){
+            if (results.hasNext()) {
                 return false;
             } else {
                 DBHandler.db().store(new User(fN, uN, pW));
@@ -33,12 +37,13 @@ public class RegistrationHandler {
     }
     
 	/**
-	 * Checks to see if the String entered is a valid set of characters
+	 * Checks to see if the String entered is a valid set of characters.
+	 * 
 	 * The check is done by a RegEx check
 	 * @param ex The String is be compared
 	 * @return True if the String is valid; False otherwise
 	 */
-    private static boolean isValid(String ex){
+    private static boolean isValid(String ex) {
         return ex.matches("([A-Za-z0-9]).*");
     }
 }

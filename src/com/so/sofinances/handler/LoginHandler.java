@@ -3,6 +3,10 @@ package com.so.sofinances.handler;
 import com.db4o.ObjectSet;
 import com.so.sofinances.model.User;
 
+/** Handles logins.
+ * @author kodyPC
+ *
+ */
 public class LoginHandler {
 	
 	/**
@@ -14,12 +18,12 @@ public class LoginHandler {
 	 * @param password The Password that's being checked
 	 * @return The User that matches the database of null if none match
 	 */
-    public static User checkLogin(String uName, String password){
+    public static User checkLogin(String uName, String password) {
         User ex = new User();
         ex.setUserName(uName);
         ex.setPassword(password);
         ObjectSet<Object> result = DBHandler.db().queryByExample(ex);
-        if (result.hasNext()){
+        if (result.hasNext()) {
             return ex;
         } else {
             return null;

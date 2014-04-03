@@ -1,6 +1,6 @@
 package com.so.sofinances.handler;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import android.util.Log;
 
@@ -8,46 +8,53 @@ import com.db4o.ObjectSet;
 import com.so.sofinances.model.Account;
 import com.so.sofinances.model.User;
 
-/** Facilitates interaction between the application and users
+/** Facilitates interaction between the application and users.
  * 
  * @author kodyPC
  *
  */
 public class UserHandler {
+    
+	/**
+	 * the current username.
+	 */
     private static String username;
+    /**
+     * the current user.
+     */
     private static User currentUser;
     
     /**
      * @return the current user
      */
-    public static User getCU(){
+    public static User getCU() {
         return currentUser;
     }
     
     /**
      * @return the current username
      */
-    public static String getCurrentUsername(){
+    public static String getCurrentUsername() {
         return username;
     }
     
-    /**Sets the current username 
+    /**Sets the current username. 
      * 
      * @param uN the username needing to be set
      */
-    public static void setCurrentUser(String uN){
+    public static void setCurrentUser(String uN) {
         username = uN;
         User temp = new User();
         temp.setUserName(uN);
         ObjectSet<Object> res = DBHandler.db().queryByExample(temp);
-        if (res.hasNext()){
+        if (res.hasNext()) {
             currentUser = (User) res.next();
         } else {
             Log.d("com.so.sofinances", "no result found when searching for user");
         }
     }
     
-    /** Relays account information to the User method addAccount()
+    /** Relays account information to the User method addAccount().
      * 
      * @param fName full name of the account
      * @param dName display name of the account
@@ -62,7 +69,7 @@ public class UserHandler {
     /**
      * @return the current user's account as an arraylist
      */
-    public static ArrayList<Account> getAccounts() {
+    public static List<Account> getAccounts() {
         return currentUser.getAccounts();
     }
     
@@ -77,7 +84,7 @@ public class UserHandler {
     /**
      * @return a string representation of the user's accounts
      */
-    public static String accToString(){
+    public static String accToString() {
         return currentUser.accToString();
     }
     
@@ -88,7 +95,7 @@ public class UserHandler {
         return currentUser.getUserName();
     }
     
-    /** Clears the current user
+    /** Clears the current user.
      * 
      */
     public static void clear() {

@@ -1,9 +1,6 @@
 package com.so.sofinances.activities;
 
 import com.so.sofinances.R;
-import com.so.sofinances.R.id;
-import com.so.sofinances.R.layout;
-import com.so.sofinances.R.menu;
 import com.so.sofinances.handler.AccountHandler;
 import com.so.sofinances.model.TimeData;
 import com.so.sofinances.model.Transaction;
@@ -21,7 +18,8 @@ import android.widget.Spinner;
 
 public class AddTransactionActivity extends Activity {
     
-    EditText name, amount;
+    EditText name;
+    EditText amount;
     
     DatePicker cal;
 
@@ -66,8 +64,8 @@ public class AddTransactionActivity extends Activity {
             String transType = "";
             
             RadioGroup rg = (RadioGroup) findViewById(R.id.radioGroup1);
-            if(rg.getCheckedRadioButtonId()!=-1){
-                int id= rg.getCheckedRadioButtonId();
+            if (rg.getCheckedRadioButtonId() != -1) {
+                int id = rg.getCheckedRadioButtonId();
                 View radioButton = rg.findViewById(id);
                 int radioId = rg.indexOfChild(radioButton);
                 RadioButton btn = (RadioButton) rg.getChildAt(radioId);

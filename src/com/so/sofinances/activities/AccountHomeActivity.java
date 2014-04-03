@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,27 +18,52 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.so.sofinances.R;
 import com.so.sofinances.SwipeDetector;
-import com.so.sofinances.R.id;
-import com.so.sofinances.R.layout;
-import com.so.sofinances.R.menu;
 import com.so.sofinances.SwipeDetector.Action;
 import com.so.sofinances.handler.AccountHandler;
 import com.so.sofinances.handler.DBHandler;
 import com.so.sofinances.model.TimeData;
 import com.so.sofinances.model.Transaction;
 
+
+/** Home activity which lists accounts.
+ * @author kodyPC
+ * 
+ * 
+ *
+ */
 public class AccountHomeActivity extends Activity {
+    /**
+     * first key for mapping.
+     */
     private static final String TEXT1 = "text1";
+    /**
+     * second key for mapping.
+     */
     private static final String TEXT2 = "text2";
+    /**
+     * mapping for first to second keys.
+     */
     final String[] fromMapKey = new String[] {TEXT1, TEXT2};
+    /**
+     * array of layout IDs.
+     */
     final int[] toLayoutId = new int[] {android.R.id.text1, android.R.id.text2};
+    /**
+     * listview for transaction history.
+     */
     ListView transactionHistory;
+    /**
+     * textview for balace.
+     */
     TextView balance;
+    /**
+     * textview for instructions.
+     */
     TextView instruct;
 
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,8 +82,8 @@ public class AccountHomeActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position,
                                     long arg3) {
-                if(swipeDetector.swipeDetected()) {
-                    if(swipeDetector.getAction() == Action.RL) {
+                if (swipeDetector.swipeDetected()) {
+                    if (swipeDetector.getAction() == Action.RL) {
                         Toast.makeText(getApplicationContext(), "swiped", Toast.LENGTH_SHORT).show();
                     } else {
 
@@ -72,28 +96,25 @@ public class AccountHomeActivity extends Activity {
         transactionHistory.setOnItemClickListener(listener);
         
         List<Transaction> transacts = AccountHandler.getTransactions();
-        if(transacts != null) {
-            Log.d("com.so.sofinances", "transacts not null");
+        if (transacts != null) {
             List<String> transList = new ArrayList<String>(transacts.size());
             List<Map<String, String>> transTimeList = new ArrayList<Map<String, String>>(transacts.size());
             
-            if(!transacts.isEmpty()) {
+            if (!transacts.isEmpty()) {
                 instruct.setVisibility(8);
                 Collections.sort(transacts);
                 
                 String balanceStr = AccountHandler.getBalanceString();
-                Log.d("com.so.sofinances", "Balance " + (balanceStr==null? "":"not") + " null");
-                Log.d("com.so.sofinances", "Balance is " + balanceStr);
+             
                 balance.setText("Balance: " + balanceStr);
-                Log.d("com.so.sofinances", "set balance string");
-                for(int i = 0; i < transacts.size(); i++) {
+                for (int i = 0; i < transacts.size(); i++) {
                     Transaction t = transacts.get(i);
                     if (t != null) {
                         transList.add(t.toString());
                         Map<String, String> transAndTime = new HashMap<String, String>();
                         transAndTime.put(TEXT1, transList.get(i));
                         TimeData td = t.getTimeOfTransaction();
-                        if(td != null) {
+                        if (td != null) {
                             transAndTime.put(TEXT2, td.toString());
                         } else {
                             transAndTime.put(TEXT2, "");
@@ -137,7 +158,7 @@ public class AccountHomeActivity extends Activity {
     }
     
     @Override
-    public void onPause(){
+    public void onPause() {
         super.onPause();
         System.out.println("DB Updated");
         DBHandler.update();

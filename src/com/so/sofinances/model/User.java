@@ -1,27 +1,29 @@
 package com.so.sofinances.model;
 
+import java.util.List;
 import java.util.ArrayList;
 
 public class User {
-    private String fullName, userName, password;
-    private ArrayList<Account> accounts;
+    private String fullName;
+    private String userName; 
+    private String password;
+    private List<Account> accounts;
     
-    public User(String fN, String uN, String pW){
+    public User() { }
+    
+    public User(String fN, String uN, String pW)  {
         this.fullName = fN;
         this.userName = uN;
         this.password = pW;
         this.accounts = new ArrayList<Account>();
     }
 
-    public User() {
-    }
-    
-    public User(String uName){
+    public User(String uName) {
         this.userName = uName;
     }
     
-    public boolean addAccount(String fName, String dName, double bal, double intRate){
-        if (isValid(fName) && isValid(dName)){
+    public boolean addAccount(String fName, String dName, double bal, double intRate) {
+        if (isValid(fName) && isValid(dName)) {
             this.accounts.add(new Account(fName, dName, bal, intRate));
             return true;
         }
@@ -29,7 +31,7 @@ public class User {
         
     }
     
-    public boolean isValid(String ex){
+    public boolean isValid(String ex) {
         return ex.matches("([A-Za-z0-9]).*");
     }
 
@@ -75,16 +77,16 @@ public class User {
         this.password = password;
     }
     
-    public ArrayList<Account> getAccounts() {
+    public List<Account> getAccounts() {
         return accounts;
     }
     
     public Account getAccount(String accountName) {
         Account acc = null;
         
-        for(int i = 0 ; i < accounts.size() ; i++) {
+        for (int i = 0; i < accounts.size(); i++) {
             Account tmp = accounts.get(i);
-            if(tmp.getDisplayName().equals(accountName)) {
+            if (tmp.getDisplayName().equals(accountName)) {
                 acc = tmp;
                 break;
             }
@@ -93,9 +95,9 @@ public class User {
         return acc;
     }
     
-    public String accToString(){
+    public String accToString() {
         String ret = "";
-        for (Account a : accounts){
+        for (Account a : accounts) {
             ret += a.getFullName() + " ";
         }
         return ret;

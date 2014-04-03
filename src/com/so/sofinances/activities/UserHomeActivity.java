@@ -6,9 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.so.sofinances.R;
-import com.so.sofinances.R.id;
-import com.so.sofinances.R.layout;
-import com.so.sofinances.R.menu;
 import com.so.sofinances.handler.AccountHandler;
 import com.so.sofinances.handler.DBHandler;
 import com.so.sofinances.handler.UserHandler;
@@ -68,7 +65,7 @@ public class UserHomeActivity extends Activity {
     protected void onStart() {
         super.onStart();
         
-        ArrayList<Account> accounts = UserHandler.getAccounts();
+        List<Account> accounts = UserHandler.getAccounts();
         
         ArrayList<String> names = new ArrayList<String>();
         
@@ -76,15 +73,15 @@ public class UserHomeActivity extends Activity {
         
         List<Map<String, String>> namesAndBalances = new ArrayList<Map<String, String>>();
         
-        if (accounts.size() < 1){
-        	instruct.setVisibility(0);
+        if (accounts.size() < 1) {
+            instruct.setVisibility(0);
             instruct.setText("Click \"+\" to add account");
         } else {
             instruct.setVisibility(8);
         }
         
         
-        for(int i=0; i<accounts.size(); i++) {
+        for (int i = 0; i < accounts.size(); i++) {
             names.add(accounts.get(i).getDisplayName());
             balances.add(Currency.format(accounts.get(i).getBalance()));
             Map<String, String> nameAndBalance = new HashMap<String, String>();
@@ -153,31 +150,34 @@ public class UserHomeActivity extends Activity {
     
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == PICK_DATE) {
-            if(resultCode == RESULT_OK) {
+    	String startDate = "startDate";
+    	String endDate = "endDate";
+        if (requestCode == PICK_DATE) {
+            if (resultCode == RESULT_OK) {
                 //get data from result intent and send to report generator
-                TimeData start = (TimeData) data.getSerializableExtra("startDate");
-                TimeData end = (TimeData) data.getSerializableExtra("endDate");
+                TimeData start = (TimeData) data.getSerializableExtra(startDate);
+                TimeData end = (TimeData) data.getSerializableExtra(endDate);
                 
                 Intent i = new Intent(getApplicationContext(), ReportViewActivity.class);
-                i.putExtra("startDate", start);
-                i.putExtra("endDate", end);
+                i.putExtra(startDate, start);
+                i.putExtra(endDate, end);
                 startActivity(i);
             }
         }
     }
     
 	/**
-	 * Moves to the Add Account Screen
+	 * Moves to the Add Account Screen.
+	 * 
 	 * Creates a new Intent for the AddAccount Activity and starts up the Activity to move to the Add Account Screen
 	 * @param v The view of the screen
 	 */
-    public void onCreateClick(View v){
+    public void onCreateClick(View v) {
         startActivity(new Intent(this, AddAccountActivity.class));
     }
     
     @Override
-    public void onPause(){
+    public void onPause() {
         super.onPause();
         System.out.println("DB Updated");
         DBHandler.update();

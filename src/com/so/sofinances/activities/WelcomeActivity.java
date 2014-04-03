@@ -8,11 +8,13 @@ import android.view.View;
 
 import com.db4o.ObjectSet;
 import com.so.sofinances.R;
-import com.so.sofinances.R.layout;
-import com.so.sofinances.R.menu;
 import com.so.sofinances.handler.DBHandler;
 import com.so.sofinances.model.User;
 
+/** displays a login and register button.
+ * @author kodyPC
+ *
+ */
 public class WelcomeActivity extends Activity {
 
     @Override
@@ -21,9 +23,9 @@ public class WelcomeActivity extends Activity {
         setContentView(R.layout.activity_welcome);
         DBHandler.setPath(this.getDir("data", 0) + "");
         ObjectSet<User> res = DBHandler.db().query(User.class);
-        for (Object u : res){
-            System.out.println(((User)u).getFullName());
-            System.out.println("Acc: " + ((User)u).accToString());
+        for (Object u : res) {
+            System.out.println(((User) u).getFullName());
+            System.out.println("Acc: " + ((User) u).accToString());
             //DBHandler.db().delete(u); //for clearing db on start
         }
     }
@@ -36,14 +38,15 @@ public class WelcomeActivity extends Activity {
     }
     
     @Override
-    public void onPause(){
+    public void onPause() {
         super.onPause();
         System.out.println("DB Updated");
         DBHandler.update();
     }
 
 	/**
-	 * Moves to a new screen to Login
+	 * Moves to a new screen to Login.
+	 * 
 	 * Creates a new Intent for the Login Activity and starts up the Activity to move to Login Screen
 	 * @param view The view of the screen
 	 */
@@ -52,7 +55,8 @@ public class WelcomeActivity extends Activity {
     }
     
 	/**
-	 * Moves to a new screen to Register
+	 * Moves to a new screen to Register.
+	 * 
 	 * Creates a new Intent for the Register Activity and starts up the Activity to move to the Register Screen
 	 * @param v The view of the screen
 	 */
