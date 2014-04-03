@@ -6,23 +6,40 @@ import java.util.List;
 import com.so.sofinances.model.Account;
 import com.so.sofinances.model.Transaction;
 
+/**
+ * Contains the user's currently selected account and provides wrapper methods
+ * that interfaces between the presenter/UI and the domain model.
+ *
+ * @author Joseph Rossi
+ * @version 1.0 4/3/2014
+ */
 public class AccountHandler {
+
     private static String accountName;
     private static Account currentAccount;
 
+    /**
+     * Validates the name of the account received from the UI and updates
+     * current account information.
+     *
+     * @param accName   the text account name grabbed from the UI
+     */
     public static void setCurrentAccount(String accName) {
         if (accName != null && !accName.equals("")) {
             accountName = accName;
             currentAccount = UserHandler.getAccount(accountName);
         }
-        
+
     }
-    
+
+    /**
+     * Resets current account information
+     */
     public static void clear() {
         currentAccount = null;
         accountName = null;
     }
-    
+
     /**
      * @return the fullName
      */
@@ -57,7 +74,12 @@ public class AccountHandler {
     public static double getBalance() {
         return currentAccount.getBalance();
     }
-    
+
+    /**
+     * Wrapper for the UI to pull the account's balance as formatted text
+     *
+     * @return  balance formatted as currency
+     */
     public static String getBalanceString() {
         return currentAccount.getBalanceString();
     }
@@ -96,9 +118,9 @@ public class AccountHandler {
     public static void setTransactions(ArrayList<Transaction> transactions) {
         currentAccount.setTransactions(transactions);
     }
-    
+
     /**
-     * 
+     *
      * @param t    a new transaction to add
      * @return    true if added successfully
      */

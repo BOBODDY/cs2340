@@ -16,22 +16,31 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 
+/**
+ * UI class for adding new transaction on the current account. Contains fields
+ * for name, amount, type, and date. App user may choose submit or cancel, and
+ * in either case, they are returned to the AccountHomeActivity from which they
+ * entered.
+ *
+ * @author Joseph Rossi
+ * @version 1.0 4/3/2014
+ */
 public class AddTransactionActivity extends Activity {
-    
+
     EditText name;
     EditText amount;
-    
+
     DatePicker cal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_transaction);
-        
+
         cal = (DatePicker) findViewById(R.id.datePicker1);
-        
+
         name = (EditText) findViewById(R.id.add_trans_name);
-        
+
         amount = (EditText) findViewById(R.id.add_trans_amount);
     }
 
@@ -41,28 +50,38 @@ public class AddTransactionActivity extends Activity {
         getMenuInflater().inflate(R.menu.add_transaction, menu);
         return true;
     }
-    
+
+    /**
+     * Returns app user to the previous activity if they select "cancel"
+     *
+     * @param v the current View
+     */
     public void cancelAdd(View v) {
         Intent i = new Intent(getApplicationContext(), AccountHomeActivity.class);
         startActivity(i);
     }
-    
+
+    /**
+     * Saves the entered data as a new transaction if the user selects "submit"
+     *
+     * @param v the current View
+     */
     public void finishTransaction(View v) {
 
         String transName = name.getText().toString();
-        
+
         if (transName == null || transName.equals("")) {
-            Intent i = new Intent(getApplicationContext(), AccountHomeActivity.class);        
+            Intent i = new Intent(getApplicationContext(), AccountHomeActivity.class);
             startActivity(i);
             finish();
         }
-        
+
         String amountStr = amount.getText().toString();
         if (transName != null && !(transName.equals("")) && amountStr != null && !(amountStr.equals(""))) {
             double amount = Double.parseDouble(amountStr);
-            
+
             String transType = "";
-            
+
             RadioGroup rg = (RadioGroup) findViewById(R.id.radioGroup1);
             if (rg.getCheckedRadioButtonId() != -1) {
                 int id = rg.getCheckedRadioButtonId();
@@ -72,35 +91,35 @@ public class AddTransactionActivity extends Activity {
                 transType = btn.getText().toString();
             }
             Transaction toAdd = null;
-            
+
             int day = cal.getDayOfMonth();
             int month = cal.getMonth() + 1;
             int year = cal.getYear();
-            
+
             TimeData dateOfTrans = new TimeData(month, day, year);
             System.out.println(dateOfTrans);
-            
+
             Spinner categories = (Spinner) findViewById(R.id.category_spinner1);
-            
+
             String category = (String) categories.getSelectedItem();
-            
+
             boolean isWithdrawal = transType.equals("Withdrawal");
-            
+
             if (isWithdrawal) {
                 amount *= -1;
             }
-            
+
             toAdd = new Transaction(dateOfTrans, amount, transName, category, isWithdrawal);
-            
+
             AccountHandler.addTransaction(toAdd);
-            
-            Intent i = new Intent(getApplicationContext(), AccountHomeActivity.class);    
+
+            Intent i = new Intent(getApplicationContext(), AccountHomeActivity.class);
             //DBHandler.db().store(UserHandler.getCU());
             //DBHandler.db().commit();
             startActivity(i);
             finish();
         }
-        
+
     }
 
 }
