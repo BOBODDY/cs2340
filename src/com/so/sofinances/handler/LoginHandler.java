@@ -19,12 +19,12 @@ public class LoginHandler {
 	 * @return The User that matches the database of null if none match
 	 */
     public static User checkLogin(String uName, String password) {
-        User ex = new User();
-        ex.setUserName(uName);
-        ex.setPassword(password);
-        ObjectSet<Object> result = DBHandler.db().queryByExample(ex);
+        User example = new User();
+        example.setUserName(uName);
+        example.setPassword(password);
+        ObjectSet<Object> result = DBHandler.db().queryByExample(example);
         if (result.hasNext()) {
-            return ex;
+            return example;
         } else {
             return null;
         }

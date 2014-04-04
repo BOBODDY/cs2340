@@ -25,10 +25,10 @@ public class ReportGenerator {
      * 
      * @param startDate Start date of the report
      * @param endDate End date of the report
-     * @return A Report containing all of the withdrawals for all accounts between the startDate
-     * and endDate
+     * @return A Report containing all of the withdrawals for all accounts
+     * between the startDate and endDate
      */
-    public static Report spendingCategoryReport(TimeData startDate, TimeData endDate) {
+    public static Report spendingCategoryReport(final TimeData startDate, final TimeData endDate) {
         Report rep = new Report();
         
         String title = "Spending Category Report for " + UserHandler.getUserName() + "\n";
@@ -42,13 +42,11 @@ public class ReportGenerator {
         
         // Gather all withdrawals within the time range for all accounts
         for (Account acc:userAccounts) {
-            for (Transaction t:acc.getTransactions()) { 
-                if (t.isWithdrawal()) {
-                    if ( !(startDate.compareTo(t.getTimeOfTransaction()) < 0) ) {
-                        // t.getTimeOfTransaction() is either the same as or after startDate
-                        if ( endDate.compareTo(t.getTimeOfTransaction()) <= 0 ) {
-                            withdrawals.add(t);
-                        }
+            for (Transaction transact:acc.getTransactions()) { 
+                if (transact.isWithdrawal()) {
+                    if ( startDate.compareTo(transact.getTimeOfTransaction()) >= 0 && 
+                    		endDate.compareTo(transact.getTimeOfTransaction()) <= 0) {
+                    	withdrawals.add(transact);
                     }
                 }
             }
@@ -57,13 +55,13 @@ public class ReportGenerator {
         // Sort gathered transactions into categories 
         HashMap<String, ArrayList<Transaction>> sortedTransacts = 
                 new HashMap<String, ArrayList<Transaction>>();
-        for (Transaction t:withdrawals) { 
-            String cat = t.getCategory();
+        for (Transaction transact:withdrawals) { 
+            String cat = transact.getCategory();
             ArrayList<Transaction> tmp = sortedTransacts.get(cat);
             if (tmp == null) {
                 tmp = new ArrayList<Transaction>();
             }
-            tmp.add(t);
+            tmp.add(transact);
             sortedTransacts.put(cat, tmp);
         }
         
@@ -74,8 +72,8 @@ public class ReportGenerator {
         for (String cat:categories) {
             ArrayList<Transaction> transacts = sortedTransacts.get(cat);
             double amountSpent = 0;
-            for (Transaction t:transacts) {
-                amountSpent += t.getAmount();
+            for (Transaction transact:transacts) {
+                amountSpent += transact.getAmount();
             }
             data.put(cat, Double.valueOf(amountSpent));
         }

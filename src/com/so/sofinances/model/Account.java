@@ -8,7 +8,8 @@ import java.util.List;
  * @author kodyPC
  * Represents a financial account within the user. 
  * 
- * Contains full name, display name, balance, monthly interest rate, and list of transactions.
+ * Contains full name, display name, balance, 
+ * monthly interest rate, and list of transactions.
  */
 public class Account {
     /**
@@ -26,7 +27,7 @@ public class Account {
     /**
      * account's monthly interest rate.
      */
-    private double monthlyInterestRate;
+    private double interestRate;
     /**
      * account's list of transactions.
      */
@@ -37,14 +38,14 @@ public class Account {
      * @param fullName the full name of the account
      * @param displayName the name displayed that represents the account
      * @param balance the current balance of the account
-     * @param monthlyInterestRate monthly interest rate of the account. not used currently.
+     * @param interestRate monthly interest rate of the account. not used currently.
      */
     public Account(String fullName, String displayName, double balance,
-            double monthlyInterestRate) {
+            double interestRate) {
         this.fullName = fullName;
         this.displayName = displayName;
         this.balance = balance;
-        this.monthlyInterestRate = monthlyInterestRate;
+        this.interestRate = interestRate;
     }
 
     /**
@@ -68,7 +69,7 @@ public class Account {
     public Account(String fullName, String displayName, double interestRate) {
         this.fullName = fullName;
         this.displayName = displayName;
-        this.monthlyInterestRate = interestRate;
+        this.interestRate = interestRate;
     }
 
     /**
@@ -124,14 +125,14 @@ public class Account {
      * @return the monthlyInterestRate
      */
     public double getMonthlyInterestRate() {
-        return monthlyInterestRate;
+        return interestRate;
     }
 
     /**
-     * @param monthlyInterestRate the monthlyInterestRate to set
+     * @param interestRate the monthlyInterestRate to set
      */
-    public void setMonthlyInterestRate(double monthlyInterestRate) {
-        this.monthlyInterestRate = monthlyInterestRate;
+    public void setMonthlyInterestRate(double interestRate) {
+        this.interestRate = interestRate;
     }
 
     /**
@@ -144,20 +145,20 @@ public class Account {
     /**
      * @param transactions the transactions to set
      */
-    public void setTransactions(ArrayList<Transaction> transactions) {
+    public void setTransactions(List<Transaction> transactions) {
         this.transactions = transactions;
     }
     
     /** 
      * adds a transaction to the list and updates the balance.
      * 
-     * @param t    a new transaction to add
+     * @param transact    a new transaction to add
      * @return    true if added successfully
      */
-    public boolean addTransaction(Transaction t) {
-        balance += t.getAmount();
-        System.out.println("Added");
-        return transactions.add(t);
+    public boolean addTransaction(Transaction transact) {
+        balance += transact.getAmount();
+        //System.out.println("Added");
+        return transactions.add(transact);
     }
     
 }

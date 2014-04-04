@@ -17,7 +17,7 @@ public class DBHandler {
     /**
      * the container for the db.
      */
-    private static ObjectContainer oc = null;
+    private static ObjectContainer objectContainer = null;
     /**
      * the path of the db.
      */
@@ -38,22 +38,28 @@ public class DBHandler {
     
     /**Creates access to the database.
      * 
-     * @return returns the object container, which is the object representation of the database
+     * @return returns the object container, which is 
+     * the object representation of the database
      */
     public static ObjectContainer db() {
+    	ObjectContainer container = null;
         if (path == null) {
-            System.out.println("path not set");
-            return null;
+            //System.out.println("path not set");
+            container = null;
         } else {
             try {
-                if (oc == null || oc.ext().isClosed()) {
-                    oc = Db4oEmbedded.openFile(dbConfig(), path);
+                if (objectContainer == null || objectContainer.ext().isClosed()) {
+                    objectContainer = Db4oEmbedded.openFile(dbConfig(), path);
                 }
-                return oc;
-            } catch (Exception ie) {
-                return null;
+                container = objectContainer;
+            } catch (RuntimeException ie) {
+                container = null;
+            } catch (Exception e) {
+            	container = null;
             }
         }
+        
+        return container;
     }
     
     /**Sets attributes for the configuration of the database.
@@ -72,8 +78,8 @@ public class DBHandler {
      * 
      */
     public static void close() {
-        if (oc != null) {
-            oc.close();
+        if (objectContainer != null) {
+            objectContainer.close();
         }
     }
     
@@ -82,8 +88,8 @@ public class DBHandler {
      */
     public static void clear() {
         ObjectSet<Object> res = db().queryByExample(null);
-        for (Object a : res) {
-            db().delete(a);
+        for (Object obj : res) {
+            db().delete(obj);
         }
     }
     

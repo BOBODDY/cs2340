@@ -15,13 +15,13 @@ import android.widget.TextView;
 
 public class LoginActivity extends Activity {
 
-    EditText unText;
-    EditText pwText;
-    TextView display;
+	private EditText unText;
+	private EditText pwText;
+	private TextView display;
     
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onCreate(Bundle savedState) {
+        super.onCreate(savedState);
         setContentView(R.layout.activity_login);
         unText = (EditText) findViewById(R.id.login_username);
         pwText = (EditText) findViewById(R.id.login_password);
@@ -37,9 +37,11 @@ public class LoginActivity extends Activity {
     
 	/**
 	 * Checks to see if the correct credentials for a User is verified or not.
-	 * If it the User and Password used to login are checked and verified in the database, then the UserHandler
-	 * sets the currentUser to the User used to login, and a new Intent is made to move to the UserHomeActivity screen.
-	 * If the User and Password given don't match, then an "Invalid login" message is displayed.
+	 * If it the User and Password used to login are checked and verified in the 
+	 * database, then the UserHandler sets the currentUser to the User used to login,
+	 * and a new Intent is made to move to the UserHomeActivity screen. If the User
+	 * and Password given don't match, then an "Invalid login" message is displayed.
+	 * 
 	 * @param view The View of the current window
 	 */
     public void onClickLogin(View view) {

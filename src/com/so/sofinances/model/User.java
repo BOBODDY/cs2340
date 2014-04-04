@@ -9,12 +9,15 @@ public class User {
     private String password;
     private List<Account> accounts;
     
+    /**
+     * Empty Constructor
+     */
     public User() { }
     
-    public User(String fN, String uN, String pW)  {
-        this.fullName = fN;
-        this.userName = uN;
-        this.password = pW;
+    public User(String firstName, String userName, String password)  {
+        this.fullName = firstName;
+        this.userName = userName;
+        this.password = password;
         this.accounts = new ArrayList<Account>();
     }
 
@@ -23,16 +26,18 @@ public class User {
     }
     
     public boolean addAccount(String fName, String dName, double bal, double intRate) {
+    	boolean result = false;
+    	
         if (isValid(fName) && isValid(dName)) {
             this.accounts.add(new Account(fName, dName, bal, intRate));
-            return true;
+            result = true;
         }
-        return false;
+        return result;
         
     }
     
-    public boolean isValid(String ex) {
-        return ex.matches("([A-Za-z0-9]).*");
+    public boolean isValid(String str) {
+        return str.matches("([A-Za-z0-9]).*");
     }
 
     /**
@@ -97,8 +102,8 @@ public class User {
     
     public String accToString() {
         String ret = "";
-        for (Account a : accounts) {
-            ret += a.getFullName() + " ";
+        for (Account acc : accounts) {
+            ret += acc.getFullName() + " ";
         }
         return ret;
     }

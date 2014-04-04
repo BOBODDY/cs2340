@@ -45,62 +45,61 @@ public class AccountHomeActivity extends Activity {
     /**
      * mapping for first to second keys.
      */
-    final String[] fromMapKey = new String[] {TEXT1, TEXT2};
+    final private String[] fromMapKey = new String[] {TEXT1, TEXT2};
     /**
      * array of layout IDs.
      */
-    final int[] toLayoutId = new int[] {android.R.id.text1, android.R.id.text2};
+    final private int[] toLayoutId = new int[] {android.R.id.text1, android.R.id.text2};
     /**
      * listview for transaction history.
      */
-    ListView transactionHistory;
+    private ListView history;
     /**
      * textview for balace.
      */
-    TextView balance;
+    private TextView balance;
     /**
      * textview for instructions.
      */
-    TextView instruct;
+    private TextView instruct;
 
     
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onCreate(Bundle savedState) {
+        super.onCreate(savedState);
         setContentView(R.layout.activity_transaction_home);
         
         balance = (TextView) findViewById(R.id.transactionBalance); 
         balance.setText("Balance: " + AccountHandler.getBalanceString());
-        transactionHistory = (ListView) findViewById(R.id.transactionHistory);
+        history = (ListView) findViewById(R.id.transactionHistory);
         instruct = (TextView) findViewById(R.id.account_home_instruct);
         
         final SwipeDetector swipeDetector = new SwipeDetector();
         
-        transactionHistory.setOnTouchListener(swipeDetector);
+        history.setOnTouchListener(swipeDetector);
         
         OnItemClickListener listener = new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position,
                                     long arg3) {
-                if (swipeDetector.swipeDetected()) {
-                    if (swipeDetector.getAction() == Action.RL) {
-                        Toast.makeText(getApplicationContext(), "swiped", Toast.LENGTH_SHORT).show();
-                    } else {
-
-                    }
-                } else {
-                    
+                if (swipeDetector.swipeDetected() && swipeDetector.getAction() == Action.RL) {
+                    Toast.makeText(getApplicationContext(), "swiped", Toast.LENGTH_SHORT).show();
                 }
             }
         };
-        transactionHistory.setOnItemClickListener(listener);
+        history.setOnItemClickListener(listener);
         
         List<Transaction> transacts = AccountHandler.getTransactions();
-        if (transacts != null) {
+        if (transacts == null) {
+        	Log.d("com.so.sofinances", "transacts is null");
+        } else {
             List<String> transList = new ArrayList<String>(transacts.size());
             List<Map<String, String>> transTimeList = new ArrayList<Map<String, String>>(transacts.size());
             
-            if (!transacts.isEmpty()) {
+            if (transacts.isEmpty()) {
+            	instruct.setVisibility(0);
+                instruct.setText("Click \"+\" to add transaction");
+            } else {
                 instruct.setVisibility(8);
                 Collections.sort(transacts);
                 
@@ -108,31 +107,26 @@ public class AccountHomeActivity extends Activity {
              
                 balance.setText("Balance: " + balanceStr);
                 for (int i = 0; i < transacts.size(); i++) {
-                    Transaction t = transacts.get(i);
-                    if (t != null) {
-                        transList.add(t.toString());
+                    Transaction transact = transacts.get(i);
+                    if (transact != null) {
+                        transList.add(transact.toString());
                         Map<String, String> transAndTime = new HashMap<String, String>();
                         transAndTime.put(TEXT1, transList.get(i));
-                        TimeData td = t.getTimeOfTransaction();
-                        if (td != null) {
-                            transAndTime.put(TEXT2, td.toString());
+                        TimeData timeData = transact.getTimeOfTransaction();
+                        if (timeData == null) {
+                        	transAndTime.put(TEXT2, "");
                         } else {
-                            transAndTime.put(TEXT2, "");
+                        	transAndTime.put(TEXT2, timeData.toString());
                         }
                         transTimeList.add(transAndTime);
                     }
                 }
-            } else {
-            	instruct.setVisibility(0);
-                instruct.setText("Click \"+\" to add transaction");
             }
             SimpleAdapter transAdapter = new SimpleAdapter(this,
                     transTimeList,
                     android.R.layout.simple_list_item_2, 
                     fromMapKey, toLayoutId);
-            transactionHistory.setAdapter(transAdapter);
-        } else {
-            Log.d("com.so.sofinances", "transacts is null");
+            history.setAdapter(transAdapter);
         }
         
     }
@@ -147,20 +141,21 @@ public class AccountHomeActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle presses on the action bar items
-        switch (item.getItemId()) {
-            case R.id.addTransact:
-                Intent i = new Intent(getApplicationContext(), AddTransactionActivity.class);
-                startActivity(i);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+    	int itemId = item.getItemId();
+    	
+    	if(itemId == R.id.addTransact) {
+    		Intent intent = new Intent(getApplicationContext(), AddTransactionActivity.class);
+            startActivity(intent);
+            return true;
+    	} else {
+    		return super.onOptionsItemSelected(item);
+    	}
     }
     
     @Override
     public void onPause() {
         super.onPause();
-        System.out.println("DB Updated");
+        //System.out.println("DB Updated");
         DBHandler.update();
     }
 }

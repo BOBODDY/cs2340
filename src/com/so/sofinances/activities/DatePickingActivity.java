@@ -19,15 +19,15 @@ public class DatePickingActivity extends Activity {
     /**
      * the starting date.
      */
-    DatePicker start;
+	private DatePicker start;
     /**
      * the ending date.
      */
-    DatePicker end;
+	private DatePicker end;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-    	super.onCreate(savedInstanceState);
+    protected void onCreate(Bundle savedState) {
+    	super.onCreate(savedState);
     	setContentView(R.layout.activity_date_picking);
 		
     	start = (DatePicker) findViewById(R.id.datePickerStart);
@@ -44,9 +44,9 @@ public class DatePickingActivity extends Activity {
 	/**
 	 * The onClick method for the button to finish picking the date.
 	 * 
-	 * @param v The View that started this method
+	 * @param view The View that started this method
 	 */
-    public void finishDate(View v) {
+    public void finishDate(View view) {
     	int startDay = start.getDayOfMonth();
     	int startMonth = start.getMonth() + 1;
     	int startYear = start.getYear();

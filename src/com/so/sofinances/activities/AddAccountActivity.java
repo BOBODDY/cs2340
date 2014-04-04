@@ -21,30 +21,30 @@ public class AddAccountActivity extends Activity {
     /**
      * full name of the new account.
      */
-    EditText fullName;
+	private EditText fullName;
     /**
      * display name of the new account.
      */
-    EditText displayName;
+	private EditText displayName;
     /**
      * balance of the new account.
      */
-    EditText balance;
+	private EditText balance;
     /**
      * interest rate of the new account.
      */
-    EditText interestRate;
+	private EditText interestRate;
     /**
      * warning shown to the user.
      */
-    TextView warning;
+	private TextView warning;
 
     /* (non-Javadoc)creates variables for all of the fields in the activity
      * @see android.app.Activity#onCreate(android.os.Bundle)
      */
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onCreate(Bundle savedState) {
+        super.onCreate(savedState);
         setContentView(R.layout.activity_add_account);
         fullName = (EditText) findViewById(R.id.acc_fullname);
         displayName = (EditText) findViewById(R.id.acc_displayname);
@@ -63,11 +63,13 @@ public class AddAccountActivity extends Activity {
         return true;
     }
     
-    /** creates strings from all of the info on the activity and attempts to add the account.
+    /** 
+     * Creates strings from all of the info on the activity and 
+     * attempts to add the account.
      * 
-     * @param v the view
+     * @param view the view
      */
-    public void onSubmitClick(View v) {
+    public void onSubmitClick(View view) {
         String fName = fullName.getText().toString();
         String dName = displayName.getText().toString();
         
@@ -95,7 +97,7 @@ public class AddAccountActivity extends Activity {
     /** Simply returns to the User Home page. Does not add an account
      * @param v the view
      */
-    public void onCancelClick(View v) {
+    public void onCancelClick(View view) {
         startActivity(new Intent(this, UserHomeActivity.class));
         finish();
     }

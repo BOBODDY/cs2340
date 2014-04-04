@@ -19,8 +19,8 @@ public class Transaction implements Comparable<Transaction> {
     }
     
     @Override
-    public int compareTo(Transaction t) {
-        return t.getTimeOfTransaction().compareTo(this.getTimeOfTransaction());
+    public int compareTo(Transaction transact) {
+        return transact.getTimeOfTransaction().compareTo(this.getTimeOfTransaction());
     }
     
     @Override

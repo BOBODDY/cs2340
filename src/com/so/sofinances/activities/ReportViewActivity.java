@@ -1,16 +1,12 @@
 package com.so.sofinances.activities;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import org.achartengine.ChartFactory;
 import org.achartengine.model.CategorySeries;
 import org.achartengine.renderer.DefaultRenderer;
 import org.achartengine.renderer.SimpleSeriesRenderer;
-
-import com.so.sofinances.R;
-import com.so.sofinances.ReportGenerator;
-import com.so.sofinances.model.Report;
-import com.so.sofinances.model.TimeData;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -22,18 +18,23 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.so.sofinances.R;
+import com.so.sofinances.ReportGenerator;
+import com.so.sofinances.model.Report;
+import com.so.sofinances.model.TimeData;
+
 public class ReportViewActivity extends Activity {
     
-    TextView reporter;
+	private TextView reporter;
     
-    TimeData start;
-    TimeData end;
+	private TimeData start;
+	private TimeData end;
     
-    Report currentReport;
+	private Report currentReport;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onCreate(Bundle savedState) {
+        super.onCreate(savedState);
         setContentView(R.layout.activity_report_view);
         
         reporter = (TextView) findViewById(R.id.reporter);
@@ -56,16 +57,19 @@ public class ReportViewActivity extends Activity {
         return true;
     }
     
-    public void viewChart(View v) {
+    public void viewChart(View view) {
         createPieChart((HashMap<String, Double>) currentReport.getData().get(0));
     }
     
     /**
+     * Private method for generating the pie chart and launching the activity
      * 
-     * @param data A map of the category/title of each line in the data connected to the 
+     * @param data A map of the category/title of each 
+     * line in the data connected to the
+     *  
      * amount of that category
      */
-    private void createPieChart(HashMap<String, Double> data) {
+    private void createPieChart(Map<String, Double> data) {
 	    
 	      // Pie Chart Section Names
     	String[] code = data.keySet().toArray(new String[0]);
@@ -76,20 +80,18 @@ public class ReportViewActivity extends Activity {
     	    temp[i] = data.get(code[i]);
     	}
     	double[] distribution = new double[temp.length];
-	      
-    	for (int i = 0; i < temp.length; i++) {
-    	    distribution[i] = temp[i];
-    	}
+    	
+    	System.arraycopy(temp, 0, temp, 0, temp.length);
 	    
 	      // Color of each Pie Chart Sections
     	int[] colors = {Color.GRAY, Color.GREEN, Color.RED, Color.YELLOW, Color.BLUE};
 	    
 	      // Instantiating CategorySeries to plot Pie Chart
-    	CategorySeries distributionSeries = new CategorySeries(
+    	CategorySeries distSeries = new CategorySeries(
     			"Withdrawals");
     	for (int i = 0; i < distribution.length; i++) {
 	       // Adding a slice with its values and name to the Pie Chart
-    	    distributionSeries.add(code[i], distribution[i]);
+    	    distSeries.add(code[i], distribution[i]);
     	}
 	      // Instantiating a renderer for the Pie Chart
     	DefaultRenderer defaultRenderer = new DefaultRenderer();
@@ -109,7 +111,7 @@ public class ReportViewActivity extends Activity {
 	      // Creating an intent to plot bar chart using dataset and
 	      // multipleRenderer
     	Intent intent = ChartFactory.getPieChartIntent(getBaseContext(),
-	        distributionSeries, defaultRenderer,
+	        distSeries, defaultRenderer,
 	        "PieChart");
 	    
 	      // Start Activity
@@ -124,12 +126,8 @@ public class ReportViewActivity extends Activity {
         }
         
         protected void onPostExecute(Report result) {
-            ProgressBar pb = (ProgressBar) findViewById(R.id.report_loading);
-            pb.setVisibility(View.INVISIBLE);
-            
-            //HashMap<String, Double> data = (HashMap<String, Double>) result.getData().get(0);
-            
-            //createPieChart(data);
+            ProgressBar progress = (ProgressBar) findViewById(R.id.report_loading);
+            progress.setVisibility(View.INVISIBLE);
             
             reporter.setText(result.getTitle() + "\n" + result.toString());
             

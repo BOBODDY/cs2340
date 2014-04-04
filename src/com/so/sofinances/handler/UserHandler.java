@@ -40,12 +40,12 @@ public class UserHandler {
     
     /**Sets the current username. 
      * 
-     * @param uN the username needing to be set
+     * @param userName the username needing to be set
      */
-    public static void setCurrentUser(String uN) {
-        username = uN;
+    public static void setCurrentUser(String userName) {
+        username = userName;
         User temp = new User();
-        temp.setUserName(uN);
+        temp.setUserName(userName);
         ObjectSet<Object> res = DBHandler.db().queryByExample(temp);
         if (res.hasNext()) {
             currentUser = (User) res.next();

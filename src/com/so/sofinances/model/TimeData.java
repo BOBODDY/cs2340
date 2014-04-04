@@ -27,25 +27,28 @@ public class TimeData implements Serializable {
      * @return -1 if time comes before this TimeData, 0 if they're the same, 1 if time comes after this TimeData
      */
     public int compareTo(TimeData time) {
+    	int result = 0;
         if (time.getYear() < this.getYear()) {
-            return -1;
+            result = -1;
         } else if (time.getYear() == this.getYear()) {
             if (time.getMonth() < this.getMonth()) {
-                return -1;
+                result = -1;
             } else if (time.getMonth() == this.getMonth()) {
                 if (time.getDay() < this.getDay()) {
-                    return -1;
+                    result = -1;
                 } else if (time.getDay() == this.getDay()) {
-                    return 0;
+                    result = 0;
                 } else {
-                    return 1;
+                    result = 1;
                 }
             } else {
-                return 1;
+                result = 1;
             }
         } else {
-            return 1;
+            result = 1;
         }
+        
+        return result;
     }
 
     /**

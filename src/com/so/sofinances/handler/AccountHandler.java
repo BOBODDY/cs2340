@@ -77,10 +77,10 @@ public class AccountHandler {
     }
 
     /**
-     * @param monthlyInterestRate the monthlyInterestRate to set
+     * @param interestRate the monthlyInterestRate to set
      */
-    public static void setMonthlyInterestRate(double monthlyInterestRate) {
-        currentAccount.setMonthlyInterestRate(monthlyInterestRate);
+    public static void setMonthlyInterestRate(double interestRate) {
+        currentAccount.setMonthlyInterestRate(interestRate);
     }
 
     /**
@@ -93,16 +93,16 @@ public class AccountHandler {
     /**
      * @param transactions the transactions to set
      */
-    public static void setTransactions(ArrayList<Transaction> transactions) {
+    public static void setTransactions(List<Transaction> transactions) {
         currentAccount.setTransactions(transactions);
     }
     
     /**
      * 
-     * @param t    a new transaction to add
+     * @param transact    a new transaction to add
      * @return    true if added successfully
      */
-    public static boolean addTransaction(Transaction t) {
-        return currentAccount.addTransaction(t);
+    public static boolean addTransaction(Transaction transact) {
+        return currentAccount.addTransaction(transact);
     }
 }

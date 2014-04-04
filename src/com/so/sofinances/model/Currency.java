@@ -7,10 +7,10 @@ public class Currency {
 
     private static NumberFormat fmt = NumberFormat.getCurrencyInstance(Locale.US);
     
-    public static String format(double d) {
-        return fmt.format(d);
+    public static String format(double value) {
+        return fmt.format(value);
     }
-    public static void changeLocale(Locale l) {
-        fmt = NumberFormat.getCurrencyInstance(l);
+    public static void changeLocale(Locale loc) {
+        fmt = NumberFormat.getCurrencyInstance(loc);
     }
 }

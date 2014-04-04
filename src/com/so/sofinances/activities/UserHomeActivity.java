@@ -30,32 +30,32 @@ import android.widget.TextView;
 public class UserHomeActivity extends Activity {
     private static final String TEXT1 = "text1";
     private static final String TEXT2 = "text2";
-    final String[] fromMapKey = new String[] {TEXT1, TEXT2};
-    final int[] toLayoutId = new int[] {android.R.id.text1, android.R.id.text2};
-//    TextView accountList;
-    ListView lv;
-    TextView instruct;
-    static final int PICK_DATE = 314156;
+    final private String[] fromMapKey = new String[] {TEXT1, TEXT2};
+    final private int[] toLayoutId = new int[] {android.R.id.text1, android.R.id.text2};
+    
+    private ListView list;
+    private TextView instruct;
+    private static final int PICK_DATE = 314156;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onCreate(Bundle savedState) {
+        super.onCreate(savedState);
         setContentView(R.layout.activity_user_home);
         
-        lv = (ListView) findViewById(R.id.accountsList);
+        list = (ListView) findViewById(R.id.accountsList);
         instruct = (TextView) findViewById(R.id.user_home_instruct);
-        lv.setOnItemClickListener(new OnItemClickListener() {
+        list.setOnItemClickListener(new OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
-                    long id) {
+                    long rowId) {
                 String name = UserHandler.getAccounts().get(position).getDisplayName();
                 AccountHandler.setCurrentAccount(name);
                 //Toast.makeText(getApplicationContext(), "Found: " + name, Toast.LENGTH_SHORT).show();
                 
-                Intent i = new Intent(getApplicationContext(), AccountHomeActivity.class);
+                Intent intent = new Intent(getApplicationContext(), AccountHomeActivity.class);
                 
-                startActivity(i);
+                startActivity(intent);
             }
             
         });
@@ -93,7 +93,7 @@ public class UserHomeActivity extends Activity {
         SimpleAdapter balAdapter = new SimpleAdapter(this, namesAndBalances,
                 android.R.layout.simple_list_item_2, fromMapKey, toLayoutId);
         
-        lv.setAdapter(balAdapter);
+        list.setAdapter(balAdapter);
     }
 
     @Override
@@ -106,63 +106,66 @@ public class UserHomeActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle presses on the action bar items
-        switch (item.getItemId()) {
-            case R.id.action_report: // Just going to do the spending category report by default
-                Intent i = new Intent(getApplicationContext(), DatePickingActivity.class);
-                startActivityForResult(i, PICK_DATE);
-                return true;
-            case R.id.action_add_account:
-                startActivity(new Intent(this, AddAccountActivity.class));
-                return true;
-            case R.id.logout:
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setCancelable(true);
-                builder.setTitle("Are you sure you want to log out?");
-                builder.setInverseBackgroundForced(true);
-                builder.setPositiveButton("Yes",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog,
-                                    int which) {
-                                dialog.dismiss();
-                                UserHandler.clear();
-                                
-                                startActivity(new Intent(getApplicationContext(), 
-                                        WelcomeActivity.class));
-                                finish();
-                            }
-                        });
-                builder.setNegativeButton("No",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog,
-                                    int which) {
-                                dialog.dismiss();
-                            }
-                        });
-                AlertDialog alert = builder.create();
-                alert.show();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+    	int itemId = item.getItemId();
+    	boolean result;
+    	
+    	if(itemId == R.id.action_report) {
+    		// Just going to do the spending category report by default
+            Intent intent = new Intent(getApplicationContext(), DatePickingActivity.class);
+            startActivityForResult(intent, PICK_DATE);
+            result = true;
+    	} else if(itemId == R.id.action_add_account) {
+    		startActivity(new Intent(this, AddAccountActivity.class));
+            result = true;
+    	} else if(itemId == R.id.logout) {
+    		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setCancelable(true);
+            builder.setTitle("Are you sure you want to log out?");
+            builder.setInverseBackgroundForced(true);
+            builder.setPositiveButton("Yes",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog,
+                                int which) {
+                            dialog.dismiss();
+                            UserHandler.clear();
+                            
+                            startActivity(new Intent(getApplicationContext(), 
+                                    WelcomeActivity.class));
+                            finish();
+                        }
+                    });
+            builder.setNegativeButton("No",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog,
+                                int which) {
+                            dialog.dismiss();
+                        }
+                    });
+            AlertDialog alert = builder.create();
+            alert.show();
+            result = true;
+    	} else {
+    		result = super.onOptionsItemSelected(item);
+    	}
+    	
+    	return result;
     }
     
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     	String startDate = "startDate";
     	String endDate = "endDate";
-        if (requestCode == PICK_DATE) {
-            if (resultCode == RESULT_OK) {
-                //get data from result intent and send to report generator
-                TimeData start = (TimeData) data.getSerializableExtra(startDate);
-                TimeData end = (TimeData) data.getSerializableExtra(endDate);
-                
-                Intent i = new Intent(getApplicationContext(), ReportViewActivity.class);
-                i.putExtra(startDate, start);
-                i.putExtra(endDate, end);
-                startActivity(i);
-            }
+        if (requestCode == PICK_DATE && resultCode == RESULT_OK) {
+            //get data from result intent and send to report generator
+            TimeData start = (TimeData) data.getSerializableExtra(startDate);
+            TimeData end = (TimeData) data.getSerializableExtra(endDate);
+            
+            Intent intent = new Intent(getApplicationContext(), ReportViewActivity.class);
+            intent.putExtra(startDate, start);
+            intent.putExtra(endDate, end);
+            startActivity(intent);
         }
     }
     
@@ -172,14 +175,14 @@ public class UserHomeActivity extends Activity {
 	 * Creates a new Intent for the AddAccount Activity and starts up the Activity to move to the Add Account Screen
 	 * @param v The view of the screen
 	 */
-    public void onCreateClick(View v) {
+    public void onCreateClick(View view) {
         startActivity(new Intent(this, AddAccountActivity.class));
     }
     
     @Override
     public void onPause() {
         super.onPause();
-        System.out.println("DB Updated");
+        //System.out.println("DB Updated");
         DBHandler.update();
     }
 }

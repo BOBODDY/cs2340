@@ -18,14 +18,14 @@ import android.widget.Spinner;
 
 public class AddTransactionActivity extends Activity {
     
-    EditText name;
-    EditText amount;
+	private EditText name;
+	private EditText amount;
     
-    DatePicker cal;
+	private DatePicker cal;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onCreate(Bundle savedState) {
+        super.onCreate(savedState);
         setContentView(R.layout.activity_add_transaction);
         
         cal = (DatePicker) findViewById(R.id.datePicker1);
@@ -58,7 +58,7 @@ public class AddTransactionActivity extends Activity {
         }
         
         String amountStr = amount.getText().toString();
-        if (transName != null && !(transName.equals("")) && amountStr != null && !(amountStr.equals(""))) {
+        if (amountStr != null && !(amountStr.equals(""))) {
             double amount = Double.parseDouble(amountStr);
             
             String transType = "";
@@ -78,7 +78,7 @@ public class AddTransactionActivity extends Activity {
             int year = cal.getYear();
             
             TimeData dateOfTrans = new TimeData(month, day, year);
-            System.out.println(dateOfTrans);
+            //System.out.println(dateOfTrans);
             
             Spinner categories = (Spinner) findViewById(R.id.category_spinner1);
             

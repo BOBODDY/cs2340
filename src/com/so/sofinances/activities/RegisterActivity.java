@@ -26,29 +26,27 @@ public class RegisterActivity extends Activity {
     /**
      * full name of the new account.
      */
-    EditText fullName;
+    private EditText fullName;
     /**
      * username of the new account.
      */
-    EditText username;
+    private EditText username;
     /**
      * password of the new account.
      */
-    EditText password;
+    private EditText password;
     /**
      * display for showing user messages.
      */
-    TextView display;
+    private TextView display;
 
     /* (non-Javadoc) creates variable representations of the textfields
      * @see android.app.Activity#onCreate(android.os.Bundle)
      */
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onCreate(Bundle savedState) {
+        super.onCreate(savedState);
         setContentView(R.layout.activity_register);
-        // Show the Up button in the action bar.
-    //    setupActionBar();
         
         fullName = (EditText) findViewById(R.id.full_name);
         
@@ -57,16 +55,6 @@ public class RegisterActivity extends Activity {
         password = (EditText) findViewById(R.id.password);
         
         display = (TextView) findViewById(R.id.reg_display);
-    }
-
-    /**
-     * Set up the {@link android.app.ActionBar}, if the API is available.
-     */
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    private void setupActionBar() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            getActionBar().setDisplayHomeAsUpEnabled(true);
-        }
     }
 
     /* (non-Javadoc) adds the associated buttons to the menu bar
@@ -84,26 +72,20 @@ public class RegisterActivity extends Activity {
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-            // This ID represents the Home or Up button. In the case of this
-            // activity, the Up button is shown. Use NavUtils to allow users
-            // to navigate up one level in the application structure. For
-            // more details, see the Navigation pattern on Android Design:
-            //
-            // http://developer.android.com/design/patterns/navigation.html#up-vs-back
-            //
-                NavUtils.navigateUpFromSameTask(this);
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
+    	int itemId = item.getItemId();
+    	if(itemId == android.R.id.home) {
+    		NavUtils.navigateUpFromSameTask(this);
+            return true;
+    	}
+    	return super.onOptionsItemSelected(item);
     }
     
-    /**passes in field information to the registration handler to attempt to register the user.
+    /**passes in field information to the registration 
+     * handler to attempt to register the user.
      * 
      * @param v the view
      */
-    public void onRegisterClick(View v) {
+    public void onRegisterClick(View view) {
         String fName = fullName.getText().toString();
         String uName = username.getText().toString();
         String pass = password.getText().toString();
@@ -124,7 +106,7 @@ public class RegisterActivity extends Activity {
     @Override
     public void onPause() {
         super.onPause();
-        System.out.println("DB Updated");
+        //System.out.println("DB Updated");
         DBHandler.update();
     }
 }
