@@ -1,28 +1,58 @@
 package com.so.sofinances.model;
 
+/**
+ * Represents a financial transaction (withdrawal or deposit) made on an account.
+ *
+ * @author  Joseph Rossi
+ * @version 1.0 4/3/2014
+ */
 public class Transaction implements Comparable<Transaction> {
+
+    /**
+     * The day, month, and year the transaction occurred.
+     */
     private TimeData timeOfTransaction;
+
+    /**
+     * The amount of currency exchanged.
+     */
     private double amount;
+
+    /**
+     * The name and category (food, rent, entertainment, etc) of the Transaction.
+     */
     private String name;
     private String category;
-    
+
+    /**
+     * Boolean flag for whether or not the transaction is a withdrawal.
+     */
     private boolean isWithdrawal;
-	
+
+    /**
+     * Creates a Transaction with data retrieved from UI.
+     *
+     * @param timeOfTransaction the TimeData for when transaction occurred
+     * @param amount    the decimal amount (either + or -) of the transaction
+     * @param name  the user entered text name of the transaction
+     * @param category  the selected "type" of transaction (food, rent, etc)
+     * @param isWithdrawal  represents whether or not transaction is + or -
+     */
     public Transaction(TimeData timeOfTransaction, double amount,
             String name, String category, boolean isWithdrawal) {
         this.timeOfTransaction = timeOfTransaction;
         this.amount = amount;
         this.setWithdrawal(isWithdrawal);
-        
+
         this.name = name;
         this.category = category;
     }
-    
+
     @Override
     public int compareTo(Transaction transact) {
         return transact.getTimeOfTransaction().compareTo(this.getTimeOfTransaction());
     }
-    
+
     @Override
     public String toString() {
         return name + ", " + category + ": " + Currency.format(amount);
