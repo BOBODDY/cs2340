@@ -21,23 +21,23 @@ public class AddAccountActivity extends Activity {
     /**
      * full name of the new account.
      */
-	private EditText fullName;
+    private EditText fullName;
     /**
      * display name of the new account.
      */
-	private EditText displayName;
+    private EditText displayName;
     /**
      * balance of the new account.
      */
-	private EditText balance;
+    private EditText balance;
     /**
      * interest rate of the new account.
      */
-	private EditText interestRate;
+    private EditText interestRate;
     /**
      * warning shown to the user.
      */
-	private TextView warning;
+    private TextView warning;
 
     /* (non-Javadoc)creates variables for all of the fields in the activity
      * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -95,7 +95,7 @@ public class AddAccountActivity extends Activity {
     }
     
     /** Simply returns to the User Home page. Does not add an account
-     * @param v the view
+     * @param view the view
      */
     public void onCancelClick(View view) {
         startActivity(new Intent(this, UserHomeActivity.class));

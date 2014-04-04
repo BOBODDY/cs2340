@@ -11,6 +11,9 @@ import java.util.Locale;
  */
 public class Currency {
 
+    /**
+     * number format for US currency.
+     */
     private static NumberFormat fmt = NumberFormat.getCurrencyInstance(Locale.US);
 
     /**

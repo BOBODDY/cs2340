@@ -13,11 +13,24 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+/** the activity which facilitates login.
+ * @author kodyPC
+ *
+ */
 public class LoginActivity extends Activity {
 
-	private EditText unText;
-	private EditText pwText;
-	private TextView display;
+	/**
+	 * username entry.
+	 */
+    private EditText unText;
+	/**
+	 * password entry.
+	 */
+    private EditText pwText;
+	/**
+	 * textview used to display messages to the user.
+	 */
+    private TextView display;
     
     @Override
     protected void onCreate(Bundle savedState) {

@@ -27,10 +27,19 @@ import android.widget.Spinner;
  */
 public class AddTransactionActivity extends Activity {
 
-	private EditText name;
-	private EditText amount;
+	/**
+	 * the name of the transaction.
+	 */
+    private EditText name;
+	/**
+	 * the amount of the transaction.
+	 */
+    private EditText amount;
 
-	private DatePicker cal;
+	/**
+	 * used for picking the transaction time.
+	 */
+    private DatePicker cal;
 
     @Override
     protected void onCreate(Bundle savedState) {

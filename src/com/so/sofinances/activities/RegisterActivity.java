@@ -4,10 +4,8 @@ import com.so.sofinances.R;
 import com.so.sofinances.handler.DBHandler;
 import com.so.sofinances.handler.RegistrationHandler;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
@@ -73,8 +71,8 @@ public class RegisterActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
     	int itemId = item.getItemId();
-    	if(itemId == android.R.id.home) {
-    		NavUtils.navigateUpFromSameTask(this);
+    	if (itemId == android.R.id.home) {
+    	    NavUtils.navigateUpFromSameTask(this);
             return true;
     	}
     	return super.onOptionsItemSelected(item);
@@ -83,7 +81,7 @@ public class RegisterActivity extends Activity {
     /**passes in field information to the registration 
      * handler to attempt to register the user.
      * 
-     * @param v the view
+     * @param view the view
      */
     public void onRegisterClick(View view) {
         String fName = fullName.getText().toString();

@@ -22,6 +22,9 @@ public class Transaction implements Comparable<Transaction> {
      * The name and category (food, rent, entertainment, etc) of the Transaction.
      */
     private String name;
+    /**
+     * category of the transaction.
+     */
     private String category;
 
     /**

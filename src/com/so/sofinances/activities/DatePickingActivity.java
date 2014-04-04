@@ -19,11 +19,11 @@ public class DatePickingActivity extends Activity {
     /**
      * the starting date.
      */
-	private DatePicker start;
+    private DatePicker start;
     /**
      * the ending date.
      */
-	private DatePicker end;
+    private DatePicker end;
 
     @Override
     protected void onCreate(Bundle savedState) {
@@ -55,8 +55,8 @@ public class DatePickingActivity extends Activity {
     	int endMonth = end.getMonth() + 1;
     	int endYear = end.getYear();
 		
-    	TimeData start = new TimeData(startMonth, startDay, startYear);
-    	TimeData end = new TimeData(endMonth, endDay, endYear);
+        TimeData start = new TimeData(startMonth, startDay, startYear);
+        TimeData end = new TimeData(endMonth, endDay, endYear);
 		
     	Intent result = this.getIntent();
     	result.putExtra("startDate", start);

@@ -8,7 +8,6 @@ import java.util.Map;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -45,11 +44,11 @@ public class AccountHomeActivity extends Activity {
     /**
      * mapping for first to second keys.
      */
-    final private String[] fromMapKey = new String[] {TEXT1, TEXT2};
+    private final String[] fromMapKey = new String[] {TEXT1, TEXT2};
     /**
      * array of layout IDs.
      */
-    final private int[] toLayoutId = new int[] {android.R.id.text1, android.R.id.text2};
+    private final int[] toLayoutId = new int[] {android.R.id.text1, android.R.id.text2};
     /**
      * listview for transaction history.
      */
@@ -91,7 +90,7 @@ public class AccountHomeActivity extends Activity {
         
         List<Transaction> transacts = AccountHandler.getTransactions();
         if (transacts == null) {
-        	Log.d("com.so.sofinances", "transacts is null");
+        	
         } else {
             List<String> transList = new ArrayList<String>(transacts.size());
             List<Map<String, String>> transTimeList = new ArrayList<Map<String, String>>(transacts.size());
@@ -114,9 +113,9 @@ public class AccountHomeActivity extends Activity {
                         transAndTime.put(TEXT1, transList.get(i));
                         TimeData timeData = transact.getTimeOfTransaction();
                         if (timeData == null) {
-                        	transAndTime.put(TEXT2, "");
+                            transAndTime.put(TEXT2, "");
                         } else {
-                        	transAndTime.put(TEXT2, timeData.toString());
+                            transAndTime.put(TEXT2, timeData.toString());
                         }
                         transTimeList.add(transAndTime);
                     }
@@ -143,12 +142,12 @@ public class AccountHomeActivity extends Activity {
         // Handle presses on the action bar items
     	int itemId = item.getItemId();
     	
-    	if(itemId == R.id.addTransact) {
-    		Intent intent = new Intent(getApplicationContext(), AddTransactionActivity.class);
+    	if (itemId == R.id.addTransact) {
+    	    Intent intent = new Intent(getApplicationContext(), AddTransactionActivity.class);
             startActivity(intent);
             return true;
     	} else {
-    		return super.onOptionsItemSelected(item);
+    	    return super.onOptionsItemSelected(item);
     	}
     }
     

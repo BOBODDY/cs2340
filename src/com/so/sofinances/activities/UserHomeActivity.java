@@ -27,14 +27,39 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+/** The user home which lists all of the accounts and allows for report generation and account creation.
+ * @author kodyPC
+ *
+ */
 public class UserHomeActivity extends Activity {
+    /**
+     * used for the listview.
+     */
     private static final String TEXT1 = "text1";
+    /**
+     * used for the listview.
+     */
     private static final String TEXT2 = "text2";
-    final private String[] fromMapKey = new String[] {TEXT1, TEXT2};
-    final private int[] toLayoutId = new int[] {android.R.id.text1, android.R.id.text2};
-    
+    /**
+     * the map displayed by the listview.
+     */
+    private final String[] fromMapKey = new String[] {TEXT1, TEXT2};
+    /**
+     * maps to the actual layout.
+     */
+    private final int[] toLayoutId = new int[] {android.R.id.text1, android.R.id.text2};
+   
+    /**
+     * the ListView displayed on screen.
+     */
     private ListView list;
+    /**
+     * instruction at the top of the screen.
+     */
     private TextView instruct;
+    /**
+     * a constant date used for testing.
+     */
     private static final int PICK_DATE = 314156;
 
     @Override
@@ -109,16 +134,16 @@ public class UserHomeActivity extends Activity {
     	int itemId = item.getItemId();
     	boolean result;
     	
-    	if(itemId == R.id.action_report) {
+    	if (itemId == R.id.action_report) {
     		// Just going to do the spending category report by default
             Intent intent = new Intent(getApplicationContext(), DatePickingActivity.class);
             startActivityForResult(intent, PICK_DATE);
             result = true;
-    	} else if(itemId == R.id.action_add_account) {
-    		startActivity(new Intent(this, AddAccountActivity.class));
+    	} else if (itemId == R.id.action_add_account) {
+    	    startActivity(new Intent(this, AddAccountActivity.class));
             result = true;
-    	} else if(itemId == R.id.logout) {
-    		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    	} else if (itemId == R.id.logout) {
+    	    AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setCancelable(true);
             builder.setTitle("Are you sure you want to log out?");
             builder.setInverseBackgroundForced(true);
@@ -147,7 +172,7 @@ public class UserHomeActivity extends Activity {
             alert.show();
             result = true;
     	} else {
-    		result = super.onOptionsItemSelected(item);
+    	    result = super.onOptionsItemSelected(item);
     	}
     	
     	return result;
@@ -173,7 +198,7 @@ public class UserHomeActivity extends Activity {
 	 * Moves to the Add Account Screen.
 	 * 
 	 * Creates a new Intent for the AddAccount Activity and starts up the Activity to move to the Add Account Screen
-	 * @param v The view of the screen
+	 * @param view The view of the screen
 	 */
     public void onCreateClick(View view) {
         startActivity(new Intent(this, AddAccountActivity.class));

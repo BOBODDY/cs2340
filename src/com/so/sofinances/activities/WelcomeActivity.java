@@ -6,10 +6,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 
-import com.db4o.ObjectSet;
 import com.so.sofinances.R;
 import com.so.sofinances.handler.DBHandler;
-import com.so.sofinances.model.User;
 
 /** displays a login and register button.
  * @author kodyPC
@@ -66,7 +64,7 @@ public class WelcomeActivity extends Activity {
 	 * 
 	 * Creates a new Intent for the Register Activity and starts up
 	 * the Activity to move to the Register Screen
-	 * @param v The view of the screen
+	 * @param view The view of the screen
 	 */
     public void registerResponse(View view) {
         startActivity(new Intent(this, RegisterActivity.class));

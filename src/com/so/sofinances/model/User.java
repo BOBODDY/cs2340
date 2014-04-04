@@ -11,10 +11,16 @@ import java.util.ArrayList;
  */
 public class User {
     /**
-     * Text representing User's full name, unique username, and password.
+     * Text representing User's full name.
      */
     private String fullName;
+    /**
+     * represents User's username.
+     */
     private String userName;
+    /**
+     * Represents user's password.
+     */
     private String password;
 
     /**
@@ -23,16 +29,16 @@ public class User {
     private List<Account> accounts;
 
     /**
-     * Empty Constructor
+     * Empty Constructor.
      */
     public User() { }
 
     /**
      * Creates a User with given text information and instantiates the acct list.
      *
-     * @param fN    the User's full name
-     * @param uN    the unique username
-     * @param pW    the password
+     * @param fullName    the User's full name
+     * @param userName    the unique username
+     * @param password    the password
      */
     public User(String fullName, String userName, String password) {
         this.fullName = fullName;

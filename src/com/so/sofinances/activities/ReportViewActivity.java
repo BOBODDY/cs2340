@@ -23,14 +23,30 @@ import com.so.sofinances.ReportGenerator;
 import com.so.sofinances.model.Report;
 import com.so.sofinances.model.TimeData;
 
+/** Activity for displaying reports. 
+ * @author kodyPC
+ *
+ */
 public class ReportViewActivity extends Activity {
     
-	private TextView reporter;
+	/**
+	 * textview used to display the report.
+	 */
+    private TextView reporter;
     
-	private TimeData start;
-	private TimeData end;
+	/**
+	 * the start date for the report.
+	 */
+    private TimeData start;
+	/**
+	 * the end date for the report.
+	 */
+    private TimeData end;
     
-	private Report currentReport;
+	/**
+	 * the actual report.
+	 */
+    private Report currentReport;
 
     @Override
     protected void onCreate(Bundle savedState) {
@@ -57,12 +73,15 @@ public class ReportViewActivity extends Activity {
         return true;
     }
     
+    /**displays a piechart of the report data.
+     * @param view the view.
+     */
     public void viewChart(View view) {
         createPieChart((HashMap<String, Double>) currentReport.getData().get(0));
     }
     
     /**
-     * Private method for generating the pie chart and launching the activity
+     * Private method for generating the pie chart and launching the activity.
      * 
      * @param data A map of the category/title of each 
      * line in the data connected to the
@@ -118,6 +137,10 @@ public class ReportViewActivity extends Activity {
     	startActivity(intent);
     }
 
+    /** creates a new thread for the report generation.
+     * @author kodyPC
+     *
+     */
     private class ReportGeneratorTask extends AsyncTask<String, Void, Report> {
 
         @Override
@@ -125,6 +148,10 @@ public class ReportViewActivity extends Activity {
             return ReportGenerator.spendingCategoryReport(start, end);
         }
         
+        /**
+         * sets the current report equal to the generated report.
+         * @param result the generated report
+         */
         protected void onPostExecute(Report result) {
             ProgressBar progress = (ProgressBar) findViewById(R.id.report_loading);
             progress.setVisibility(View.INVISIBLE);

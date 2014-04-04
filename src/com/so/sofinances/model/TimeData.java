@@ -11,13 +11,22 @@ import java.util.Locale;
  */
 public class TimeData implements Comparable<TimeData>, Serializable {
 
+    /**
+     * the UID for passing time data.
+     */
     private static final long serialVersionUID = 5024086716108214641L;
 
     /**
      * Integer values for day month and year.
      */
     private int month;
+    /**
+     * the Day.
+     */
     private int day;
+    /**
+     * the year.
+     */
     private int year;
 
     /**
@@ -38,19 +47,7 @@ public class TimeData implements Comparable<TimeData>, Serializable {
         return String.format(Locale.getDefault(), "%2d/%2d/%4d", month, day, year);
     }
 
-    /** 
-     * Compares 2 TimeData objects
-     * 
-     * Ex: time1 is April 4, 2014
-     * time2 is March 15, 2014
-     * 
-     * time1.compareTo(time2) will return a value less than 0
-     * 
-     * @param time Other time object to compare with
-     * @return Greater than 0 if given TimeData comes after this TimeData
-     * 0 if given TimeData is the same day as this TimeData
-     * Less than 0 if given TimeData is before this TimeData
-     */
+    @Override
     public int compareTo(TimeData time) {
     	/*if (time.getYear() < this.getYear()) {
             return -1;
@@ -73,9 +70,9 @@ public class TimeData implements Comparable<TimeData>, Serializable {
         } */
 
         // This implementation looks much cleaner. -Joe
-        int yearDiff = time.year - this.year;
-        int monthDiff = time.month - this.month;
-        int dayDiff = time.day - this.day;
+        int yearDiff = this.year - time.year;
+        int monthDiff = this.month - time.month;
+        int dayDiff = this.day - time.day;
         if (yearDiff != 0) {
             return yearDiff;
         }

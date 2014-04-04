@@ -27,8 +27,9 @@ public class DBHandler {
      */
     private static final String FILENAME = "/androidDB.db4o";
     
-    /**creates the static path to the database from the resource directory as a parameter.
-     * and the filename
+    /**creates the static path to the database from 
+     * the resource directory as a parameter
+     * and the filename.
      * 
      * @param dir the resource directory of the application
      */
@@ -52,9 +53,7 @@ public class DBHandler {
                     objectContainer = Db4oEmbedded.openFile(dbConfig(), path);
                 }
                 container = objectContainer;
-            } catch (RuntimeException ie) {
-                container = null;
-            } catch (Exception e) {
+            } catch (IOException e) {
             	container = null;
             }
         }

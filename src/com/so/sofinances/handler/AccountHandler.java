@@ -1,6 +1,5 @@
 package com.so.sofinances.handler;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.so.sofinances.model.Account;
@@ -15,7 +14,13 @@ import com.so.sofinances.model.Transaction;
  */
 public class AccountHandler {
 
+    /**
+     * the name of the current account.
+     */
     private static String accountName;
+    /**
+     * the actual current account.
+     */
     private static Account currentAccount;
 
     /**
