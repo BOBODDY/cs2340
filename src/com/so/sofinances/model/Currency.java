@@ -14,7 +14,7 @@ public class Currency {
     private static NumberFormat fmt = NumberFormat.getCurrencyInstance(Locale.US);
 
     /**
-     * Converts a decimal amount to a currency String (ie $xx.xx)
+     * Converts a decimal amount to a currency String (ie $xx.xx).
      *
      * @param d the amount to be formatted
      * @return  the amount formatted as currency
@@ -24,7 +24,7 @@ public class Currency {
     }
 
     /**
-     * Changes from one currency formatting to another (ie USD to Euro)
+     * Changes from one currency formatting to another (ie USD to Euro).
      *
      * @param l a new Locale from which we create a new NumberFormat
      */

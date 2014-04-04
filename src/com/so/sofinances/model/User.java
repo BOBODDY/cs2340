@@ -4,26 +4,28 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- * Represents a login for the application
+ * Represents a login for the application.
  *
  * @author  Joseph Rossi
  * @version 1.0 4/3/2014
  */
 public class User {
     /**
-     * Text representing User's full name, unique username, and password
+     * Text representing User's full name, unique username, and password.
      */
-    private String fullName, userName, password;
+    private String fullName;
+    private String userName;
+    private String password;
 
     /**
-     * A List of financial accounts associated with this User
+     * A List of financial accounts associated with this User.
      */
     private List<Account> accounts;
 
     public User() { }
 
     /**
-     * Creates a User with given text information and instantiates the acct list
+     * Creates a User with given text information and instantiates the acct list.
      *
      * @param fN    the User's full name
      * @param uN    the unique username
@@ -37,7 +39,7 @@ public class User {
     }
 
     /**
-     * Creates a User with the given username (for persistence purposes)
+     * Creates a User with the given username (for persistence purposes).
      *
      * @param uName the User's username
      */
@@ -46,7 +48,7 @@ public class User {
     }
 
     /**
-     * Validates a new account and add's it to the User's list
+     * Validates a new account and add's it to the User's list.
      *
      * @param fName the name of the account
      * @param dName the abbrev. display name of the account
@@ -65,7 +67,7 @@ public class User {
     }
 
     /**
-     * Checks for valid account names with regex
+     * Checks for valid account names with regex.
      *
      * @param ex    the expression to be checked
      * @return  true if ex is a valid name, false otherwise
@@ -124,7 +126,7 @@ public class User {
     }
 
     /**
-     * Finds a User's account based on the name
+     * Finds a User's account based on the name.
      *
      * @param accountName   the acct name being searched for
      * @return  the Account if a match is found, otherwise null

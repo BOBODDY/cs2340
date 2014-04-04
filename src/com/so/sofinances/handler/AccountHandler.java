@@ -33,7 +33,7 @@ public class AccountHandler {
     }
 
     /**
-     * Resets current account information
+     * Resets current account information.
      */
     public static void clear() {
         currentAccount = null;
@@ -76,7 +76,7 @@ public class AccountHandler {
     }
 
     /**
-     * Wrapper for the UI to pull the account's balance as formatted text
+     * Wrapper for the UI to pull the account's balance as formatted text.
      *
      * @return  balance formatted as currency
      */

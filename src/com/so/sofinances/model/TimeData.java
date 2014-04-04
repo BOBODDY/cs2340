@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Locale;
 
 /**
- * Class for storing and comparing day, month, and year integer data
+ * Class for storing and comparing day, month, and year integer data.
  *
  * @author  Joseph Rossi
  * @version 1.0 4/3/2014
@@ -14,12 +14,14 @@ public class TimeData implements Comparable<TimeData>, Serializable {
     private static final long serialVersionUID = 5024086716108214641L;
 
     /**
-     * Integer values for day month and year
+     * Integer values for day month and year.
      */
-    private int month, day, year;
+    private int month;
+    private int day;
+    private int year;
 
     /**
-     * Constructs a TimeData object with given data
+     * Constructs a TimeData object with given data.
      *
      * @param month the month (1 - 12 for Jan - Dec)
      * @param day   the day of the month (ie 1 up to 31)

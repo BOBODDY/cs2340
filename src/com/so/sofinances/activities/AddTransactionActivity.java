@@ -52,7 +52,7 @@ public class AddTransactionActivity extends Activity {
     }
 
     /**
-     * Returns app user to the previous activity if they select "cancel"
+     * Returns app user to the previous activity if they select "cancel".
      *
      * @param v the current View
      */
@@ -62,7 +62,7 @@ public class AddTransactionActivity extends Activity {
     }
 
     /**
-     * Saves the entered data as a new transaction if the user selects "submit"
+     * Saves the entered data as a new transaction if the user selects "submit".
      *
      * @param v the current View
      */
