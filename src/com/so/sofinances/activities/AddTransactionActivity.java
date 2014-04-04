@@ -52,7 +52,7 @@ public class AddTransactionActivity extends Activity {
         String transName = name.getText().toString();
         
         if (transName == null || transName.equals("")) {
-            Intent i = new Intent(getApplicationContext(), AccountHomeActivity.class);        
+            Intent i = new Intent(getApplicationContext(), AccountHomeActivity.class);
             startActivity(i);
             finish();
         }
