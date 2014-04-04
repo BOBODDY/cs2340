@@ -47,11 +47,7 @@
         </activity>
         <activity
             android:name="com.so.sofinances.activities.UserHomeActivity"
-            android:label="@string/title_activity_user_home"
-            android:parentActivityName="com.so.sofinances.activities.WelcomeActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.so.sofinances.activities.WelcomeActivity" />
+            android:label="@string/title_activity_user_home" >
         </activity>
         <activity
             android:name="com.so.sofinances.activities.AddAccountActivity"
