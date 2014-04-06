@@ -156,9 +156,11 @@ public class Account {
      * @return    true if added successfully
      */
     public boolean addTransaction(Transaction transact) {
-        balance += transact.getAmount();
-        //System.out.println("Added");
-        return transactions.add(transact);
+    	if (transact != null) {
+    		balance += transact.getAmount();
+    		return transactions.add(transact);
+    	}
+        return false;
     }
     
 }

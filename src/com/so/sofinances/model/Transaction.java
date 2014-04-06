@@ -44,9 +44,8 @@ public class Transaction implements Comparable<Transaction> {
     public Transaction(TimeData timeOfTransaction, double amount,
             String name, String category, boolean isWithdrawal) {
         this.timeOfTransaction = timeOfTransaction;
-        this.amount = amount;
-        this.setWithdrawal(isWithdrawal);
-
+        this.isWithdrawal = isWithdrawal;
+        this.amount = (!isWithdrawal) ? amount : amount * -1;
         this.name = name;
         this.category = category;
     }

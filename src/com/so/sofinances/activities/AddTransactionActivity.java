@@ -114,10 +114,6 @@ public class AddTransactionActivity extends Activity {
 
             boolean isWithdrawal = transType.equals("Withdrawal");
 
-            if (isWithdrawal) {
-                amount *= -1;
-            }
-
             toAdd = new Transaction(dateOfTrans, amount, transName, category, isWithdrawal);
 
             AccountHandler.addTransaction(toAdd);
