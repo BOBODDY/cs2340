@@ -82,6 +82,15 @@ public class TimeData implements Comparable<TimeData>, Serializable {
         return dayDiff;
     }
 
+    @Override
+    public boolean equals(Object o){
+    	TimeData time = (TimeData)o;
+    	int yearDiff = this.year - time.year;
+    	int monthDiff = this.month - time.month;
+    	int dayDiff = this.day - time.day;
+   		return (yearDiff != 0 && monthDiff != 0 && dayDiff != 0);
+    }
+    
     /**
      * @return the month
      */
