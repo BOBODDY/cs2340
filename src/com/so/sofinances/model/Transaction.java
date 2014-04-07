@@ -54,6 +54,12 @@ public class Transaction implements Comparable<Transaction> {
     public int compareTo(Transaction transact) {
         return transact.getTimeOfTransaction().compareTo(this.getTimeOfTransaction());
     }
+    
+    @Override
+    public boolean equals(Object o){
+    	Transaction trans = (Transaction)o;
+    	return (trans.getTimeOfTransaction().equals(this.getTimeOfTransaction()));
+    }
 
     @Override
     public String toString() {
