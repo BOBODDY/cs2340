@@ -44,9 +44,12 @@ public class ReportGenerator {
         for (Account acc:userAccounts) {
             for (Transaction transact:acc.getTransactions()) { 
                 if (transact.isWithdrawal()) {
-                    if ( startDate.compareTo(transact.getTimeOfTransaction()) >= 0 && 
-                    		endDate.compareTo(transact.getTimeOfTransaction()) <= 0) {
+                    if ( startDate.compareTo(transact.getTimeOfTransaction()) <= 0 && 
+                    		endDate.compareTo(transact.getTimeOfTransaction()) >= 0) {
+                    	System.out.println("adding a value");
                     	withdrawals.add(transact);
+                    } else {
+                    	System.out.println("did not add");
                     }
                 }
             }
