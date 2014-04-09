@@ -1,4 +1,4 @@
-package com.so.sofinances;
+package com.so.sofinances.model.test;
 
 import junit.framework.TestCase;
 
@@ -6,12 +6,14 @@ import com.so.sofinances.model.User;
 
 
 public class AccToStringTest extends TestCase {
-	
-	User user = new User("first last", "user1", "password");
-	user.addAccount("name", "acc1", 100, 0);
-	user.addAccount("name2", "acc1", 100, 0);
-	
-	assertTrue(user.getAccount(acc1).accToString() == "name name2");
-	
+	public void testAccToString(){
+		User person = new User("first last", "user1", "password");
+		person.addAccount("name", "acc1", 100, 0);
+		person.addAccount("name2", "acc1", 100, 0);
+
+		assertTrue(person.accToString() == "name name2");
+	}
+
 }
+
 
