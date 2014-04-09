@@ -49,25 +49,9 @@ public class TimeData implements Comparable<TimeData>, Serializable {
 
     @Override
     public int compareTo(TimeData time) {
-    	/*if (time.getYear() < this.getYear()) {
-            return -1;
-        } else if (time.getYear() == this.getYear()) {
-            if (time.getMonth() < this.getMonth()) {
-                return -1;
-            } else if (time.getMonth() == this.getMonth()) {
-                if (time.getDay() < this.getDay()) {
-                    return -1;
-                } else if (time.getDay() == this.getDay()) {
-                    return 0;
-                } else {
-                    return 1;
-                }
-            } else {
-                return 1;
-            }
-        } else {
-            return 1;
-        } */
+    	if(time == null) {
+    		
+    	}
 
         // This implementation looks much cleaner. -Joe
         int yearDiff = this.year - time.year;
@@ -84,11 +68,15 @@ public class TimeData implements Comparable<TimeData>, Serializable {
 
     @Override
     public boolean equals(Object o){
+    	if(o == null) {
+    		return false;
+    	}
+    	
     	TimeData time = (TimeData)o;
     	int yearDiff = this.year - time.year;
     	int monthDiff = this.month - time.month;
     	int dayDiff = this.day - time.day;
-   		return (yearDiff != 0 && monthDiff != 0 && dayDiff != 0);
+   		return (yearDiff == 0 && monthDiff == 0 && dayDiff == 0);
     }
     
     /**

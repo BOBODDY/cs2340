@@ -61,4 +61,20 @@ public class TimeDataTest extends TestCase {
 		
 		assertTrue(time1.compareTo(time2) < 0);
 	}
+	
+	public void testNullEquals() {
+		TimeData time1 = new TimeData(4,9,2014);
+		
+		assertFalse(time1.equals(null));
+	}
+	
+	public void testNull() {
+		TimeData time1 = new TimeData(4,9,2014);
+		int year = (Integer) null;
+		int month = (Integer) null;
+		int day = (Integer) null;
+		TimeData time2 = new TimeData(month, day, year);
+		
+		assertTrue(time1.compareTo(time2) == 0);
+	}
 }
