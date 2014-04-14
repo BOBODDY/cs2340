@@ -98,12 +98,13 @@ public class ReportViewActivity extends Activity {
     	for (int i = 0; i < code.length; i++) {
     	    temp[i] = data.get(code[i]);
     	}
-    	double[] distribution = new double[temp.length];
+    	Double[] distribution = new Double[temp.length];
     	
-    	System.arraycopy(temp, 0, temp, 0, temp.length);
+    	System.arraycopy(temp, 0, distribution, 0, temp.length);
 	    
 	      // Color of each Pie Chart Sections
-    	int[] colors = {Color.GRAY, Color.GREEN, Color.RED, Color.YELLOW, Color.BLUE};
+    	int[] colors = {Color.GRAY, Color.GREEN, Color.RED, Color.YELLOW, Color.BLUE,
+    			Color.MAGENTA, Color.LTGRAY};
 	    
 	      // Instantiating CategorySeries to plot Pie Chart
     	CategorySeries distSeries = new CategorySeries(
