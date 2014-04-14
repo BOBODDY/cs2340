@@ -1,10 +1,5 @@
 package com.so.sofinances.activities;
 
-import com.so.sofinances.R;
-import com.so.sofinances.handler.AccountHandler;
-import com.so.sofinances.model.TimeData;
-import com.so.sofinances.model.Transaction;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,7 +9,13 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.Spinner;
+
+import com.so.sofinances.R;
+import com.so.sofinances.handler.AccountHandler;
+import com.so.sofinances.model.TimeData;
+import com.so.sofinances.model.Transaction;
 
 /**
  * UI class for adding new transaction on the current account. Contains fields
@@ -27,6 +28,16 @@ import android.widget.Spinner;
  */
 public class AddTransactionActivity extends Activity {
 
+	/**
+	 * A spinner containing the withdrawal categories
+	 */
+	private Spinner categories;
+	
+	/**
+	 * A RadioGroup that chooses between Withdrawal and Deposit
+	 */
+	private RadioGroup radios;
+	
 	/**
 	 * the name of the transaction.
 	 */
@@ -51,6 +62,20 @@ public class AddTransactionActivity extends Activity {
         name = (EditText) findViewById(R.id.add_trans_name);
 
         amount = (EditText) findViewById(R.id.add_trans_amount);
+        
+        radios = (RadioGroup) findViewById(R.id.radioGroup1);
+        radios.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(RadioGroup group, int checkedId) {
+				if(checkedId == R.id.radio_deposit) {
+					categories.setVisibility(View.GONE);
+				} else if(checkedId == R.id.radio_withdraw) {
+					categories.setVisibility(View.VISIBLE);
+				}
+			}
+        });
+        
+        categories = (Spinner) findViewById(R.id.category_spinner1);
     }
 
     @Override
@@ -91,12 +116,11 @@ public class AddTransactionActivity extends Activity {
 
             String transType = "";
 
-            RadioGroup rg = (RadioGroup) findViewById(R.id.radioGroup1);
-            if (rg.getCheckedRadioButtonId() != -1) {
-                int id = rg.getCheckedRadioButtonId();
-                View radioButton = rg.findViewById(id);
-                int radioId = rg.indexOfChild(radioButton);
-                RadioButton btn = (RadioButton) rg.getChildAt(radioId);
+            if (radios.getCheckedRadioButtonId() != -1) {
+                int id = radios.getCheckedRadioButtonId();
+                View radioButton = radios.findViewById(id);
+                int radioId = radios.indexOfChild(radioButton);
+                RadioButton btn = (RadioButton) radios.getChildAt(radioId);
                 transType = btn.getText().toString();
             }
             Transaction toAdd = null;
@@ -106,11 +130,11 @@ public class AddTransactionActivity extends Activity {
             int year = cal.getYear();
 
             TimeData dateOfTrans = new TimeData(month, day, year);
-            //System.out.println(dateOfTrans);
-
-            Spinner categories = (Spinner) findViewById(R.id.category_spinner1);
-
-            String category = (String) categories.getSelectedItem();
+            
+            String category = "";
+            if(categories.getVisibility() != View.GONE) {
+            	category = (String) categories.getSelectedItem();
+            }
 
             boolean isWithdrawal = transType.equals("Withdrawal");
 
