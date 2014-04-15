@@ -17,8 +17,10 @@ public class AddTransactionTest {
 	
 	@Test
 	public void testAddNull() {
+		double balance = a.getBalance();
 		a.addTransaction(null);
 		assertTrue(a.getTransactions().isEmpty());
+		assertEquals(balance, a.getBalance(), 0);
 	}
 	
 	@Test
@@ -38,5 +40,13 @@ public class AddTransactionTest {
 		assertEquals(1, a.getTransactions().size());
 		assertEquals(-100, a.getBalance(), 0);
 	}
-
+	
+	@Test
+	public void testInvalidDeposit() {
+		Transaction d = new Transaction(null, -100, "name", "type", true);
+		a.addTransaction(d);
+		assertFalse(a.getTransactions().isEmpty());
+		assertEquals(1, a.getTransactions().size());
+		assertEquals(100, a.getBalance(),0);
+	}
 }
