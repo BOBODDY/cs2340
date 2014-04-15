@@ -31,7 +31,7 @@ public class ReportGenerator {
     public static Report spendingCategoryReport(final TimeData startDate, final TimeData endDate) {
         Report rep = new Report();
         
-        String title = "Spending Category Report for " + UserHandler.getUserName() + "\n";
+        String title = "Spending Category Report for " + UserHandler.getFullName() + "\n";
         title += startDate.toString() + " - " + endDate.toString() + "\n";
         
         rep.setTitle(title);

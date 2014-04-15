@@ -1,5 +1,7 @@
 package com.so.sofinances.model;
 
+import java.util.Random;
+
 /**
  * Represents a financial transaction (withdrawal or deposit) made on an account.
  *
@@ -7,6 +9,11 @@ package com.so.sofinances.model;
  * @version 1.0 4/3/2014
  */
 public class Transaction implements Comparable<Transaction> {
+	
+	/**
+	 * an id
+	 */
+	private final long id;
 
     /**
      * The day, month, and year the transaction occurred.
@@ -48,6 +55,8 @@ public class Transaction implements Comparable<Transaction> {
         this.amount = (!isWithdrawal) ? amount : amount * -1;
         this.name = name;
         this.category = category;
+        
+        this.id = new Random().nextLong();
     }
 
     @Override
@@ -134,5 +143,13 @@ public class Transaction implements Comparable<Transaction> {
      */
     public void setCategory(String category) {
         this.category = category;
+    }
+    
+    /**
+     * 
+     * @return the 
+     */
+    public long getId() {
+    	return this.id;
     }
 }
