@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 import com.so.sofinances.R;
 import com.so.sofinances.SwipeDetector;
 import com.so.sofinances.SwipeDetector.Action;
+import com.so.sofinances.SwipeDismissListViewTouchListener;
 import com.so.sofinances.handler.AccountHandler;
 import com.so.sofinances.handler.DBHandler;
 import com.so.sofinances.model.TimeData;
@@ -61,6 +63,9 @@ public class AccountHomeActivity extends Activity {
      * textview for instructions.
      */
     private TextView instruct;
+    
+    private SimpleAdapter transAdapter;
+    private List<Map<String, String>> transTimeList;
 
     
     @Override
@@ -73,27 +78,50 @@ public class AccountHomeActivity extends Activity {
         history = (ListView) findViewById(R.id.transactionHistory);
         instruct = (TextView) findViewById(R.id.account_home_instruct);
         
-        final SwipeDetector swipeDetector = new SwipeDetector();
-        
-        history.setOnTouchListener(swipeDetector);
-        
+        SwipeDismissListViewTouchListener touchListener =
+        		new SwipeDismissListViewTouchListener(
+        				history,
+        				new SwipeDismissListViewTouchListener.DismissCallbacks() {
+        					public void onDismiss(ListView listView, int[] reverseSortedPositions) {
+        						String transactionString = null;
+        						for (int position : reverseSortedPositions) {
+        							Map<String, String> tMap = transTimeList.get(position);
+        							transactionString = tMap.get(TEXT1);
+        							transTimeList.remove(tMap);
+        						}
+        						transAdapter.notifyDataSetChanged();
+        						if (transactionString != null && transactionString != "") {
+        							System.out.println(transactionString);
+        							AccountHandler.removeTransactByString(transactionString);
+        							balance.setText("Balance: " + AccountHandler.getBalanceString());
+        							if (!AccountHandler.hasTransactions()) {
+        								instruct.setText("Click \"+\" to add transaction");
+        								instruct.setVisibility(0);
+        							}
+        						}
+        					}
+        					public boolean canDismiss(int position) {
+        						return true;
+        					}
+        				});
+        history.setOnTouchListener(touchListener);
+        history.setOnScrollListener(touchListener.makeScrollListener());
+
         OnItemClickListener listener = new OnItemClickListener() {
-            @Override
+        	@Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position,
                                     long arg3) {
-                if (swipeDetector.swipeDetected() && swipeDetector.getAction() == Action.RL) {
-                    Toast.makeText(getApplicationContext(), "swiped", Toast.LENGTH_SHORT).show();
-                }
+//                if (touchListener.swipeDetected() && touchListener.getAction() == Action.RL) {
+//                    Toast.makeText(getApplicationContext(), "swiped", Toast.LENGTH_SHORT).show();
+//                }
             }
         };
         history.setOnItemClickListener(listener);
         
         List<Transaction> transacts = AccountHandler.getTransactions();
-        if (transacts == null) {
-        	
-        } else {
+        if (transacts != null) {
             List<String> transList = new ArrayList<String>(transacts.size());
-            List<Map<String, String>> transTimeList = new ArrayList<Map<String, String>>(transacts.size());
+            transTimeList = new ArrayList<Map<String, String>>(transacts.size());
             
             if (transacts.isEmpty()) {
             	instruct.setVisibility(0);
@@ -121,7 +149,7 @@ public class AccountHomeActivity extends Activity {
                     }
                 }
             }
-            SimpleAdapter transAdapter = new SimpleAdapter(this,
+           transAdapter = new SimpleAdapter(this,
                     transTimeList,
                     android.R.layout.simple_list_item_2, 
                     fromMapKey, toLayoutId);

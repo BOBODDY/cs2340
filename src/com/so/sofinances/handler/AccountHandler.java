@@ -132,4 +132,12 @@ public class AccountHandler {
     public static boolean addTransaction(Transaction transact) {
         return currentAccount.addTransaction(transact);
     }
+    
+    public static boolean removeTransactByString(String text) {
+    	return currentAccount.removeTransactByString(text);
+    }
+    
+    public static boolean hasTransactions() {
+    	return currentAccount.hasTransactions();
+    }
 }

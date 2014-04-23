@@ -135,4 +135,8 @@ public class Transaction implements Comparable<Transaction> {
     public void setCategory(String category) {
         this.category = category;
     }
+    
+    public boolean equalsByString(String text) {
+    	return this.toString().equals(text);
+    }
 }

@@ -163,4 +163,19 @@ public class Account {
         return false;
     }
     
+    public boolean removeTransactByString(String text) {
+    	for (Transaction t: transactions) {
+    		if (t.equalsByString(text)) {
+    			transactions.remove(t);
+    			balance -= t.getAmount();
+    			return true;
+    		}
+    	}
+    	return false;
+    }
+    
+    public boolean hasTransactions() {
+    	return !transactions.isEmpty();
+    }
+    
 }
