@@ -76,12 +76,19 @@
         <activity
             android:name="com.so.sofinances.activities.ReportViewActivity"
             android:label="@string/title_activity_report_view" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.so.sofinances.UserHomeActivity" />
         </activity>
-        <activity android:name="org.achartengine.GraphicalActivity" />
         <activity
             android:name="com.so.sofinances.activities.DatePickingActivity"
             android:label="@string/title_activity_date_picking" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.so.sofinances.UserHomeActivity" />
         </activity>
+        
+        <activity android:name="org.achartengine.GraphicalActivity" />
     </application>
 
 </manifest>
