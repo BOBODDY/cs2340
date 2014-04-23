@@ -95,6 +95,14 @@ public class UserHandler {
         return currentUser.getUserName();
     }
     
+    /**
+     * 
+     * @return the current user's full name
+     */
+    public static String getFullName() {
+    	return currentUser.getFullName();
+    }
+    
     /** Clears the current user.
      * 
      */

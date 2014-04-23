@@ -31,7 +31,7 @@ public class ReportGenerator {
     public static Report spendingCategoryReport(final TimeData startDate, final TimeData endDate) {
         Report rep = new Report();
         
-        String title = "Spending Category Report for " + UserHandler.getUserName() + "\n";
+        String title = "Spending Category Report for " + UserHandler.getFullName() + "\n";
         title += startDate.toString() + " - " + endDate.toString() + "\n";
         
         rep.setTitle(title);
@@ -83,6 +83,53 @@ public class ReportGenerator {
         
         rep.addData(data);
         
+        return rep;
+    }
+    
+    public static Report cashFlowReport(TimeData startDate, TimeData endDate) {
+    	Report rep = new Report();
+    	
+    	String title = "Cash Flow Report for " + UserHandler.getFullName() + "\n";
+        title += startDate.toString() + " - " + endDate.toString() + "\n";
+        
+        rep.setTitle(title);
+        
+        List<Account> userAccounts = UserHandler.getAccounts();
+        
+        ArrayList<Transaction> withdrawals = new ArrayList<Transaction>();
+        ArrayList<Transaction> deposits = new ArrayList<Transaction>();
+        
+        // Gather all withdrawals within the time range for all accounts
+        for (Account acc:userAccounts) {
+            for (Transaction transact:acc.getTransactions()) { 
+                if (transact.isWithdrawal()) {
+                    if ( startDate.compareTo(transact.getTimeOfTransaction()) <= 0 && 
+                    		endDate.compareTo(transact.getTimeOfTransaction()) >= 0) {
+                    	withdrawals.add(transact);
+                    }
+                } else {
+                	if ( startDate.compareTo(transact.getTimeOfTransaction()) <= 0 && 
+                    		endDate.compareTo(transact.getTimeOfTransaction()) >= 0) {
+                    	deposits.add(transact);
+                    }
+                	
+                }
+            }
+        }
+        
+        double totalWithdraw = 0;
+        double totalDeposit = 0;
+        
+        for(Transaction transact: withdrawals) {
+        	totalWithdraw += transact.getAmount();
+        }
+        
+        for(Transaction transact: deposits) {
+        	totalDeposit += transact.getAmount();
+        }
+        
+        double difference = totalDeposit - totalWithdraw;
+
         return rep;
     }
 

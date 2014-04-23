@@ -28,6 +28,9 @@ import com.so.sofinances.model.TimeData;
  *
  */
 public class ReportViewActivity extends Activity {
+	
+	private final int SPENDING_REPORT = 12;
+	private final int CASH_FLOW_REPORT = 32;
     
 	/**
 	 * textview used to display the report.
@@ -63,7 +66,7 @@ public class ReportViewActivity extends Activity {
             end = (TimeData) incomingData.getSerializableExtra("endDate");
         }
         
-        new ReportGeneratorTask().execute("");
+        new ReportGeneratorTask().execute(SPENDING_REPORT);
     }
 
     @Override
@@ -142,10 +145,10 @@ public class ReportViewActivity extends Activity {
      * @author kodyPC
      *
      */
-    private class ReportGeneratorTask extends AsyncTask<String, Void, Report> {
+    private class ReportGeneratorTask extends AsyncTask<Integer, Void, Report> {
 
         @Override
-        protected Report doInBackground(String... params) {
+        protected Report doInBackground(Integer... params) {
             return ReportGenerator.spendingCategoryReport(start, end);
         }
         
