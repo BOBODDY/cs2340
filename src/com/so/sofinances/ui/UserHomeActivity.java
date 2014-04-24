@@ -10,7 +10,9 @@ import com.so.sofinances.R;
 import com.so.sofinances.controllers.AccountHandler;
 import com.so.sofinances.controllers.DBHandler;
 import com.so.sofinances.controllers.UserHandler;
+import com.so.sofinances.exceptions.AccountNotFoundException;
 import com.so.sofinances.model.Account;
+import com.so.sofinances.model.Listable;
 import com.so.sofinances.model.TimeData;
 import com.so.sofinances.utilities.CurrencyFormat;
 
@@ -27,6 +29,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /** The user home which lists all of the accounts and allows for report generation and account creation.
  * @author kodyPC
@@ -61,13 +64,15 @@ public class UserHomeActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                     long rowId) {
-                String name = UserHandler.getAccounts().get(position).getDisplayName();
-                AccountHandler.setCurrentAccount(name);
-                //Toast.makeText(getApplicationContext(), "Found: " + name, Toast.LENGTH_SHORT).show();
-                
-                Intent intent = new Intent(getApplicationContext(), AccountHomeActivity.class);
-                
-                startActivity(intent);
+                try {
+					AccountHandler.setCurrentAccount(position);
+	                Intent intent = new Intent(getApplicationContext(), AccountHomeActivity.class);
+	                
+	                startActivity(intent);
+				} catch (AccountNotFoundException e) {
+					Toast t = Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT);
+					t.show();
+				}
             }
             
         });

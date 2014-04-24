@@ -62,5 +62,6 @@
     <string name="action_change_currency">Change Currency</string>
     <string name="us_dollars">USD ($)</string>
     <string name="gbp">GBP (£)</string>
+    <string name="currency_symbol">$</string>
 
 </resources>

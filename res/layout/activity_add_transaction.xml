@@ -19,13 +19,13 @@
     tools:context=".AddTransactionActivity" >
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/currency_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/add_trans_amount"
         android:layout_alignBottom="@+id/add_trans_amount"
         android:layout_alignParentLeft="true"
-        android:text="@string/dollarSign" />
+        android:text="@string/currency_symbol" />
 
     <EditText
         android:id="@+id/add_trans_amount"
@@ -80,7 +80,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/add_trans_amount"
-        android:layout_toRightOf="@+id/textView2" >
+        android:layout_toRightOf="@+id/currency_label" >
 
         <RadioButton
             android:id="@+id/radio_withdraw"

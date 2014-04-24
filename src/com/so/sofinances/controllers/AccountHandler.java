@@ -5,7 +5,9 @@ import java.util.List;
 import android.content.Context;
 import android.widget.SimpleAdapter;
 
+import com.so.sofinances.exceptions.AccountNotFoundException;
 import com.so.sofinances.model.Account;
+import com.so.sofinances.model.Listable;
 import com.so.sofinances.model.Transaction;
 
 /**
@@ -18,10 +20,6 @@ import com.so.sofinances.model.Transaction;
 public class AccountHandler {
 
     /**
-     * the name of the current account.
-     */
-    private static String accountName;
-    /**
      * the actual current account.
      */
     private static Account currentAccount;
@@ -30,14 +28,15 @@ public class AccountHandler {
      * Validates the name of the account received from the UI and updates
      * current account information.
      *
-     * @param accName   the text account name grabbed from the UI
+     * @param a   the text account name grabbed from the UI
      */
-    public static void setCurrentAccount(String accName) {
-        if (accName != null && !accName.equals("")) {
-            accountName = accName;
-            currentAccount = UserHandler.getAccount(accountName);
+    public static void setCurrentAccount(int position) throws AccountNotFoundException {
+    	Account a = UserHandler.getAccountAt(position);
+        if (a != null) {
+            currentAccount = a;
+        } else {
+        	throw new AccountNotFoundException();
         }
-
     }
 
     /**
@@ -45,7 +44,6 @@ public class AccountHandler {
      */
     public static void clear() {
         currentAccount = null;
-        accountName = null;
     }
 
     /**

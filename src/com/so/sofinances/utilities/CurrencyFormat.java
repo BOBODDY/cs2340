@@ -1,6 +1,7 @@
 package com.so.sofinances.utilities;
 
 import java.text.NumberFormat;
+import java.util.Currency;
 import java.util.Locale;
 
 /**
@@ -11,6 +12,8 @@ import java.util.Locale;
  */
 public class CurrencyFormat {
 
+	public static String currencySymbol;
+	
     /**
      * number format for US currency.
      */
@@ -33,5 +36,7 @@ public class CurrencyFormat {
      */
     public static void changeLocale(Locale loc) {
     	fmt = NumberFormat.getCurrencyInstance(loc);
+    	Currency c = Currency.getInstance(loc);
+    	currencySymbol = c.getSymbol();
     }
 }

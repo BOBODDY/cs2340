@@ -180,4 +180,8 @@ public class User {
     public boolean hasAccounts() {
     	return accounts != null && !accounts.isEmpty();
     }
+
+	public Account getAccountAt(int position) {
+		return accounts.get(position);
+	}
 }
