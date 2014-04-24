@@ -59,5 +59,8 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="sort_by_amount">Sort by Amount</string>
     <string name="sort_by_name">Sort by Name</string>
+    <string name="action_change_currency">Change Currency</string>
+    <string name="us_dollars">USD ($)</string>
+    <string name="gbp">GBP (£)</string>
 
 </resources>

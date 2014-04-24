@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import com.so.sofinances.utilities.CurrencyFormat;
+
 /** Contains info for report.
  * @author kodyPC
  *
@@ -66,7 +68,7 @@ public class Report {
         HashMap<String, Double> dat = (HashMap<String, Double>) data.get(0);
         
         for (String cat:dat.keySet()) {
-            res += cat + " " + Currency.format(dat.get(cat)) + "\n";
+            res += cat + " " + CurrencyFormat.format(dat.get(cat)) + "\n";
         }
         
         return res;

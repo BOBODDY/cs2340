@@ -3,6 +3,7 @@ package com.so.sofinances.activities;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import com.so.sofinances.R;
@@ -10,8 +11,8 @@ import com.so.sofinances.handler.AccountHandler;
 import com.so.sofinances.handler.DBHandler;
 import com.so.sofinances.handler.UserHandler;
 import com.so.sofinances.model.Account;
-import com.so.sofinances.model.Currency;
 import com.so.sofinances.model.TimeData;
+import com.so.sofinances.utilities.CurrencyFormat;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -32,22 +33,6 @@ import android.widget.TextView;
  *
  */
 public class UserHomeActivity extends Activity {
-    /**
-     * used for the listview.
-     */
-    private static final String TEXT1 = "text1";
-    /**
-     * used for the listview.
-     */
-    private static final String TEXT2 = "text2";
-    /**
-     * the map displayed by the listview.
-     */
-    private final String[] fromMapKey = new String[] {TEXT1, TEXT2};
-    /**
-     * maps to the actual layout.
-     */
-    private final int[] toLayoutId = new int[] {android.R.id.text1, android.R.id.text2};
    
     /**
      * the ListView displayed on screen.
@@ -61,6 +46,8 @@ public class UserHomeActivity extends Activity {
      * a constant date used for testing.
      */
     private static final int PICK_DATE = 314156;
+    
+    private SimpleAdapter balAdapter;
 
     @Override
     protected void onCreate(Bundle savedState) {
@@ -89,36 +76,7 @@ public class UserHomeActivity extends Activity {
     @Override
     protected void onStart() {
         super.onStart();
-        
-        List<Account> accounts = UserHandler.getAccounts();
-        
-        ArrayList<String> names = new ArrayList<String>();
-        
-        ArrayList<String> balances = new ArrayList<String>();
-        
-        List<Map<String, String>> namesAndBalances = new ArrayList<Map<String, String>>();
-        
-        if (accounts.size() < 1) {
-            instruct.setVisibility(0);
-            instruct.setText("Click \"+\" to add account");
-        } else {
-            instruct.setVisibility(8);
-        }
-        
-        
-        for (int i = 0; i < accounts.size(); i++) {
-            names.add(accounts.get(i).getDisplayName());
-            balances.add(Currency.format(accounts.get(i).getBalance()));
-            Map<String, String> nameAndBalance = new HashMap<String, String>();
-            nameAndBalance.put(TEXT1, names.get(i));
-            nameAndBalance.put(TEXT2, balances.get(i));
-            namesAndBalances.add(nameAndBalance);
-        }
-        
-        SimpleAdapter balAdapter = new SimpleAdapter(this, namesAndBalances,
-                android.R.layout.simple_list_item_2, fromMapKey, toLayoutId);
-        
-        list.setAdapter(balAdapter);
+        update();
     }
 
     @Override
@@ -171,6 +129,14 @@ public class UserHomeActivity extends Activity {
             AlertDialog alert = builder.create();
             alert.show();
             result = true;
+    	} else if (itemId == R.id.gbp) {
+    		CurrencyFormat.changeLocale(Locale.UK);
+    		update();
+    		return true;
+    	} else if (itemId == R.id.us_dollars) {
+    		CurrencyFormat.changeLocale(Locale.US);
+    		update();
+    		return true;
     	} else {
     	    result = super.onOptionsItemSelected(item);
     	}
@@ -222,4 +188,15 @@ public class UserHomeActivity extends Activity {
         //System.out.println("DB Updated");
         DBHandler.update();
     }
+    
+	private void update() {
+        balAdapter = UserHandler.buildList(this);
+		list.setAdapter(balAdapter);
+		if (!UserHandler.hasAccounts()) {
+			instruct.setText("Click \"+\" to add account");
+			instruct.setVisibility(0);
+		} else {
+			instruct.setVisibility(8);
+		}
+	}
 }

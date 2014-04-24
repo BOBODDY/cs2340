@@ -9,6 +9,7 @@ import android.content.Context;
 import android.widget.SimpleAdapter;
 
 import com.so.sofinances.utilities.AdapterBuilder;
+import com.so.sofinances.utilities.CurrencyFormat;
 
 
 /**
@@ -18,7 +19,7 @@ import com.so.sofinances.utilities.AdapterBuilder;
  * Contains full name, display name, balance, 
  * monthly interest rate, and list of transactions.
  */
-public class Account {
+public class Account implements Listable {
     /**
      * full name of the account.
      */
@@ -119,7 +120,7 @@ public class Account {
      * @return the balance as a string
      */
     public String getBalanceString() {
-        return Currency.format(balance);
+        return CurrencyFormat.format(balance);
     }
 
     /**
@@ -221,4 +222,14 @@ public class Account {
     	});
     	return AdapterBuilder.buildAdapter(transactions, c);
     }
+
+	@Override
+	public String getMainTitle() {
+		return displayName;
+	}
+
+	@Override
+	public String getSubTitle() {
+		return CurrencyFormat.format(balance);
+	}
 }

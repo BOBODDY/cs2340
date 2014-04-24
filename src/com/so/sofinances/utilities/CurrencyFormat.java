@@ -1,4 +1,4 @@
-package com.so.sofinances.model;
+package com.so.sofinances.utilities;
 
 import java.text.NumberFormat;
 import java.util.Locale;
@@ -9,7 +9,7 @@ import java.util.Locale;
  * @author  Joseph Rossi
  * @version 1.0 4/3/2014
  */
-public class Currency {
+public class CurrencyFormat {
 
     /**
      * number format for US currency.

@@ -1,7 +1,12 @@
 package com.so.sofinances.model;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
+
+import android.content.Context;
+import android.widget.SimpleAdapter;
+
+import com.so.sofinances.utilities.AdapterBuilder;
 
 /**
  * Represents a login for the application.
@@ -168,4 +173,11 @@ public class User {
         return ret;
     }
 
+    public SimpleAdapter buildAccountList(Context c) {
+    	return AdapterBuilder.buildAdapter(accounts, c);
+    }
+    
+    public boolean hasAccounts() {
+    	return accounts != null && !accounts.isEmpty();
+    }
 }

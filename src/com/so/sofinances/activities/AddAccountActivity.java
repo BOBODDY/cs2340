@@ -1,15 +1,15 @@
 package com.so.sofinances.activities;
 
-import com.so.sofinances.R;
-import com.so.sofinances.handler.UserHandler;
-
-import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.Toast;
+
+import com.so.sofinances.R;
+import com.so.sofinances.handler.UserHandler;
 
 /**Activity for displaying the fields associated with adding a new account. 
  * Then passes off info to UserHandler to try and add the account
@@ -34,10 +34,6 @@ public class AddAccountActivity extends Activity {
      * interest rate of the new account.
      */
     private EditText interestRate;
-    /**
-     * warning shown to the user.
-     */
-    private TextView warning;
 
     /* (non-Javadoc)creates variables for all of the fields in the activity
      * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -50,7 +46,6 @@ public class AddAccountActivity extends Activity {
         displayName = (EditText) findViewById(R.id.acc_displayname);
         balance = (EditText) findViewById(R.id.acc_balance);
         interestRate = (EditText) findViewById(R.id.acc_interestrate);
-        warning = (TextView) findViewById(R.id.add_acc_warning);
     }
 
     /* (non-Javadoc)adds the associated buttons to the menu bar
@@ -90,7 +85,10 @@ public class AddAccountActivity extends Activity {
             //DBHandler.db().commit();
             finish();
         } else {
-            warning.setText("Username and display name must start with a letter or number");
+            Toast t = Toast.makeText(getApplicationContext(),
+            		"Username and display name must start with a letter or number",
+            		Toast.LENGTH_SHORT);
+        	t.show();
         }
     }
     

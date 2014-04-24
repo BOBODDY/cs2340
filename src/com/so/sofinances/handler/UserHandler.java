@@ -2,7 +2,9 @@ package com.so.sofinances.handler;
 
 import java.util.List;
 
+import android.content.Context;
 import android.util.Log;
+import android.widget.SimpleAdapter;
 
 import com.db4o.ObjectSet;
 import com.so.sofinances.model.Account;
@@ -108,5 +110,13 @@ public class UserHandler {
      */
     public static void clear() {
         currentUser = null;
+    }
+    
+    public static SimpleAdapter buildList(Context c) {
+    	return currentUser.buildAccountList(c);
+    }
+    
+    public static boolean hasAccounts() {
+    	return currentUser.hasAccounts();
     }
 }

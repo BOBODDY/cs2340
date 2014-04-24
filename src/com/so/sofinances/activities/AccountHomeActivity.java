@@ -54,18 +54,9 @@ public class AccountHomeActivity extends Activity {
         				new TransactionDismissCallback());
         history.setOnTouchListener(touchListener);
         history.setOnScrollListener(touchListener.makeScrollListener());
-
-        if (!AccountHandler.hasTransactions()) {
-        	instruct.setText("Click \"+\" to add transaction");
-        	instruct.setVisibility(0);
-        } else {
-        	instruct.setVisibility(8);
-        }
-        balanceStr = AccountHandler.getBalanceString();
-        balance.setText("Balance: " + balanceStr);
         
         transAdapter = AccountHandler.buildList(this);
-        history.setAdapter(transAdapter);
+        update();
 
     }
 
@@ -116,6 +107,8 @@ public class AccountHomeActivity extends Activity {
 		if (!AccountHandler.hasTransactions()) {
 			instruct.setText("Click \"+\" to add transaction");
 			instruct.setVisibility(0);
+		} else {
+			instruct.setVisibility(8);
 		}
 	}
     

@@ -2,6 +2,8 @@ package com.so.sofinances.model;
 
 import java.util.Random;
 
+import com.so.sofinances.utilities.CurrencyFormat;
+
 /**
  * Represents a financial transaction (withdrawal or deposit) made on an account.
  *
@@ -72,7 +74,7 @@ public class Transaction implements Comparable<Transaction>, Listable {
 
     @Override
     public String toString() {
-        return name + ", " + category + ": " + Currency.format(amount);
+        return name + ", " + category + ": " + CurrencyFormat.format(amount);
     }
 
     /**

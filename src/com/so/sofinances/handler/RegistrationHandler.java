@@ -35,9 +35,9 @@ public class RegistrationHandler {
                 return true;
             }
         } else if (!isValidPassword(password)) {
-            throw new InvalidInputException("Password must begin with a letter or number");
+            throw new InvalidInputException("Password must begin with a letter or number and be longer than one character");
         } else {
-        	throw new InvalidInputException("Name/Username must begin with a letter or number");
+        	throw new InvalidInputException("Name/Username must begin with a letter or number and be longer than one character");
         }
         
     }

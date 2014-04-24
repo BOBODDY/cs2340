@@ -59,7 +59,7 @@ public class AddTransactionActivity extends Activity {
 
         cal = (DatePicker) findViewById(R.id.datePicker1);
 
-        name = (EditText) findViewById(R.id.add_trans_name);
+        name = (EditText) findViewById(R.id.add_transact_name);
 
         amount = (EditText) findViewById(R.id.add_trans_amount);
         
