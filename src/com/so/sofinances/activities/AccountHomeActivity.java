@@ -102,6 +102,14 @@ public class AccountHomeActivity extends Activity {
     		transAdapter = AccountHandler.sortByDate(this);
     		update();
     		return true;
+    	} else if (itemId == R.id.sort_by_amount) {
+    		transAdapter = AccountHandler.sortByAmount(this);
+    		update();
+    		return true;
+    	} else if (itemId == R.id.sort_by_name) {
+    		transAdapter = AccountHandler.sortByName(this);
+    		update();
+    		return true;
     	} else {
     	    return super.onOptionsItemSelected(item);
     	}
@@ -127,7 +135,6 @@ public class AccountHomeActivity extends Activity {
     private class TransactionDismissCallback implements DismissCallbacks {
     	public void onDismiss(ListView listView, int[] reverseSortedPositions) {
     		for (int position : reverseSortedPositions) {
-    			System.out.println(position);
     			AccountHandler.removeTransactionByIndex(position);
     			transAdapter = AccountHandler.buildList(AccountHomeActivity.this);
     		}

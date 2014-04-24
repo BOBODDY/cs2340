@@ -57,5 +57,7 @@
     <string name="view_chart">View Chart</string>
     <string name="sort_by_date">Sort by Date</string>
     <string name="confirm_password">Confirm Password</string>
+    <string name="sort_by_amount">Sort by Amount</string>
+    <string name="sort_by_name">Sort by Name</string>
 
 </resources>

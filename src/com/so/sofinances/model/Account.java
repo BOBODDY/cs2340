@@ -189,23 +189,38 @@ public class Account {
     	}
     }
     
-    public SimpleAdapter sortTransByName() {
-    	return null;
-    }
-    
-    public SimpleAdapter sortTransByDate(Context c) {
+    public SimpleAdapter sortTransByName(Context c) {
     	Collections.sort(transactions, new Comparator<Transaction>() {
-    		@Override
-    		public int compare(Transaction t1, Transaction t2) {
-    			TimeData time1 = t1.getTimeOfTransaction();
-    			TimeData time2 = t2.getTimeOfTransaction();
-    			return time1.compareTo(time2);
-    		}
+
+			@Override
+			public int compare(Transaction t1, Transaction t2) {
+				return t1.getName().compareTo(t2.getName());
+			}
+    		
     	});
     	return AdapterBuilder.buildAdapter(transactions, c);
     }
     
-    public SimpleAdapter sortTransByAmount() {
-    	return null;
+    public SimpleAdapter sortTransByDate(Context c) {
+    	Collections.sort(transactions);
+    	return AdapterBuilder.buildAdapter(transactions, c);
+    }
+    
+    public SimpleAdapter sortTransByAmount(Context c) {
+    	Collections.sort(transactions, new Comparator<Transaction>() {
+			@Override
+			public int compare(Transaction t1, Transaction t2) {
+				double amt1 = t1.getAmount();
+				double amt2 = t2.getAmount();
+				if (amt1 < amt2) {
+					return 1;
+				} else if (amt1 > amt2) {
+					return -1;
+				} else {
+					return 0;
+				}
+			}
+    	});
+    	return AdapterBuilder.buildAdapter(transactions, c);
     }
 }
