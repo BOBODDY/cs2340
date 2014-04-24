@@ -3,6 +3,7 @@ package com.so.sofinances.handler;
 import com.db4o.ObjectSet;
 import com.so.sofinances.exceptions.InvalidInputException;
 import com.so.sofinances.model.User;
+import org.jasypt.util.text.BasicTextEncryptor;
 
 /** handles registration of new users.
  * @author kodyPC
@@ -22,6 +23,8 @@ public class RegistrationHandler {
     public static boolean createUser(String fullName, String userName, String password) throws InvalidInputException {
         if (isValidFullName(fullName) && isValidUserName(userName) && isValidPassword(password)) {
             User temp = new User();
+            BasicTextEncryptor encryptor = new BasicTextEncryptor();
+            encryptor.setPassword("ENCRYPT");
             temp.setUserName(userName);
             if (DBHandler.db() == null) {
             	throw new InvalidInputException("Database Error: Contact Support");
@@ -30,7 +33,8 @@ public class RegistrationHandler {
             if (results.hasNext()) {
             	throw new InvalidInputException("Username taken");
             } else {
-                DBHandler.db().store(new User(fullName, userName, password));
+            	String p = encryptor.encrypt(password);
+                DBHandler.db().store(new User(fullName, userName, p));
                 DBHandler.db().commit();
                 return true;
             }
