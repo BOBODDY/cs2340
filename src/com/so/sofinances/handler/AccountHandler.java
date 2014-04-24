@@ -151,4 +151,12 @@ public class AccountHandler {
     public static SimpleAdapter sortByDate(Context c) {
     	return currentAccount.sortTransByDate(c);
     }
+    
+    public static SimpleAdapter sortByAmount(Context c) {
+    	return currentAccount.sortTransByAmount(c);
+    }
+    
+    public static SimpleAdapter sortByName(Context c) {
+    	return currentAccount.sortTransByName(c);
+    }
 }

@@ -7,6 +7,7 @@
 
     <EditText
         android:id="@+id/login_username"
+        android:singleLine="true"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="@string/login_username" />
