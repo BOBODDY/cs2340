@@ -1,4 +1,4 @@
-package com.so.sofinances;
+package com.so.sofinances.utilities;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,10 +46,7 @@ public class ReportGenerator {
                 if (transact.isWithdrawal()) {
                     if ( startDate.compareTo(transact.getTimeOfTransaction()) <= 0 && 
                     		endDate.compareTo(transact.getTimeOfTransaction()) >= 0) {
-                    	System.out.println("adding a value");
                     	withdrawals.add(transact);
-                    } else {
-                    	System.out.println("did not add");
                     }
                 }
             }
@@ -113,10 +110,7 @@ public class ReportGenerator {
                 if (!transact.isWithdrawal()) {
                     if ( startDate.compareTo(transact.getTimeOfTransaction()) <= 0 && 
                     		endDate.compareTo(transact.getTimeOfTransaction()) >= 0) {
-                    	System.out.println("adding a value");
                     	deposits.add(transact);
-                    } else {
-                    	System.out.println("did not add");
                     }
                 }
             }

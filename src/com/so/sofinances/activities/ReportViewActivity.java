@@ -19,9 +19,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.so.sofinances.R;
-import com.so.sofinances.ReportGenerator;
 import com.so.sofinances.model.Report;
 import com.so.sofinances.model.TimeData;
+import com.so.sofinances.utilities.ReportGenerator;
 
 /** Activity for displaying reports. 
  * @author kodyPC
@@ -114,8 +114,8 @@ public class ReportViewActivity extends Activity {
     	System.arraycopy(temp, 0, distribution, 0, temp.length);
 	    
 	      // Color of each Pie Chart Sections
-    	int[] colors = {Color.GRAY, Color.GREEN, Color.RED, Color.YELLOW, Color.BLUE,
-    			Color.MAGENTA, Color.LTGRAY};
+    	int[] colors = {Color.GREEN, Color.RED, Color.YELLOW, Color.BLUE,
+    			Color.MAGENTA, Color.LTGRAY, Color.GRAY};
 	    
 	      // Instantiating CategorySeries to plot Pie Chart
     	CategorySeries distSeries = new CategorySeries(

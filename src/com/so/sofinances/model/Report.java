@@ -66,7 +66,7 @@ public class Report {
         HashMap<String, Double> dat = (HashMap<String, Double>) data.get(0);
         
         for (String cat:dat.keySet()) {
-            res += cat + " $" + dat.get(cat) + "\n";
+            res += cat + " " + Currency.format(dat.get(cat)) + "\n";
         }
         
         return res;

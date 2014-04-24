@@ -3,14 +3,12 @@ package com.so.sofinances.model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import com.so.sofinances.utilities.AdapterBuilder;
 
 import android.content.Context;
 import android.widget.SimpleAdapter;
+
+import com.so.sofinances.utilities.AdapterBuilder;
 
 
 /**

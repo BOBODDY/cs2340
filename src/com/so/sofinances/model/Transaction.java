@@ -1,8 +1,6 @@
 package com.so.sofinances.model;
 
-import java.util.Map;
 import java.util.Random;
-import com.so.sofinances.utilities.AdapterBuilder;
 
 /**
  * Represents a financial transaction (withdrawal or deposit) made on an account.

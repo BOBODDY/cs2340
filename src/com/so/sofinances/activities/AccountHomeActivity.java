@@ -1,30 +1,17 @@
 package com.so.sofinances.activities;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Adapter;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import com.so.sofinances.R;
-import com.so.sofinances.SwipeDetector;
-import com.so.sofinances.SwipeDetector.Action;
 import com.so.sofinances.handler.AccountHandler;
 import com.so.sofinances.handler.DBHandler;
-import com.so.sofinances.model.TimeData;
-import com.so.sofinances.model.Transaction;
 import com.so.sofinances.utilities.SwipeDismissListViewTouchListener;
 import com.so.sofinances.utilities.SwipeDismissListViewTouchListener.DismissCallbacks;
 
