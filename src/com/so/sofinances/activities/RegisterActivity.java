@@ -1,6 +1,7 @@
 package com.so.sofinances.activities;
 
 import com.so.sofinances.R;
+import com.so.sofinances.exceptions.InvalidInputException;
 import com.so.sofinances.handler.DBHandler;
 import com.so.sofinances.handler.RegistrationHandler;
 
@@ -8,11 +9,15 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**Activity used for registering a new user.
  * 
@@ -33,10 +38,10 @@ public class RegisterActivity extends Activity {
      * password of the new account.
      */
     private EditText password;
-    /**
-     * display for showing user messages.
-     */
-    private TextView display;
+    
+    private EditText confirmPassword;
+    
+    private View registerButton;
 
     /* (non-Javadoc) creates variable representations of the textfields
      * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -46,13 +51,20 @@ public class RegisterActivity extends Activity {
         super.onCreate(savedState);
         setContentView(R.layout.activity_register);
         
+        TextWatcher passConfirm = new PasswordConfirm();
+        
         fullName = (EditText) findViewById(R.id.full_name);
         
         username = (EditText) findViewById(R.id.username);
         
         password = (EditText) findViewById(R.id.password);
+        password.addTextChangedListener(passConfirm);
         
-        display = (TextView) findViewById(R.id.reg_display);
+        confirmPassword = (EditText) findViewById(R.id.confirm_password);
+
+        confirmPassword.addTextChangedListener(passConfirm);
+        
+        registerButton = findViewById(R.id.submit_register_button);
     }
 
     /* (non-Javadoc) adds the associated buttons to the menu bar
@@ -88,13 +100,13 @@ public class RegisterActivity extends Activity {
         String uName = username.getText().toString();
         String pass = password.getText().toString();
         
-        if (RegistrationHandler.createUser(fName, uName, pass)) {
+        try {
+        	RegistrationHandler.createUser(fName, uName, pass);
             startActivity(new Intent(this, LoginActivity.class));
             finish();
-            //DBHandler.db().store(UserHandler.getCU());
-            //DBHandler.db().commit();
-        } else {
-            display.setText("Username already exists or names and password don't start with letter/number");
+        } catch (InvalidInputException e) {
+        	Toast t = Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT);
+        	t.show();
         }
     }
     
@@ -107,4 +119,27 @@ public class RegisterActivity extends Activity {
         //System.out.println("DB Updated");
         DBHandler.update();
     }
+    
+    public void updateButtonState() {
+    	String p1 = password.getText().toString();
+    	String p2 = confirmPassword.getText().toString();
+    	if (p1.equals(p2)) {
+    		registerButton.setEnabled(true);
+    	} else {
+    		registerButton.setEnabled(false);
+    	}
+    }
+    
+    private class PasswordConfirm implements TextWatcher {
+        public void afterTextChanged(Editable s) {
+            updateButtonState();
+        }
+
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
+
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+        }
+    }
+
 }

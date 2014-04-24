@@ -5,6 +5,17 @@
         android:orderInCategory="100"
         android:showAsAction="never"
         android:title="@string/action_settings"/>
-    <item android:id="@+id/addTransact" android:showAsAction="ifRoom" android:title="Add Transaction" android:icon="@drawable/ic_action_new"></item>
+    <item android:id="@+id/sort_by_date"
+          android:orderInCategory="101"
+          android:title="@string/sort_by_date">    
+    </item>
+    
+    <item android:id="@+id/addTransact"
+		  android:showAsAction="ifRoom"
+		  android:title="Add Transaction"
+		  android:icon="@drawable/ic_action_new">
+        
+    </item>
+    
 
 </menu>

@@ -1,6 +1,8 @@
 package com.so.sofinances.handler;
 
 import com.db4o.ObjectSet;
+import com.so.sofinances.exceptions.InvalidInputException;
+import com.so.sofinances.exceptions.PasswordMismatchException;
 import com.so.sofinances.model.User;
 
 /** Handles logins.
@@ -18,15 +20,18 @@ public class LoginHandler {
 	 * @param password The Password that's being checked
 	 * @return The User that matches the database of null if none match
 	 */
-    public static User checkLogin(String uName, String password) {
+    public static User checkLogin(String uName, String password) throws InvalidInputException {
         User example = new User();
         example.setUserName(uName);
         example.setPassword(password);
         ObjectSet<Object> result = DBHandler.db().queryByExample(example);
+        ObjectSet<Object> resultNoPW = DBHandler.db().queryByExample(new User(uName));
         if (result.hasNext()) {
             return example;
+        } else if (resultNoPW.hasNext()){
+            throw new PasswordMismatchException();
         } else {
-            return null;
+        	throw new InvalidInputException("Username doesn't exist");
         }
     }
 }

@@ -1,7 +1,16 @@
 package com.so.sofinances.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import com.so.sofinances.utilities.AdapterBuilder;
+
+import android.content.Context;
+import android.widget.SimpleAdapter;
 
 
 /**
@@ -24,6 +33,8 @@ public class Account {
      * account's balance.
      */
     private double balance;
+    
+    private final double INITIAL_BALANCE;
     /**
      * account's monthly interest rate.
      */
@@ -42,6 +53,8 @@ public class Account {
      */
     public Account(String fullName, String displayName, double balance,
             double interestRate) {
+    	transactions = new ArrayList<Transaction>();
+    	this.INITIAL_BALANCE = balance;
         this.fullName = fullName;
         this.displayName = displayName;
         this.balance = balance;
@@ -55,8 +68,7 @@ public class Account {
      * @param displayName  the displayname
      */
     public Account(String fullName, String displayName) {
-        this.fullName = fullName;
-        this.displayName = displayName;
+        this(fullName, displayName, 0, 0);
     }
     
     /**
@@ -67,9 +79,7 @@ public class Account {
      * @param interestRate the interest rate
      */
     public Account(String fullName, String displayName, double interestRate) {
-        this.fullName = fullName;
-        this.displayName = displayName;
-        this.interestRate = interestRate;
+        this(fullName, displayName, 0, interestRate);
     }
 
     /**
@@ -163,19 +173,39 @@ public class Account {
         return false;
     }
     
-    public boolean removeTransactByString(String text) {
-    	for (Transaction t: transactions) {
-    		if (t.equalsByString(text)) {
-    			transactions.remove(t);
-    			balance -= t.getAmount();
-    			return true;
-    		}
-    	}
-    	return false;
-    }
-    
     public boolean hasTransactions() {
-    	return !transactions.isEmpty();
+    	return transactions != null && !transactions.isEmpty();
     }
     
+    public SimpleAdapter buildTransactionList(Context c) {
+    	return AdapterBuilder.buildAdapter(transactions, c);
+    }
+    
+    public void removeTransactionByIndex(int index) {
+    	Transaction t = transactions.get(index);
+    	if (t != null) {
+	    	transactions.remove(index);
+	    	balance -= t.getAmount();
+    	}
+    }
+    
+    public SimpleAdapter sortTransByName() {
+    	return null;
+    }
+    
+    public SimpleAdapter sortTransByDate(Context c) {
+    	Collections.sort(transactions, new Comparator<Transaction>() {
+    		@Override
+    		public int compare(Transaction t1, Transaction t2) {
+    			TimeData time1 = t1.getTimeOfTransaction();
+    			TimeData time2 = t2.getTimeOfTransaction();
+    			return time1.compareTo(time2);
+    		}
+    	});
+    	return AdapterBuilder.buildAdapter(transactions, c);
+    }
+    
+    public SimpleAdapter sortTransByAmount() {
+    	return null;
+    }
 }

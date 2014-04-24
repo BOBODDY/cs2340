@@ -27,18 +27,10 @@
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/login_password"
+        android:layout_alignRight="@+id/login_password"
         android:layout_below="@+id/login_password"
-        android:layout_centerHorizontal="true"
         android:onClick="onClickLogin"
         android:text="@string/button_login" />
-
-    <TextView
-        android:id="@+id/invalidLoginTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>

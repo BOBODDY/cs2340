@@ -1,6 +1,8 @@
 package com.so.sofinances.activities;
 
 import com.so.sofinances.R;
+import com.so.sofinances.exceptions.InvalidInputException;
+import com.so.sofinances.exceptions.PasswordMismatchException;
 import com.so.sofinances.handler.LoginHandler;
 import com.so.sofinances.handler.UserHandler;
 import com.so.sofinances.model.User;
@@ -12,6 +14,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /** the activity which facilitates login.
  * @author kodyPC
@@ -30,7 +33,7 @@ public class LoginActivity extends Activity {
 	/**
 	 * textview used to display messages to the user.
 	 */
-    private TextView display;
+//    private TextView display;
     
     @Override
     protected void onCreate(Bundle savedState) {
@@ -38,7 +41,7 @@ public class LoginActivity extends Activity {
         setContentView(R.layout.activity_login);
         unText = (EditText) findViewById(R.id.login_username);
         pwText = (EditText) findViewById(R.id.login_password);
-        display = (TextView) findViewById(R.id.invalidLoginTV);
+        //display = (TextView) findViewById(R.id.invalidLoginTV);
     }
 
     @Override
@@ -60,14 +63,19 @@ public class LoginActivity extends Activity {
     public void onClickLogin(View view) {
         String username = unText.getText().toString();
         String password = pwText.getText().toString();
-        
-        User test = LoginHandler.checkLogin(username, password);
-        if (test != null) {
+        try {
+        	User test = LoginHandler.checkLogin(username, password);
             UserHandler.setCurrentUser(test.getUserName().toString());
             startActivity(new Intent(getApplicationContext(), UserHomeActivity.class));
             finish();
-        } else {
-            display.setText("Invalid login");
+        } catch (PasswordMismatchException e) {
+        	Toast t = Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT);
+        	t.show();
+        	//Code to give hint or reset password goes here
+        } catch (InvalidInputException e) {
+        	Toast t = Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT);
+        	t.show();
+        	//Code to link to register activity maybe?
         }
     }
 }

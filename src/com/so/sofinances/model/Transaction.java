@@ -1,6 +1,8 @@
 package com.so.sofinances.model;
 
-import java.util.Random;
+import java.util.Map;
+import java.util.Random
+import com.so.sofinances.utilities.AdapterBuilder;
 
 /**
  * Represents a financial transaction (withdrawal or deposit) made on an account.
@@ -8,7 +10,7 @@ import java.util.Random;
  * @author  Joseph Rossi
  * @version 1.0 4/3/2014
  */
-public class Transaction implements Comparable<Transaction> {
+public class Transaction implements Comparable<Transaction>, Listable {
 	
 	/**
 	 * an id
@@ -155,5 +157,15 @@ public class Transaction implements Comparable<Transaction> {
     
     public boolean equalsByString(String text) {
     	return this.toString().equals(text);
+    }
+    
+    @Override
+    public String getMainTitle() {
+    	return this.toString();
+    }
+    
+    @Override
+    public String getSubTitle() {
+    	return timeOfTransaction.toString();
     }
 }
