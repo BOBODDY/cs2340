@@ -1,4 +1,4 @@
-package com.so.sofinances.handler;
+package com.so.sofinances.controllers;
 
 import com.db4o.ObjectSet;
 import com.so.sofinances.exceptions.InvalidInputException;

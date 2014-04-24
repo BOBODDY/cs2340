@@ -1,4 +1,4 @@
-package com.so.sofinances.activities;
+package com.so.sofinances.ui;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,9 +7,9 @@ import java.util.Locale;
 import java.util.Map;
 
 import com.so.sofinances.R;
-import com.so.sofinances.handler.AccountHandler;
-import com.so.sofinances.handler.DBHandler;
-import com.so.sofinances.handler.UserHandler;
+import com.so.sofinances.controllers.AccountHandler;
+import com.so.sofinances.controllers.DBHandler;
+import com.so.sofinances.controllers.UserHandler;
 import com.so.sofinances.model.Account;
 import com.so.sofinances.model.TimeData;
 import com.so.sofinances.utilities.CurrencyFormat;

@@ -1,10 +1,10 @@
-package com.so.sofinances.activities;
+package com.so.sofinances.ui;
 
 import com.so.sofinances.R;
+import com.so.sofinances.controllers.LoginHandler;
+import com.so.sofinances.controllers.UserHandler;
 import com.so.sofinances.exceptions.InvalidInputException;
 import com.so.sofinances.exceptions.PasswordMismatchException;
-import com.so.sofinances.handler.LoginHandler;
-import com.so.sofinances.handler.UserHandler;
 import com.so.sofinances.model.User;
 
 import android.os.Bundle;

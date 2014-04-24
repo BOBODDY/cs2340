@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.HashMap;
 import java.util.Set;
 
-import com.so.sofinances.handler.UserHandler;
+import com.so.sofinances.controllers.UserHandler;
 import com.so.sofinances.model.Account;
 import com.so.sofinances.model.Report;
 import com.so.sofinances.model.TimeData;

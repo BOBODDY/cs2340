@@ -1,6 +1,6 @@
 package com.so.sofinances.model.test;
 
-import com.so.sofinances.handler.RegistrationHandler;
+import com.so.sofinances.controllers.RegistrationHandler;
 
 import junit.framework.TestCase;
 

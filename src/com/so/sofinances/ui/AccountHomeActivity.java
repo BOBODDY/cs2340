@@ -1,4 +1,4 @@
-package com.so.sofinances.activities;
+package com.so.sofinances.ui;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,8 +10,8 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.so.sofinances.R;
-import com.so.sofinances.handler.AccountHandler;
-import com.so.sofinances.handler.DBHandler;
+import com.so.sofinances.controllers.AccountHandler;
+import com.so.sofinances.controllers.DBHandler;
 import com.so.sofinances.utilities.SwipeDismissListViewTouchListener;
 import com.so.sofinances.utilities.SwipeDismissListViewTouchListener.DismissCallbacks;
 

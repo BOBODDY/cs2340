@@ -15,7 +15,7 @@
         android:logo="@drawable/so_logo"
         android:theme="@android:style/Theme.Holo" >
         <activity
-            android:name="com.so.sofinances.activities.WelcomeActivity"
+            android:name="com.so.sofinances.ui.WelcomeActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,9 +24,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.so.sofinances.activities.LoginActivity"
+            android:name="com.so.sofinances.ui.LoginActivity"
             android:label="@string/title_activity_login"
-            android:parentActivityName="com.so.sofinances.activities.WelcomeActivity" >
+            android:parentActivityName="com.so.sofinances.ui.WelcomeActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.so.sofinances.activities.WelcomeActivity" />
@@ -38,50 +38,50 @@
         </service>
 
         <activity
-            android:name="com.so.sofinances.activities.RegisterActivity"
+            android:name="com.so.sofinances.ui.RegisterActivity"
             android:label="@string/title_activity_register"
-            android:parentActivityName="com.so.sofinances.activities.WelcomeActivity" >
+            android:parentActivityName="com.so.sofinances.ui.WelcomeActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.so.sofinances.activities.WelcomeActivity" />
         </activity>
         <activity
-            android:name="com.so.sofinances.activities.UserHomeActivity"
+            android:name="com.so.sofinances.ui.UserHomeActivity"
             android:label="@string/title_activity_user_home" >
         </activity>
         <activity
-            android:name="com.so.sofinances.activities.AddAccountActivity"
+            android:name="com.so.sofinances.ui.AddAccountActivity"
             android:label="@string/title_activity_add_account"
-            android:parentActivityName="com.so.sofinances.activities.UserHomeActivity" >
+            android:parentActivityName="com.so.sofinances.ui.UserHomeActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.so.sofinances.UserHomeActivity" />
         </activity>
         <activity
-            android:name="com.so.sofinances.activities.AddTransactionActivity"
+            android:name="com.so.sofinances.ui.AddTransactionActivity"
             android:label="@string/title_activity_add_transaction"
-            android:parentActivityName="com.so.sofinances.activities.UserHomeActivity" >
+            android:parentActivityName="com.so.sofinances.ui.UserHomeActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.so.sofinances.UserHomeActivity" />
         </activity>
         <activity
-            android:name="com.so.sofinances.activities.AccountHomeActivity"
+            android:name="com.so.sofinances.ui.AccountHomeActivity"
             android:label="@string/title_activity_transaction_home"
-       		android:parentActivityName="com.so.sofinances.activities.UserHomeActivity" >
+       		android:parentActivityName="com.so.sofinances.ui.UserHomeActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.so.sofinances.UserHomeActivity" />
         </activity>
         <activity
-            android:name="com.so.sofinances.activities.ReportViewActivity"
+            android:name="com.so.sofinances.ui.ReportViewActivity"
             android:label="@string/title_activity_report_view" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.so.sofinances.UserHomeActivity" />
         </activity>
         <activity
-            android:name="com.so.sofinances.activities.DatePickingActivity"
+            android:name="com.so.sofinances.ui.DatePickingActivity"
             android:label="@string/title_activity_date_picking" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

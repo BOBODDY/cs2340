@@ -1,4 +1,4 @@
-package com.so.sofinances.activities;
+package com.so.sofinances.ui;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.so.sofinances.R;
-import com.so.sofinances.handler.UserHandler;
+import com.so.sofinances.controllers.UserHandler;
 
 /**Activity for displaying the fields associated with adding a new account. 
  * Then passes off info to UserHandler to try and add the account

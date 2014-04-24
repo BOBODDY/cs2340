@@ -1,9 +1,9 @@
-package com.so.sofinances.activities;
+package com.so.sofinances.ui;
 
 import com.so.sofinances.R;
+import com.so.sofinances.controllers.DBHandler;
+import com.so.sofinances.controllers.RegistrationHandler;
 import com.so.sofinances.exceptions.InvalidInputException;
-import com.so.sofinances.handler.DBHandler;
-import com.so.sofinances.handler.RegistrationHandler;
 
 import android.app.Activity;
 import android.content.Intent;

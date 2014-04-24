@@ -1,4 +1,4 @@
-package com.so.sofinances.activities;
+package com.so.sofinances.ui;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -13,7 +13,7 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.Spinner;
 
 import com.so.sofinances.R;
-import com.so.sofinances.handler.AccountHandler;
+import com.so.sofinances.controllers.AccountHandler;
 import com.so.sofinances.model.TimeData;
 import com.so.sofinances.model.Transaction;
 

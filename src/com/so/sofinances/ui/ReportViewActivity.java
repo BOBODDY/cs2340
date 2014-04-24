@@ -1,4 +1,4 @@
-package com.so.sofinances.activities;
+package com.so.sofinances.ui;
 
 import java.util.HashMap;
 import java.util.Map;

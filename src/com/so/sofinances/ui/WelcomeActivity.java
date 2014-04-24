@@ -1,4 +1,4 @@
-package com.so.sofinances.activities;
+package com.so.sofinances.ui;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,7 +7,7 @@ import android.view.Menu;
 import android.view.View;
 
 import com.so.sofinances.R;
-import com.so.sofinances.handler.DBHandler;
+import com.so.sofinances.controllers.DBHandler;
 
 /** displays a login and register button.
  * @author kodyPC
