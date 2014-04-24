@@ -184,4 +184,10 @@ public class User {
 	public Account getAccountAt(int position) {
 		return accounts.get(position);
 	}
+
+	public void adjustAmounts(double exchangeRate) {
+		for (Account a : accounts) {
+			a.adjustAmounts(exchangeRate);
+		}
+	}
 }

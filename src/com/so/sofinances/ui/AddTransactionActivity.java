@@ -11,11 +11,13 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.so.sofinances.R;
 import com.so.sofinances.controllers.AccountHandler;
 import com.so.sofinances.model.TimeData;
 import com.so.sofinances.model.Transaction;
+import com.so.sofinances.utilities.CurrencyFormat;
 
 /**
  * UI class for adding new transaction on the current account. Contains fields
@@ -51,11 +53,17 @@ public class AddTransactionActivity extends Activity {
 	 * used for picking the transaction time.
 	 */
     private DatePicker cal;
+    
+    private TextView currencyLabel;
 
     @Override
     protected void onCreate(Bundle savedState) {
         super.onCreate(savedState);
         setContentView(R.layout.activity_add_transaction);
+        
+        currencyLabel = (TextView) findViewById(R.id.currency_label);
+        
+        currencyLabel.setText(CurrencyFormat.currencySymbol);
 
         cal = (DatePicker) findViewById(R.id.datePicker1);
 

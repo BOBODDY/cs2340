@@ -1,16 +1,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_change_currency"
         android:orderInCategory="100"
         android:title="@string/action_change_currency">
         <menu>
             <item android:id="@+id/us_dollars" android:title="@string/us_dollars" android:orderInCategory="99"/>
-            <item android:id="@+id/gbp" android:title="@string/gbp"/>
+            <item android:id="@+id/gbp" android:title="@string/gbp" android:orderInCategory="100"/>
+            <item android:id="@+id/euro" android:title="@string/euro"/>
         </menu>
     </item>
     <item android:id="@+id/action_report" android:title="Create Report" android:icon="@drawable/ic_action_report" android:showAsAction="ifRoom"></item>
     <item android:id="@+id/action_add_account" android:title="Add Account" android:icon="@drawable/ic_action_new" android:showAsAction="always"></item>
-    <item android:id="@+id/logout" android:title="Logout" android:showAsAction="never" android:orderInCategory="99"></item>
+    <item android:id="@+id/logout" android:title="Logout" android:showAsAction="never" android:orderInCategory="101"></item>
 
 </menu>

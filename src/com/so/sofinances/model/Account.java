@@ -33,7 +33,7 @@ public class Account implements Listable {
      */
     private double balance;
     
-    private final double INITIAL_BALANCE;
+    private double initialBalance;
     /**
      * account's monthly interest rate.
      */
@@ -53,7 +53,7 @@ public class Account implements Listable {
     public Account(String fullName, String displayName, double balance,
             double interestRate) {
     	transactions = new ArrayList<Transaction>();
-    	this.INITIAL_BALANCE = balance;
+    	this.initialBalance = balance;
         this.fullName = fullName;
         this.displayName = displayName;
         this.balance = balance;
@@ -231,5 +231,14 @@ public class Account implements Listable {
 	@Override
 	public String getSubTitle() {
 		return CurrencyFormat.format(balance);
+	}
+
+	public void adjustAmounts(double exchangeRate) {
+		this.initialBalance *= exchangeRate;
+		this.balance = initialBalance;
+		for (Transaction t: transactions) {
+			t.setAmount(t.getAmount() * exchangeRate);
+			balance += t.getAmount();
+		}
 	}
 }

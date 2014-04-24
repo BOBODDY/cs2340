@@ -63,5 +63,6 @@
     <string name="us_dollars">USD ($)</string>
     <string name="gbp">GBP (£)</string>
     <string name="currency_symbol">$</string>
+    <string name="euro">Euro (€)</string>
 
 </resources>

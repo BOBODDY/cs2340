@@ -142,6 +142,10 @@ public class UserHomeActivity extends Activity {
     		CurrencyFormat.changeLocale(Locale.US);
     		update();
     		return true;
+    	} else if (itemId == R.id.euro){
+    		CurrencyFormat.changeLocale(Locale.FRANCE);
+    		update();
+    		return true;
     	} else {
     	    result = super.onOptionsItemSelected(item);
     	}

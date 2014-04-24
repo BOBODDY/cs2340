@@ -124,4 +124,8 @@ public class UserHandler {
 	public static Account getAccountAt(int position) {
 		return currentUser.getAccountAt(position);
 	}
+
+	public static void adjustAmounts(double exchangeRate) {
+		currentUser.adjustAmounts(exchangeRate);
+	}
 }
