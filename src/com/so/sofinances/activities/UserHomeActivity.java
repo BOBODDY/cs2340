@@ -187,9 +187,19 @@ public class UserHomeActivity extends Activity {
             TimeData start = (TimeData) data.getSerializableExtra(startDate);
             TimeData end = (TimeData) data.getSerializableExtra(endDate);
             
+            String reportType = (String) data.getStringExtra("reportType");
+            
+            int type = -24312; //some random number
+            if(reportType.equals("Spending Category Report")) {
+            	type = ReportViewActivity.SPENDING_REPORT;
+            } else if(reportType.equals("Cash Flow Report")) {
+            	type = ReportViewActivity.CASH_FLOW_REPORT;
+            }
+            
             Intent intent = new Intent(getApplicationContext(), ReportViewActivity.class);
             intent.putExtra(startDate, start);
             intent.putExtra(endDate, end);
+            intent.putExtra("reportType", type);
             startActivity(intent);
         }
     }

@@ -43,6 +43,11 @@
         <item>Rent</item>
         <item>Income</item>
     </string-array>
+    
+    <string-array name="reports">
+        <item>Spending Category Report</item>
+        <item>Cash Flow Report</item>
+    </string-array>
 
     <string name="title_activity_date_picking">Date Picking</string>
     <string name="button_continue">Continue</string>

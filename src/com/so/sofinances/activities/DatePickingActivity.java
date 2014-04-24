@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.Spinner;
 
 import com.so.sofinances.R;
 import com.so.sofinances.model.TimeData;
@@ -24,6 +25,10 @@ public class DatePickingActivity extends Activity {
      * the ending date.
      */
     private DatePicker end;
+    /**
+     * the report spinner
+     */
+    private Spinner reportType;
 
     @Override
     protected void onCreate(Bundle savedState) {
@@ -32,6 +37,7 @@ public class DatePickingActivity extends Activity {
 		
     	start = (DatePicker) findViewById(R.id.datePickerStart);
     	end = (DatePicker) findViewById(R.id.datePickerEnd);
+    	reportType = (Spinner) findViewById(R.id.report_type_spinner);
     }
 
     @Override
@@ -57,10 +63,13 @@ public class DatePickingActivity extends Activity {
 		
         TimeData start = new TimeData(startMonth, startDay, startYear);
         TimeData end = new TimeData(endMonth, endDay, endYear);
+        
+        String report = (String) reportType.getSelectedItem(); 
 		
     	Intent result = this.getIntent();
     	result.putExtra("startDate", start);
     	result.putExtra("endDate", end);
+    	result.putExtra("reportType", report);
 		
     	this.setResult(RESULT_OK, result);
     	finish();

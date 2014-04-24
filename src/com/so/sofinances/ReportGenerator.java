@@ -129,6 +129,13 @@ public class ReportGenerator {
         }
         
         double difference = totalDeposit - totalWithdraw;
+        
+        HashMap<String, Double> data = new HashMap<String, Double>();
+        data.put("Flow", difference);
+        data.put("Expenses", totalWithdraw);
+        data.put("Income", totalDeposit);
+        
+        rep.addData(data);
 
         return rep;
     }
