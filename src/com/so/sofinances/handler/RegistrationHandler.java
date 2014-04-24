@@ -1,6 +1,7 @@
 package com.so.sofinances.handler;
 
 import com.db4o.ObjectSet;
+import com.so.sofinances.exceptions.InvalidInputException;
 import com.so.sofinances.model.User;
 
 /** handles registration of new users.
@@ -8,7 +9,7 @@ import com.so.sofinances.model.User;
  *
  */
 public class RegistrationHandler {
-    
+	
 	/**
 	 * Creates a User Object that contains all of the parameters given.
 	 * A new User Object is created with the following parameters. It is then checked in the database if
@@ -18,21 +19,25 @@ public class RegistrationHandler {
 	 * @param password The Password of the User
 	 * @return True if the User is created and stored in the database; otherwise, it returns False
 	 */
-    public static boolean createUser(String fullName, String userName, String password) {
+    public static boolean createUser(String fullName, String userName, String password) throws InvalidInputException {
         if (isValidFullName(fullName) && isValidUserName(userName) && isValidPassword(password)) {
             User temp = new User();
             temp.setUserName(userName);
-            if (DBHandler.db() == null) return false;
+            if (DBHandler.db() == null) {
+            	throw new InvalidInputException("Database Error: Contact Support");
+            }
             ObjectSet<Object> results = DBHandler.db().queryByExample(temp);
             if (results.hasNext()) {
-                return false;
+            	throw new InvalidInputException("Username taken");
             } else {
                 DBHandler.db().store(new User(fullName, userName, password));
                 DBHandler.db().commit();
                 return true;
             }
+        } else if (!isValidPassword(password)) {
+            throw new InvalidInputException("Password must begin with a letter or number");
         } else {
-            return false;
+        	throw new InvalidInputException("Name/Username must begin with a letter or number");
         }
         
     }

@@ -21,36 +21,19 @@ import android.widget.Toast;
 import com.so.sofinances.R;
 import com.so.sofinances.SwipeDetector;
 import com.so.sofinances.SwipeDetector.Action;
-import com.so.sofinances.SwipeDismissListViewTouchListener;
 import com.so.sofinances.handler.AccountHandler;
 import com.so.sofinances.handler.DBHandler;
 import com.so.sofinances.model.TimeData;
 import com.so.sofinances.model.Transaction;
+import com.so.sofinances.utilities.SwipeDismissListViewTouchListener;
+import com.so.sofinances.utilities.SwipeDismissListViewTouchListener.DismissCallbacks;
 
 
-/** Home activity which lists accounts.
+/** 
+ * Home activity which lists an Accounts Transactions
  * @author kodyPC
- * 
- * 
- *
  */
 public class AccountHomeActivity extends Activity {
-    /**
-     * first key for mapping.
-     */
-    private static final String TEXT1 = "text1";
-    /**
-     * second key for mapping.
-     */
-    private static final String TEXT2 = "text2";
-    /**
-     * mapping for first to second keys.
-     */
-    private final String[] fromMapKey = new String[] {TEXT1, TEXT2};
-    /**
-     * array of layout IDs.
-     */
-    private final int[] toLayoutId = new int[] {android.R.id.text1, android.R.id.text2};
     /**
      * listview for transaction history.
      */
@@ -59,13 +42,14 @@ public class AccountHomeActivity extends Activity {
      * textview for balace.
      */
     private TextView balance;
+    
+    private String balanceStr;
     /**
      * textview for instructions.
      */
     private TextView instruct;
     
     private SimpleAdapter transAdapter;
-    private List<Map<String, String>> transTimeList;
 
     
     @Override
@@ -73,89 +57,29 @@ public class AccountHomeActivity extends Activity {
         super.onCreate(savedState);
         setContentView(R.layout.activity_transaction_home);
         
-        balance = (TextView) findViewById(R.id.transactionBalance); 
-        balance.setText("Balance: " + AccountHandler.getBalanceString());
+        balance = (TextView) findViewById(R.id.transactionBalance);
         history = (ListView) findViewById(R.id.transactionHistory);
         instruct = (TextView) findViewById(R.id.account_home_instruct);
         
         SwipeDismissListViewTouchListener touchListener =
         		new SwipeDismissListViewTouchListener(
         				history,
-        				new SwipeDismissListViewTouchListener.DismissCallbacks() {
-        					public void onDismiss(ListView listView, int[] reverseSortedPositions) {
-        						String transactionString = null;
-        						for (int position : reverseSortedPositions) {
-        							Map<String, String> tMap = transTimeList.get(position);
-        							transactionString = tMap.get(TEXT1);
-        							transTimeList.remove(tMap);
-        						}
-        						transAdapter.notifyDataSetChanged();
-        						if (transactionString != null && transactionString != "") {
-        							System.out.println(transactionString);
-        							AccountHandler.removeTransactByString(transactionString);
-        							balance.setText("Balance: " + AccountHandler.getBalanceString());
-        							if (!AccountHandler.hasTransactions()) {
-        								instruct.setText("Click \"+\" to add transaction");
-        								instruct.setVisibility(0);
-        							}
-        						}
-        					}
-        					public boolean canDismiss(int position) {
-        						return true;
-        					}
-        				});
+        				new TransactionDismissCallback());
         history.setOnTouchListener(touchListener);
         history.setOnScrollListener(touchListener.makeScrollListener());
 
-        OnItemClickListener listener = new OnItemClickListener() {
-        	@Override
-            public void onItemClick(AdapterView<?> arg0, View arg1, int position,
-                                    long arg3) {
-//                if (touchListener.swipeDetected() && touchListener.getAction() == Action.RL) {
-//                    Toast.makeText(getApplicationContext(), "swiped", Toast.LENGTH_SHORT).show();
-//                }
-            }
-        };
-        history.setOnItemClickListener(listener);
-        
-        List<Transaction> transacts = AccountHandler.getTransactions();
-        if (transacts != null) {
-            List<String> transList = new ArrayList<String>(transacts.size());
-            transTimeList = new ArrayList<Map<String, String>>(transacts.size());
-            
-            if (transacts.isEmpty()) {
-            	instruct.setVisibility(0);
-                instruct.setText("Click \"+\" to add transaction");
-            } else {
-                instruct.setVisibility(8);
-                Collections.sort(transacts);
-                
-                String balanceStr = AccountHandler.getBalanceString();
-             
-                balance.setText("Balance: " + balanceStr);
-                for (int i = 0; i < transacts.size(); i++) {
-                    Transaction transact = transacts.get(i);
-                    if (transact != null) {
-                        transList.add(transact.toString());
-                        Map<String, String> transAndTime = new HashMap<String, String>();
-                        transAndTime.put(TEXT1, transList.get(i));
-                        TimeData timeData = transact.getTimeOfTransaction();
-                        if (timeData == null) {
-                            transAndTime.put(TEXT2, "");
-                        } else {
-                            transAndTime.put(TEXT2, timeData.toString());
-                        }
-                        transTimeList.add(transAndTime);
-                    }
-                }
-            }
-           transAdapter = new SimpleAdapter(this,
-                    transTimeList,
-                    android.R.layout.simple_list_item_2, 
-                    fromMapKey, toLayoutId);
-            history.setAdapter(transAdapter);
+        if (!AccountHandler.hasTransactions()) {
+        	instruct.setText("Click \"+\" to add transaction");
+        	instruct.setVisibility(0);
+        } else {
+        	instruct.setVisibility(8);
         }
+        balanceStr = AccountHandler.getBalanceString();
+        balance.setText("Balance: " + balanceStr);
         
+        transAdapter = AccountHandler.buildList(this);
+        history.setAdapter(transAdapter);
+
     }
 
     @Override
@@ -174,6 +98,10 @@ public class AccountHomeActivity extends Activity {
     	    Intent intent = new Intent(getApplicationContext(), AddTransactionActivity.class);
             startActivity(intent);
             return true;
+    	} else if (itemId == R.id.sort_by_date) {
+    		transAdapter = AccountHandler.sortByDate(this);
+    		update();
+    		return true;
     	} else {
     	    return super.onOptionsItemSelected(item);
     	}
@@ -184,5 +112,29 @@ public class AccountHomeActivity extends Activity {
         super.onPause();
         //System.out.println("DB Updated");
         DBHandler.update();
+    }
+    
+	private void update() {
+		//transAdapter.notifyDataSetChanged();
+		history.setAdapter(transAdapter);
+		balance.setText("Balance: " + AccountHandler.getBalanceString());
+		if (!AccountHandler.hasTransactions()) {
+			instruct.setText("Click \"+\" to add transaction");
+			instruct.setVisibility(0);
+		}
+	}
+    
+    private class TransactionDismissCallback implements DismissCallbacks {
+    	public void onDismiss(ListView listView, int[] reverseSortedPositions) {
+    		for (int position : reverseSortedPositions) {
+    			System.out.println(position);
+    			AccountHandler.removeTransactionByIndex(position);
+    			transAdapter = AccountHandler.buildList(AccountHomeActivity.this);
+    		}
+    		update();
+    	}
+    	public boolean canDismiss(int position) {
+    		return true;
+    	}
     }
 }

@@ -1,12 +1,16 @@
 package com.so.sofinances.model;
 
+import java.util.Map;
+
+import com.so.sofinances.utilities.AdapterBuilder;
+
 /**
  * Represents a financial transaction (withdrawal or deposit) made on an account.
  *
  * @author  Joseph Rossi
  * @version 1.0 4/3/2014
  */
-public class Transaction implements Comparable<Transaction> {
+public class Transaction implements Comparable<Transaction>, Listable {
 
     /**
      * The day, month, and year the transaction occurred.
@@ -138,5 +142,15 @@ public class Transaction implements Comparable<Transaction> {
     
     public boolean equalsByString(String text) {
     	return this.toString().equals(text);
+    }
+    
+    @Override
+    public String getMainTitle() {
+    	return this.toString();
+    }
+    
+    @Override
+    public String getSubTitle() {
+    	return timeOfTransaction.toString();
     }
 }

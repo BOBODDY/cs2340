@@ -1,4 +1,4 @@
-package com.so.sofinances;
+package com.so.sofinances.utilities;
 
 /*
  * Copyright 2013 Google Inc.

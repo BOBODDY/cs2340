@@ -2,6 +2,9 @@ package com.so.sofinances.handler;
 
 import java.util.List;
 
+import android.content.Context;
+import android.widget.SimpleAdapter;
+
 import com.so.sofinances.model.Account;
 import com.so.sofinances.model.Transaction;
 
@@ -133,11 +136,19 @@ public class AccountHandler {
         return currentAccount.addTransaction(transact);
     }
     
-    public static boolean removeTransactByString(String text) {
-    	return currentAccount.removeTransactByString(text);
-    }
-    
     public static boolean hasTransactions() {
     	return currentAccount.hasTransactions();
+    }
+    
+    public static SimpleAdapter buildList(Context c) {
+    	return currentAccount.buildTransactionList(c);
+    }
+    
+    public static void removeTransactionByIndex(int index) {
+    	currentAccount.removeTransactionByIndex(index);
+    }
+    
+    public static SimpleAdapter sortByDate(Context c) {
+    	return currentAccount.sortTransByDate(c);
     }
 }

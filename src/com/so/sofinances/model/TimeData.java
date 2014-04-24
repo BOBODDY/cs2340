@@ -50,10 +50,8 @@ public class TimeData implements Comparable<TimeData>, Serializable {
     @Override
     public int compareTo(TimeData time) {
     	if(time == null) {
-    		
+    		return 1;
     	}
-
-        // This implementation looks much cleaner. -Joe
         int yearDiff = this.year - time.year;
         int monthDiff = this.month - time.month;
         int dayDiff = this.day - time.day;
