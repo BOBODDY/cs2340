@@ -64,5 +64,6 @@
     <string name="gbp">GBP (£)</string>
     <string name="currency_symbol">$</string>
     <string name="euro">Euro (€)</string>
+    <string name="title_activity_welcome">Welcome</string>
 
 </resources>

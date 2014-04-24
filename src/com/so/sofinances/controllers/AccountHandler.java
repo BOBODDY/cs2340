@@ -7,7 +7,6 @@ import android.widget.SimpleAdapter;
 
 import com.so.sofinances.exceptions.AccountNotFoundException;
 import com.so.sofinances.model.Account;
-import com.so.sofinances.model.Listable;
 import com.so.sofinances.model.Transaction;
 
 /**

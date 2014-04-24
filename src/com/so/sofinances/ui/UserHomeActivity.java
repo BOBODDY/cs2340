@@ -1,20 +1,6 @@
 package com.so.sofinances.ui;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
-import java.util.Map;
-
-import com.so.sofinances.R;
-import com.so.sofinances.controllers.AccountHandler;
-import com.so.sofinances.controllers.DBHandler;
-import com.so.sofinances.controllers.UserHandler;
-import com.so.sofinances.exceptions.AccountNotFoundException;
-import com.so.sofinances.model.Account;
-import com.so.sofinances.model.Listable;
-import com.so.sofinances.model.TimeData;
-import com.so.sofinances.utilities.CurrencyFormat;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -30,6 +16,14 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.so.sofinances.R;
+import com.so.sofinances.controllers.AccountHandler;
+import com.so.sofinances.controllers.DBHandler;
+import com.so.sofinances.controllers.UserHandler;
+import com.so.sofinances.exceptions.AccountNotFoundException;
+import com.so.sofinances.model.TimeData;
+import com.so.sofinances.utilities.CurrencyFormat;
 
 /** The user home which lists all of the accounts and allows for report generation and account creation.
  * @author kodyPC

@@ -7,7 +7,6 @@ import java.util.Currency;
 import java.util.List;
 import java.util.Locale;
 
-import com.so.sofinances.controllers.AccountHandler;
 import com.so.sofinances.controllers.UserHandler;
 
 /**

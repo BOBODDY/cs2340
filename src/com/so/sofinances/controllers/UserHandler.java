@@ -8,7 +8,6 @@ import android.widget.SimpleAdapter;
 
 import com.db4o.ObjectSet;
 import com.so.sofinances.model.Account;
-import com.so.sofinances.model.Listable;
 import com.so.sofinances.model.User;
 
 /** Facilitates interaction between the application and users.
