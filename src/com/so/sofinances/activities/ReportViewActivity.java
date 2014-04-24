@@ -31,6 +31,7 @@ public class ReportViewActivity extends Activity {
 	
 	public static final int SPENDING_REPORT = 12;
 	public static final int CASH_FLOW_REPORT = 32;
+	public static final int INCOME_REPORT = 61;
     
 	/**
 	 * textview used to display the report.
@@ -161,6 +162,8 @@ public class ReportViewActivity extends Activity {
             	return ReportGenerator.spendingCategoryReport(start, end);
         	} else if(param == CASH_FLOW_REPORT) {
         		return ReportGenerator.cashFlowReport(start, end);
+        	}else if(param == INCOME_REPORT) {
+        		return ReportGenerator.incomeCategoryReport(start, end);
         	} else {
         		return null;
         	}

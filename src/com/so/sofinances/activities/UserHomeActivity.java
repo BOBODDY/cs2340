@@ -194,6 +194,8 @@ public class UserHomeActivity extends Activity {
             	type = ReportViewActivity.SPENDING_REPORT;
             } else if(reportType.equals("Cash Flow Report")) {
             	type = ReportViewActivity.CASH_FLOW_REPORT;
+            } else if(reportType.equals("Income Category Report")) {
+            	type = ReportViewActivity.INCOME_REPORT;
             }
             
             Intent intent = new Intent(getApplicationContext(), ReportViewActivity.class);

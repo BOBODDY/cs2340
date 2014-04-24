@@ -47,6 +47,7 @@
     <string-array name="reports">
         <item>Spending Category Report</item>
         <item>Cash Flow Report</item>
+        <item>Income Category Report</item>
     </string-array>
 
     <string name="title_activity_date_picking">Date Picking</string>
