@@ -4,6 +4,7 @@ import com.db4o.ObjectSet;
 import com.so.sofinances.exceptions.InvalidInputException;
 import com.so.sofinances.exceptions.PasswordMismatchException;
 import com.so.sofinances.model.User;
+import org.jasypt.util.text.BasicTextEncryptor;
 
 /** Handles logins.
  * @author kodyPC
@@ -22,11 +23,13 @@ public class LoginHandler {
 	 */
     public static User checkLogin(String uName, String password) throws InvalidInputException {
         User example = new User();
+        BasicTextEncryptor encryptor = new BasicTextEncryptor();
+        encryptor.setPassword("ENCRYPT");
         example.setUserName(uName);
-        example.setPassword(password);
         ObjectSet<Object> result = DBHandler.db().queryByExample(example);
+        User u = (User)result.next();
         ObjectSet<Object> resultNoPW = DBHandler.db().queryByExample(new User(uName));
-        if (result.hasNext()) {
+        if (encryptor.decrypt(u.getPassword()).equals(password)) {
             return example;
         } else if (resultNoPW.hasNext()){
             throw new PasswordMismatchException();
