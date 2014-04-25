@@ -20,7 +20,7 @@ public class RegistrationHandler {
 	 * @param password The Password of the User
 	 * @return True if the User is created and stored in the database; otherwise, it returns False
 	 */
-    public static boolean createUser(String fullName, String userName, String password) throws InvalidInputException {
+    public static boolean createUser(String fullName, String userName, String password, String passHint) throws InvalidInputException {
         if (isValidFullName(fullName) && isValidUserName(userName) && isValidPassword(password)) {
             User temp = new User();
             BasicTextEncryptor encryptor = new BasicTextEncryptor();
@@ -34,7 +34,9 @@ public class RegistrationHandler {
             	throw new InvalidInputException("Username taken");
             } else {
             	String p = encryptor.encrypt(password);
-                DBHandler.db().store(new User(fullName, userName, p));
+            	System.out.println(passHint);
+            	User tempUser = new User(fullName, userName, p, passHint);
+                DBHandler.db().store(tempUser);
                 DBHandler.db().commit();
                 return true;
             }

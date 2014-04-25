@@ -29,6 +29,8 @@ public class User {
      * Represents user's password.
      */
     private String password;
+    
+    private String passwordHint;
 
     /**
      * A List of financial accounts associated with this User.
@@ -41,7 +43,7 @@ public class User {
      * Empty Constructor.
      */
     public User() {
-    	this(null, null, null);
+    	this(null, null, null, null);
     }
 
     /**
@@ -51,10 +53,11 @@ public class User {
      * @param userName    the unique username
      * @param password    the password
      */
-    public User(String fullName, String userName, String password) {
+    public User(String fullName, String userName, String password, String passWordHint) {
         this.fullName = fullName;
         this.userName = userName;
         this.password = password;
+        this.passwordHint = passwordHint;
         
         this.accounts = new ArrayList<Account>();
         localeIndex = CurrencyFormat.US;
@@ -66,7 +69,7 @@ public class User {
      * @param uName the User's username
      */
     public User(String uName) {
-        this(null, uName, null);
+        this(null, uName, null, null);
     }
 
     /**
@@ -204,5 +207,9 @@ public class User {
 
 	public Locale getCurrentLocale() {
 		return CurrencyFormat.L.get(localeIndex);
+	}
+	
+	public String getPasswordHint() {
+		return passwordHint;
 	}
 }

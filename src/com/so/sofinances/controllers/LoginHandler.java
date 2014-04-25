@@ -32,7 +32,14 @@ public class LoginHandler {
         if (u != null && encryptor.decrypt(u.getPassword()).equals(password)) {
             return example;
         } else if (resultNoPW.hasNext()){
-            throw new PasswordMismatchException();
+        	User temp = (User) resultNoPW.next();
+        	String hint = temp.getPasswordHint();
+        	System.out.println(hint);
+        	if (hint == null || hint.equals("")) {
+        		throw new PasswordMismatchException();
+        	} else {
+        		throw new PasswordMismatchException(hint);
+        	}
         } else {
         	throw new InvalidInputException("Username doesn't exist");
         }

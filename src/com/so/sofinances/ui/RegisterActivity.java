@@ -39,6 +39,8 @@ public class RegisterActivity extends Activity {
      */
     private EditText password;
     
+    private EditText passwordHint;
+    
     private EditText confirmPassword;
     
     private View registerButton;
@@ -59,6 +61,8 @@ public class RegisterActivity extends Activity {
         
         password = (EditText) findViewById(R.id.password);
         password.addTextChangedListener(passConfirm);
+        
+        passwordHint = (EditText) findViewById(R.id.pass_hint);
         
         confirmPassword = (EditText) findViewById(R.id.confirm_password);
 
@@ -99,9 +103,10 @@ public class RegisterActivity extends Activity {
         String fName = fullName.getText().toString();
         String uName = username.getText().toString();
         String pass = password.getText().toString();
+        String passHint = passwordHint.getText().toString();
         
         try {
-        	RegistrationHandler.createUser(fName, uName, pass);
+        	RegistrationHandler.createUser(fName, uName, pass, passHint);
             startActivity(new Intent(this, LoginActivity.class));
             finish();
         } catch (InvalidInputException e) {

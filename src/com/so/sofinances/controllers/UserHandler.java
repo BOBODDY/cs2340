@@ -27,6 +27,8 @@ public class UserHandler {
      */
     private static User currentUser;
     
+    private static User tempUser;
+    
     /**
      * @return the current user
      */
@@ -55,6 +57,10 @@ public class UserHandler {
         } else {
             Log.d("com.so.sofinances", "no result found when searching for user");
         }
+    }
+    
+    public static void setTempUser(User u) {
+    	tempUser = u;
     }
     
     /** Relays account information to the User method addAccount().
@@ -132,5 +138,9 @@ public class UserHandler {
 	
 	public static Locale getCurrentLocale() {
 		return currentUser.getCurrentLocale();
+	}
+	
+	public static String getPasswordHint() {
+		return currentUser.getPasswordHint();
 	}
 }

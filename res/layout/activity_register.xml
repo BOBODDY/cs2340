@@ -21,18 +21,6 @@
         android:inputType="textPassword">
     </EditText>
 
-    <Button
-        android:id="@+id/submit_register_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/password"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/password"
-        android:layout_marginTop="35dp"
-        android:enabled="false"
-        android:onClick="onRegisterClick"
-        android:text="@string/button_register" />
-
     <EditText
         android:id="@+id/full_name"
         android:layout_width="wrap_content"
@@ -70,5 +58,27 @@
         android:layout_below="@+id/full_name"
         android:ems="10"
         android:hint="@string/username" />
+
+    <EditText
+        android:id="@+id/pass_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/confirm_password"
+        android:layout_alignRight="@+id/confirm_password"
+        android:layout_below="@+id/confirm_password"
+        android:ems="10"
+        android:singleLine="true"
+        android:hint="@string/pass_hint" />
+
+    <Button
+        android:id="@+id/submit_register_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/password"
+        android:layout_alignRight="@+id/password"
+        android:layout_below="@+id/pass_hint"
+        android:enabled="false"
+        android:onClick="onRegisterClick"
+        android:text="@string/button_register" />
 
 </RelativeLayout>
