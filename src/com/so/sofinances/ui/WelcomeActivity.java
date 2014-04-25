@@ -6,7 +6,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.RelativeLayout;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
 import com.so.sofinances.R;
 import com.so.sofinances.controllers.DBHandler;
 
@@ -15,12 +19,35 @@ import com.so.sofinances.controllers.DBHandler;
  *
  */
 public class WelcomeActivity extends Activity {
+	
+	private AdView adView;
 
     @Override
     protected void onCreate(Bundle savedState) {
         super.onCreate(savedState);
         setContentView(R.layout.activity_welcome);
         DBHandler.setPath(this.getDir("data", 0) + "");
+        
+     // Create an ad.
+        adView = new AdView(this);
+        adView.setAdSize(AdSize.BANNER);
+        adView.setAdUnitId("ca-app-pub-9186340745206445/5320666033");
+        
+
+        // Add the AdView to the view hierarchy. The view will have no size
+        // until the ad is loaded.
+        RelativeLayout layout = (RelativeLayout) findViewById(R.id.welcome_layout);
+        layout.addView(adView);
+
+        // Create an ad request. Check logcat output for the hashed device ID to
+        // get test ads on a physical device.
+        AdRequest adRequest = new AdRequest.Builder()
+            .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+            .addTestDevice("INSERT_YOUR_HASHED_DEVICE_ID_HERE")
+            .build();
+
+        // Start loading the ad in the background.
+        adView.loadAd(adRequest);
         
         /* The DBHandler.delete() was already commented out. The only thing left
          * were 2 print statements. I'll just remove this whole part
