@@ -2,6 +2,7 @@ package com.so.sofinances.ui;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -68,5 +69,10 @@ public class WelcomeActivity extends Activity {
 	 */
     public void registerResponse(View view) {
         startActivity(new Intent(this, RegisterActivity.class));
+    }
+    
+    public void aboutResponse(View view) {
+    	Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/search?q=stratton+oakmont"));
+    	startActivity(browserIntent);
     }
 }

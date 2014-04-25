@@ -24,7 +24,7 @@
         android:inputType="textPassword" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/about"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/login_password"
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/login_password"
         android:layout_alignRight="@+id/login_password"
-        android:layout_below="@+id/button1"
+        android:layout_below="@+id/about"
         android:onClick="onClickLostPassword"
         android:text="@string/email_lost_password" />
 

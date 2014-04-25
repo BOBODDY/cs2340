@@ -63,7 +63,7 @@
             android:entries="@array/reports" />
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/about"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
