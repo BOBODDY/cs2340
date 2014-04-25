@@ -1,5 +1,6 @@
 package com.so.sofinances.ui;
 
+
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -109,6 +110,7 @@ public class LoginActivity extends Activity {
         } else {
         	System.out.println("account found");
         	sendMail(u.getEmail(), "Stratton Oakmont Finances Lost Password", "The password for account " + u.getUserName() + " is " + encryptor.decrypt(u.getPassword()));
+
         }
     }
     
