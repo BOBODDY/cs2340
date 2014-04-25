@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/password"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/password"
+        android:layout_below="@+id/email"
         android:layout_marginTop="35dp"
         android:enabled="false"
         android:onClick="onRegisterClick"
@@ -70,5 +70,17 @@
         android:layout_below="@+id/full_name"
         android:ems="10"
         android:hint="@string/username" />
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/confirm_password"
+        android:layout_marginTop="35dp"
+        android:ems="10"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress" />
 
 </RelativeLayout>

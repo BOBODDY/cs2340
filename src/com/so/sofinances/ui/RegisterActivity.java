@@ -41,6 +41,8 @@ public class RegisterActivity extends Activity {
     
     private EditText confirmPassword;
     
+    private EditText email;
+    
     private View registerButton;
 
     /* (non-Javadoc) creates variable representations of the textfields
@@ -63,6 +65,8 @@ public class RegisterActivity extends Activity {
         confirmPassword = (EditText) findViewById(R.id.confirm_password);
 
         confirmPassword.addTextChangedListener(passConfirm);
+        
+        email = (EditText) findViewById(R.id.email);
         
         registerButton = findViewById(R.id.submit_register_button);
     }
@@ -99,9 +103,10 @@ public class RegisterActivity extends Activity {
         String fName = fullName.getText().toString();
         String uName = username.getText().toString();
         String pass = password.getText().toString();
+        String eM = email.getText().toString();
         
         try {
-        	RegistrationHandler.createUser(fName, uName, pass);
+        	RegistrationHandler.createUser(fName, uName, pass, eM);
             startActivity(new Intent(this, LoginActivity.class));
             finish();
         } catch (InvalidInputException e) {

@@ -65,5 +65,7 @@
     <string name="currency_symbol">$</string>
     <string name="euro">Euro (€)</string>
     <string name="title_activity_welcome">Welcome</string>
+    <string name="email">Email</string>
+    <string name="email_lost_password">Email lost password</string>
 
 </resources>

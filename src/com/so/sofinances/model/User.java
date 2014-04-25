@@ -36,6 +36,8 @@ public class User {
     private List<Account> accounts;
     
     private int localeIndex;
+    
+    private String email;
 
     /**
      * Empty Constructor.
@@ -55,6 +57,16 @@ public class User {
         this.fullName = fullName;
         this.userName = userName;
         this.password = password;
+        
+        this.accounts = new ArrayList<Account>();
+        localeIndex = CurrencyFormat.US;
+    }
+    
+    public User(String fullName, String userName, String password, String email) {
+    	this.fullName = fullName;
+        this.userName = userName;
+        this.password = password;
+        this.email = email;
         
         this.accounts = new ArrayList<Account>();
         localeIndex = CurrencyFormat.US;
@@ -204,5 +216,9 @@ public class User {
 
 	public Locale getCurrentLocale() {
 		return CurrencyFormat.L.get(localeIndex);
+	}
+	
+	public String getEmail() {
+		return email;
 	}
 }

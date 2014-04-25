@@ -20,8 +20,8 @@ public class RegistrationHandler {
 	 * @param password The Password of the User
 	 * @return True if the User is created and stored in the database; otherwise, it returns False
 	 */
-    public static boolean createUser(String fullName, String userName, String password) throws InvalidInputException {
-        if (isValidFullName(fullName) && isValidUserName(userName) && isValidPassword(password)) {
+    public static boolean createUser(String fullName, String userName, String password, String email) throws InvalidInputException {
+        if (isValidFullName(fullName) && isValidUserName(userName) && isValidPassword(password) && isValidEmail(email)) {
             User temp = new User();
             BasicTextEncryptor encryptor = new BasicTextEncryptor();
             encryptor.setPassword("ENCRYPT");
@@ -34,16 +34,17 @@ public class RegistrationHandler {
             	throw new InvalidInputException("Username taken");
             } else {
             	String p = encryptor.encrypt(password);
-                DBHandler.db().store(new User(fullName, userName, p));
+                DBHandler.db().store(new User(fullName, userName, p, email));
                 DBHandler.db().commit();
                 return true;
             }
         } else if (!isValidPassword(password)) {
             throw new InvalidInputException("Password must begin with a letter or number and be longer than one character");
+        } else if (!isValidEmail(email)){
+        	throw new InvalidInputException("Invalid email");
         } else {
         	throw new InvalidInputException("Name/Username must begin with a letter or number and be longer than one character");
         }
-        
     }
     
 	/**
@@ -75,5 +76,11 @@ public class RegistrationHandler {
     private static boolean isValidPassword(String str){
     	if (str == null) return false;
     	return str.matches("[A-Za-z0-9].*") && (str.length() >= 2);
+    }
+    
+    private static boolean isValidEmail(String str) {
+    	if (str == null) return false;
+    	return str.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+    			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
     }
 }

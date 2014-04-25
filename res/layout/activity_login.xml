@@ -32,5 +32,15 @@
         android:layout_below="@+id/login_password"
         android:onClick="onClickLogin"
         android:text="@string/button_login" />
+    
+    <Button
+        android:id="@+id/email_lost_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/login_password"
+        android:layout_alignRight="@+id/login_password"
+        android:layout_below="@+id/button1"
+        android:onClick="onClickLostPassword"
+        android:text="@string/email_lost_password" />
 
 </RelativeLayout>
