@@ -1,5 +1,7 @@
 package com.so.sofinances.controllers;
 
+import android.widget.Toast;
+
 import com.db4o.ObjectSet;
 import com.so.sofinances.exceptions.InvalidInputException;
 import com.so.sofinances.exceptions.PasswordMismatchException;
@@ -28,13 +30,35 @@ public class LoginHandler {
         example.setUserName(uName);
         ObjectSet<Object> result = DBHandler.db().queryByExample(example);
         User u = (result.hasNext()) ? (User) result.next() : null;
-        ObjectSet<Object> resultNoPW = DBHandler.db().queryByExample(new User(uName));
         if (u != null && encryptor.decrypt(u.getPassword()).equals(password)) {
             return example;
-        } else if (resultNoPW.hasNext()){
-            throw new PasswordMismatchException();
+        } else if (u != null){
+        	String hint = u.getHint();
+        	if (hint != null && !hint.equals("")) {
+        		System.out.println(hint);
+        		throw new PasswordMismatchException(hint);
+        	} else {
+        		throw new PasswordMismatchException();
+        	}
         } else {
         	throw new InvalidInputException("Username doesn't exist");
+        }
+    }
+    
+    public static String[] getLostPassword(String uName) throws InvalidInputException {
+    	String[] retStr = new String[2];
+    	BasicTextEncryptor encryptor = new BasicTextEncryptor();
+        encryptor.setPassword("ENCRYPT");
+        User example = new User();
+        example.setUserName(uName);
+        ObjectSet<Object> result = DBHandler.db().queryByExample(example);
+        User u = (result.hasNext()) ? (User) result.next() : null;
+        if (u == null){
+        	throw new InvalidInputException("No such user");
+        } else {
+        	retStr[0] = u.getEmail();
+        	retStr[1] = encryptor.decrypt(u.getPassword());
+        	return retStr;
         }
     }
 }

@@ -42,31 +42,31 @@ public class LoginActivity extends Activity {
 	/**
 	 * username entry.
 	 */
-    private EditText unText;
+	private EditText unText;
 	/**
 	 * password entry.
 	 */
-    private EditText pwText;
+	private EditText pwText;
 	/**
 	 * textview used to display messages to the user.
 	 */
-    
-    @Override
-    protected void onCreate(Bundle savedState) {
-        super.onCreate(savedState);
-        setContentView(R.layout.activity_login);
-        unText = (EditText) findViewById(R.id.login_username);
-        pwText = (EditText) findViewById(R.id.login_password);
-        //display = (TextView) findViewById(R.id.invalidLoginTV);
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.login, menu);
-        return true;
-    }
-    
+	@Override
+	protected void onCreate(Bundle savedState) {
+		super.onCreate(savedState);
+		setContentView(R.layout.activity_login);
+		unText = (EditText) findViewById(R.id.login_username);
+		pwText = (EditText) findViewById(R.id.login_password);
+		//display = (TextView) findViewById(R.id.invalidLoginTV);
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.login, menu);
+		return true;
+	}
+
 	/**
 	 * Checks to see if the correct credentials for a User is verified or not.
 	 * If it the User and Password used to login are checked and verified in the 
@@ -76,62 +76,58 @@ public class LoginActivity extends Activity {
 	 * 
 	 * @param view The View of the current window
 	 */
-    public void onClickLogin(View view) {
-        String username = unText.getText().toString();
-        String password = pwText.getText().toString();
-        try {
-        	User test = LoginHandler.checkLogin(username, password);
-            UserHandler.setCurrentUser(test.getUserName().toString());
-            startActivity(new Intent(getApplicationContext(), UserHomeActivity.class));
-            finish();
-        } catch (PasswordMismatchException e) {
-        	Toast t = Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT);
-        	t.show();
-        	//Code to give hint or reset password goes here
-        } catch (InvalidInputException e) {
-        	Toast t = Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT);
-        	t.show();
-        	//Code to link to register activity maybe?
-        }
-        
-    }
-    
-    public void onClickLostPassword(View view) {
-    	BasicTextEncryptor encryptor = new BasicTextEncryptor();
-        encryptor.setPassword("ENCRYPT");
-        User example = new User();
-        String username = unText.getText().toString();
-        example.setUserName(username);
-        ObjectSet<Object> result = DBHandler.db().queryByExample(example);
-        User u = (result.hasNext()) ? (User) result.next() : null;
-        if (u == null){
-        	Toast t = Toast.makeText(getApplicationContext(), "No account with that username", Toast.LENGTH_SHORT);
-        	t.show();
-        } else {
-        	System.out.println("account found");
-        	sendMail(u.getEmail(), "Stratton Oakmont Finances Lost Password", "The password for account " + u.getUserName() + " is " + encryptor.decrypt(u.getPassword()));
+	public void onClickLogin(View view) {
+		String username = unText.getText().toString();
+		String password = pwText.getText().toString();
+		try {
+			User test = LoginHandler.checkLogin(username, password);
+			UserHandler.setCurrentUser(test.getUserName().toString());
+			startActivity(new Intent(getApplicationContext(), UserHomeActivity.class));
+			finish();
+		} catch (PasswordMismatchException e) {
+			Toast t = Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT);
+			t.show();
+		} catch (InvalidInputException e) {
+			Toast t = Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT);
+			t.show();
+		}
 
-        }
-    }
-    
-    private void sendMail(String email, String subject, String body){
-    	Properties props = new Properties();
+	}
+
+	public void onClickLostPassword(View view) {
+		String username = unText.getText().toString();
+		try {
+			String[] emailAndPW = LoginHandler.getLostPassword(username);
+			String email = emailAndPW[0];
+			String pw = emailAndPW[1];
+			System.out.println("account found");
+			sendMail(email, 
+					"Stratton Oakmont Finances Lost Password", 
+					"The password for user " + username + " is ''" + pw + "''");
+		} catch (InvalidInputException e) {
+			Toast t = Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT);
+			t.show();
+		}
+	}
+
+	private void sendMail(String email, String subject, String body){
+		Properties props = new Properties();
 		props.put("mail.smtp.host", "smtp.gmail.com");
 		props.put("mail.smtp.socketFactory.port", "465");
 		props.put("mail.smtp.socketFactory.class",
 				"javax.net.ssl.SSLSocketFactory");
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.port", "465");
- 
+
 		Session session = Session.getDefaultInstance(props,
-			new javax.mail.Authenticator() {
-				protected PasswordAuthentication getPasswordAuthentication() {
-					return new PasswordAuthentication("SOFinances.Lost.PW","cs2340group46");
-				}
-			});
- 
+				new javax.mail.Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication("SOFinances.Lost.PW","cs2340group46");
+			}
+		});
+
 		try {
- 
+
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress("SOFinances.Lost.PW@gmail.com"));
 			message.setRecipients(Message.RecipientType.TO,
@@ -139,41 +135,41 @@ public class LoginActivity extends Activity {
 			message.setSubject(subject);
 			message.setText(body);
 			new SendMailTask().execute(message);
- 
+
 			System.out.println("Done");
- 
+
 		} catch (AddressException e) {
 			e.printStackTrace();
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}
-    }
-   
-    private class SendMailTask extends AsyncTask<Message, Void, Void> {
-        private ProgressDialog progressDialog;
-     
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            progressDialog = ProgressDialog.show(LoginActivity.this, "Please wait", "Sending mail", true, false);
-        }
-     
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            progressDialog.dismiss();
-        }
-     
-        @Override
-        protected Void doInBackground(Message... messages) {
-            try {
-                Transport.send(messages[0]);
-            } catch (MessagingException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-    }
-    
+	}
+
+	private class SendMailTask extends AsyncTask<Message, Void, Void> {
+		private ProgressDialog progressDialog;
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			progressDialog = ProgressDialog.show(LoginActivity.this, "Please wait", "Sending mail", true, false);
+		}
+
+		@Override
+		protected void onPostExecute(Void aVoid) {
+			super.onPostExecute(aVoid);
+			progressDialog.dismiss();
+		}
+
+		@Override
+		protected Void doInBackground(Message... messages) {
+			try {
+				Transport.send(messages[0]);
+			} catch (MessagingException e) {
+				e.printStackTrace();
+			}
+			return null;
+		}
+	}
+
 
 }

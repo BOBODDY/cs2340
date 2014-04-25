@@ -38,6 +38,8 @@ public class User {
     private int localeIndex;
     
     private String email;
+    
+    private String hint;
 
     /**
      * Empty Constructor.
@@ -54,21 +56,21 @@ public class User {
      * @param password    the password
      */
     public User(String fullName, String userName, String password) {
-        this.fullName = fullName;
-        this.userName = userName;
-        this.password = password;
-        
-        this.accounts = new ArrayList<Account>();
-        localeIndex = CurrencyFormat.US;
+        this(fullName, userName, password, null);
     }
     
     public User(String fullName, String userName, String password, String email) {
+    	this(fullName, userName, password, email, null);
+    }
+    
+    public User(String fullName, String userName, String password, String email, String hint) {
     	this.fullName = fullName;
-        this.userName = userName;
-        this.password = password;
-        this.email = email;
-        
-        this.accounts = new ArrayList<Account>();
+    	this.userName = userName;
+    	this.password = password;
+    	this.email = email;
+    	this.hint = (hint != null) ? "Hint: " + hint : null;
+    	
+    	this.accounts = new ArrayList<Account>();
         localeIndex = CurrencyFormat.US;
     }
 
@@ -220,5 +222,12 @@ public class User {
 	
 	public String getEmail() {
 		return email;
+	}
+	
+	public String getHint() {
+		return hint;
+	}
+	public void setHint(String hint) {
+		this.hint = hint;
 	}
 }

@@ -1,86 +1,101 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".RegisterActivity" >
+    android:id="@+id/scrollView1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentTop="true" >
 
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/username"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/username"
-        android:layout_marginTop="41dp"
-        android:ems="10"
-        android:hint="@string/password"
-        android:inputType="textPassword">
-    </EditText>
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context=".RegisterActivity" >
 
-    <Button
-        android:id="@+id/submit_register_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/password"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/email"
-        android:layout_marginTop="35dp"
-        android:enabled="false"
-        android:onClick="onRegisterClick"
-        android:text="@string/button_register" />
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/username"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/username"
+            android:layout_marginTop="41dp"
+            android:ems="10"
+            android:hint="@string/password"
+            android:inputType="textPassword" >
+        </EditText>
 
-    <EditText
-        android:id="@+id/full_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:ems="10"
-        android:hint="@string/full_name"
-        android:inputType="textPersonName" >
+        <Button
+            android:id="@+id/submit_register_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/password"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/email"
+            android:layout_marginTop="35dp"
+            android:enabled="false"
+            android:onClick="onRegisterClick"
+            android:text="@string/button_register" />
 
-        <requestFocus />
+        <EditText
+            android:id="@+id/full_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:ems="10"
+            android:hint="@string/full_name"
+            android:inputType="textPersonName" >
 
-    </EditText>
+            <requestFocus />
+        </EditText>
 
-    <EditText
-        android:id="@+id/confirm_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/submit_register_button"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/password"
-        android:ems="10"
-        android:hint="@string/confirm_password"
-        android:inputType="textPassword" >
+        <EditText
+            android:id="@+id/confirm_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/submit_register_button"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/password"
+            android:ems="10"
+            android:hint="@string/confirm_password"
+            android:inputType="textPassword" >
+        </EditText>
 
-    </EditText>
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/full_name"
+            android:layout_alignRight="@+id/full_name"
+            android:layout_below="@+id/full_name"
+            android:ems="10"
+            android:hint="@string/username" />
 
-    <EditText
-        android:id="@+id/username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/full_name"
-        android:layout_alignRight="@+id/full_name"
-        android:layout_below="@+id/full_name"
-        android:ems="10"
-        android:hint="@string/username" />
+        <EditText
+            android:id="@+id/hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/confirm_password"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/confirm_password"
+            android:ems="10"
+            android:hint="@string/hint" />
 
-    <EditText
-        android:id="@+id/email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/confirm_password"
-        android:layout_marginTop="35dp"
-        android:ems="10"
-        android:hint="@string/email"
-        android:inputType="textEmailAddress" />
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/hint"
+            android:layout_alignRight="@+id/hint"
+            android:layout_below="@+id/hint"
+            android:ems="10"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress" />
+    </RelativeLayout>
 
-</RelativeLayout>
+</ScrollView>
