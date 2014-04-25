@@ -18,19 +18,21 @@ import com.so.sofinances.controllers.UserHandler;
 public class CurrencyFormat {
 
 	public static String currencySymbol;
-	private static Locale currentLocale = Locale.US;
 	
-	public static final double USD_USD = 1;
-	public static final double GBP_USD = 0.6;
-	public static final double EURO_USD = 0.72;
+	private static final double USD_USD = 1;
+	private static final double GBP_USD = 0.6;
+	private static final double EURO_USD = 0.72;
 	
+	private static final List<Double> D = new ArrayList<Double>(Arrays.asList(USD_USD, GBP_USD, EURO_USD));
 	public static final List<Locale> L = new ArrayList<Locale>(Arrays.asList(Locale.US, Locale.UK, Locale.FRANCE));
-	public static final List<Double> D = new ArrayList<Double>(Arrays.asList(1.0, 0.6, 0.72));
+	public static final int US = 0;
+	public static final int GBP = 1;
+	public static final int EU = 2;
 	
     /**
      * number format for US currency.
      */
-    private static NumberFormat fmt = NumberFormat.getCurrencyInstance(Locale.US);
+    private static NumberFormat fmt = NumberFormat.getCurrencyInstance(UserHandler.getCurrentLocale());
 
     /**
      * Converts a decimal amount to a currency String (ie $xx.xx).
@@ -50,10 +52,11 @@ public class CurrencyFormat {
     public static void changeLocale(Locale loc) {
     	fmt = NumberFormat.getCurrencyInstance(loc);
     	Currency c = Currency.getInstance(loc);
+    	Locale currentLocale = UserHandler.getCurrentLocale();
     	double currentRate = D.get(L.indexOf(currentLocale));
     	double newRate = D.get(L.indexOf(loc));
     	double exchangeRate = newRate / currentRate;
-    	UserHandler.adjustAmounts(exchangeRate);
+    	UserHandler.adjustAmounts(exchangeRate, loc);
     	currencySymbol = c.getSymbol();
     	currentLocale = loc;
     }

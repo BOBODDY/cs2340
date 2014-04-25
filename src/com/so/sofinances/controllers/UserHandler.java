@@ -1,6 +1,7 @@
 package com.so.sofinances.controllers;
 
 import java.util.List;
+import java.util.Locale;
 
 import android.content.Context;
 import android.util.Log;
@@ -124,7 +125,12 @@ public class UserHandler {
 		return currentUser.getAccountAt(position);
 	}
 
-	public static void adjustAmounts(double exchangeRate) {
+	public static void adjustAmounts(double exchangeRate, Locale l) {
 		currentUser.adjustAmounts(exchangeRate);
+		currentUser.setLocale(l);
+	}
+	
+	public static Locale getCurrentLocale() {
+		return currentUser.getCurrentLocale();
 	}
 }

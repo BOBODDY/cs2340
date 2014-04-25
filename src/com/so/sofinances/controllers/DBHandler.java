@@ -1,11 +1,14 @@
 package com.so.sofinances.controllers;
 
 import java.io.IOException;
+import java.util.Locale;
 
+import com.db4o.Db4o;
 import com.db4o.Db4oEmbedded;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
 import com.db4o.config.EmbeddedConfiguration;
+import com.db4o.config.TSerializable;
 import com.so.sofinances.model.User;
 
 /**a mostly static class that facilitates access to the database.
@@ -66,7 +69,8 @@ public class DBHandler {
      * @return the configuration for the database
      * @throws IOException thrown if an error occurs
      */
-    private static EmbeddedConfiguration dbConfig() throws IOException {
+    @SuppressWarnings("deprecation")
+	private static EmbeddedConfiguration dbConfig() throws IOException {
         EmbeddedConfiguration config = Db4oEmbedded.newConfiguration();
         config.common().objectClass(User.class).updateDepth(60);
         config.common().activationDepth(7);

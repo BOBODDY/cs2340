@@ -2,11 +2,13 @@ package com.so.sofinances.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import android.content.Context;
 import android.widget.SimpleAdapter;
 
 import com.so.sofinances.utilities.AdapterBuilder;
+import com.so.sofinances.utilities.CurrencyFormat;
 
 /**
  * Represents a login for the application.
@@ -32,11 +34,15 @@ public class User {
      * A List of financial accounts associated with this User.
      */
     private List<Account> accounts;
+    
+    private int localeIndex;
 
     /**
      * Empty Constructor.
      */
-    public User() { }
+    public User() {
+    	this(null, null, null);
+    }
 
     /**
      * Creates a User with given text information and instantiates the acct list.
@@ -51,6 +57,7 @@ public class User {
         this.password = password;
         
         this.accounts = new ArrayList<Account>();
+        localeIndex = CurrencyFormat.US;
     }
 
     /**
@@ -59,7 +66,7 @@ public class User {
      * @param uName the User's username
      */
     public User(String uName) {
-        this.userName = uName;
+        this(null, uName, null);
     }
 
     /**
@@ -189,5 +196,13 @@ public class User {
 		for (Account a : accounts) {
 			a.adjustAmounts(exchangeRate);
 		}
+	}
+
+	public void setLocale(Locale l) {
+		localeIndex = CurrencyFormat.L.indexOf(l);
+	}
+
+	public Locale getCurrentLocale() {
+		return CurrencyFormat.L.get(localeIndex);
 	}
 }

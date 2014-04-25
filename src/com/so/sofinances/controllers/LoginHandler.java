@@ -27,9 +27,9 @@ public class LoginHandler {
         encryptor.setPassword("ENCRYPT");
         example.setUserName(uName);
         ObjectSet<Object> result = DBHandler.db().queryByExample(example);
-        User u = (User)result.next();
+        User u = (result.hasNext()) ? (User) result.next() : null;
         ObjectSet<Object> resultNoPW = DBHandler.db().queryByExample(new User(uName));
-        if (encryptor.decrypt(u.getPassword()).equals(password)) {
+        if (u != null && encryptor.decrypt(u.getPassword()).equals(password)) {
             return example;
         } else if (resultNoPW.hasNext()){
             throw new PasswordMismatchException();

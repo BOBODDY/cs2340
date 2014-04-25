@@ -2,6 +2,7 @@ package com.so.sofinances.ui;
 
 import com.so.sofinances.R;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.app.Activity;
@@ -9,6 +10,7 @@ import android.content.Intent;
  
 public class SplashActivity extends Activity {
  
+	private MediaPlayer mp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +28,10 @@ public class SplashActivity extends Activity {
                 // close this activity
                 finish();
             }
-        }, 5*1000); // wait for 5 seconds
+        }, 2*1000); // wait for 2 seconds
+        mp = MediaPlayer.create(getBaseContext(), R.raw.lion_roar); /*Gets your 
+        soundfile from res/raw/sound.ogg */
+        mp.start(); //Starts your sound
     }
      
     @Override
